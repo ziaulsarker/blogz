@@ -1,4 +1,7 @@
+import Nav from "../components/nav"
+
 import "../styles/globals.scss"
+
 
 export default function RootLayout({
   children,
@@ -9,7 +12,8 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <nav>its the nav</nav>
+        {/* @ts-expect-error */}
+        <Nav />
         {children}
       </body>
     </html>
