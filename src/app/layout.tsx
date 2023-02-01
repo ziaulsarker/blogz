@@ -1,6 +1,6 @@
-import Nav from "../components/nav"
+import Nav from "../components/nav";
 
-import "../styles/globals.scss"
+import "../styles/globals.scss";
 
 
 export default function RootLayout({
@@ -8,12 +8,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html>
       <head />
       <body>
-        {/* @ts-expect-error */}
-        <Nav />
+        <Nav url="/"/>
         {children}
       </body>
     </html>
