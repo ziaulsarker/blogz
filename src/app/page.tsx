@@ -1,5 +1,5 @@
 export default function Page(props) {
-  return <div className="bg-gray-200">
+  return <div>
     Hello, Nessxt.js!
   </div>
   

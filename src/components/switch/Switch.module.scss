@@ -1,0 +1,82 @@
+$width: 50px;
+$height: 25px;
+
+$radius: 50%;
+
+$track-width: $width / 2;
+
+.switch {
+  height: $height;
+  position: relative;
+
+  label {
+   width: $width;
+   height: 100%;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   border-radius: $radius;
+   cursor: pointer;
+   overflow: hidden;
+   background-color: var(--color-black-2);
+
+   border-radius: 25px;
+   border: 1px solid var(--color-green);
+
+  }
+
+  input[type="checkbox"]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 0px;
+    width: 0px;
+  }
+}
+
+.track {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  left: 1.5px;
+  top: calc(50% - 10px);
+  cursor: pointer;
+  transition: translate 250ms linear;
+  background-color: var(--color-green);;
+  box-shadow: 0px 0px 10px var(--color-green);
+  border-radius: $radius;
+
+  &--right {
+    translate: calc(100% + 5px) 0%;
+  }
+}
+
+
+.lightSwitch,
+.darkSwitch {
+ width: $track-width;
+ height: 100%;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: $radius;
+
+ svg {
+  max-height: 18px;
+  animation-duration: 5000ms;
+ }
+}
+
+.lightSwitch {
+ svg {
+  color: #FFE87C;
+ } 
+}
+
+.darkSwitch {
+  svg {
+    color: #F5F3CE;
+   }  
+}

@@ -1,10 +1,7 @@
-type Link = {
-  url: string;
-}
 
+// import IHref from "../nav-link/nav-link.pops"
 interface SharedNavProps {
-  url: string;
-  links?: Link[];
+  links?: any[];
 }
 
 export default SharedNavProps;
