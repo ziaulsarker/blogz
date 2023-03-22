@@ -20,7 +20,7 @@ export default function RootLayout({
       <head />
       <body>
         <Nav />
-        <main>
+        <main className='container'>
           {children}
         </main>
       </body>
