@@ -1,11 +1,9 @@
-@use './_colors.scss';
+@use "./_colors.scss";
 @import "./mixins";
 
 * {
   box-sizing: border-box;
-
-};
-
+}
 
 html,
 body {
@@ -15,30 +13,21 @@ body {
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    transition: background-color 250ms linear, color 250ms linear;
+  transition: background-color 250ms linear, color 250ms linear;
 }
 
-body[data-theme='dark'] {
+body[data-theme="dark"] {
   background-color: var(--color-black-2);
   color: #fff;
 
-
   nav a {
     color: #fff;
-  };
+  }
 }
 
-body[data-theme='light'] {
-  nav a {
-    color: var(--color-black-2)
-  };
-
- 
+body[data-theme="light"] {
 }
 
 .container {
   @include container;
 }
-
-
-
