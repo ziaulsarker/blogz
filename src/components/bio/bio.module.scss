@@ -1,0 +1,15 @@
+.bio {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 15px;
+
+  &--with-img {
+    grid-template-columns: 3.5rem 1fr;
+  }
+  &__img {
+  }
+
+  &__copy {
+  }
+}

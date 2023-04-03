@@ -1,15 +1,17 @@
+import { StaticImageData } from "next-env";
+
 interface SharedBioProps {
-  src?: string;
+  src?: string | StaticImageData;
 }
 
 interface BioWtihChildren extends SharedBioProps {
   children: React.ReactNode;
-  title: never;
-  text: never
+  title?: never;
+  text?: never
 }
 
 interface BioWithTitleAndText extends SharedBioProps {
-  children: never;
+  children?: never;
   title: string
   text: string;
 }

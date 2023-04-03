@@ -1,9 +1,15 @@
 import Avatar from "../components/avatar/avatar";
 import AvatarSrc from "@/public/me.jpeg";
-import withLink from "../components/HOC/withLink";
-
-const AvatarLink = withLink(Avatar);
+import Bio from "../components/bio";
 
 export default function Page() {
-  return <div></div>;
+  return (
+    <div>
+      <Bio
+        src={AvatarSrc}
+        title="Hi i am Ziaul Sarker."
+        text="This is my perosnal blog where i share my share my thoughts and knowleged about Software Engeneering."
+      />
+    </div>
+  );
 }
