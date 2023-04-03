@@ -36,7 +36,7 @@
     "src/components/app/[...slug]",
     "src/**/*.ts",
     "src/**/*.tsx"
-, "src/context/ThemeProvider.js"  ],
+, "src/context/ThemeProvider.js", "jest.config.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -10,7 +10,7 @@ export default function Nav(props: NavProps): React.ReactElement {
       <div className={styles["nav--container"]}>
         <div className={styles["nav--wrapper"]}>
           <div className={styles["nav--logo"]}>
-            <Link href="/">Ziaul Sarker</Link>
+            <Link href="/">SWE-Z</Link>
           </div>
           <div>
             <Switch variant="square" />
