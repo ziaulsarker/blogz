@@ -8,7 +8,7 @@ export default function Page() {
       <Bio
         src={AvatarSrc}
         title="Hi i am Ziaul Sarker."
-        text="This is my perosnal blog where i share my share my thoughts and knowleged about Software Engeneering."
+        text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
     </div>
   );
