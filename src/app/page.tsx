@@ -2,7 +2,31 @@ import Avatar from "../components/avatar/avatar";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 
-export default function Page() {
+async function getAuthor() {
+  console.log("geting data...");
+  const options = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `{
+      author {
+          name
+      }
+  }`,
+    }),
+  };
+
+  const res = await fetch("http://localhost:4000/graphql", options);
+
+  return res.json();
+}
+
+export default async function Page() {
+  const data = await getAuthor();
+
+  console.log({ data: data.data.author.name });
   return (
     <div>
       <Bio
