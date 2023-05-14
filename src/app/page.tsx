@@ -3,7 +3,6 @@ import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 
 async function getAuthor() {
-  console.log("geting data...");
   const options = {
     method: "POST",
     headers: {
@@ -26,7 +25,6 @@ async function getAuthor() {
 export default async function Page() {
   const data = await getAuthor();
 
-  console.log({ data: data.data.author.name });
   return (
     <div>
       <Bio

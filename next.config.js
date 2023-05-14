@@ -4,7 +4,9 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: { appDir: true },
+  experimental: {
+    serverActions: true,
+  },
   images: { domains: ["images.dog.ceo"] },
   sassOptions: { includePaths: [path.join(__dirname, "styles")] }
 };
