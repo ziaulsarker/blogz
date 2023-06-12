@@ -19,11 +19,6 @@ function Switch({ variant = "square" }: SwitchProps) {
     }, []);
   }
 
-  useEffect(() => {
-    localStorage.setItem("theme", isChecked ? "dark" : "light");
-    document.body.dataset.theme = isChecked ? "dark" : "light";
-  }, [isChecked]);
-
   const trackClasses = clsx(
     {
       [styles["track--right"]]: isChecked,
@@ -31,14 +26,18 @@ function Switch({ variant = "square" }: SwitchProps) {
     styles.track
   );
 
-  const handleOnChange = (event: React.SyntheticEvent) =>
-    setIsChecked((prev: boolean) => !prev);
+  const handleOnChange = (event: React.SyntheticEvent) => {
+    const _isChecked = (event.target as HTMLInputElement).checked;
+    setIsChecked(_isChecked);
+    localStorage.setItem("theme", _isChecked ? "dark" : "light");
+    document.body.dataset.theme = _isChecked ? "dark" : "light";
+  };
 
   return (
     <div className={styles.switch}>
       <label htmlFor="theme-switch">
         <span className={styles.lightSwitch}>
-          <FontAwesomeIcon icon={faSun} />{" "}
+          <FontAwesomeIcon icon={faSun} />
         </span>
         <span className={styles.darkSwitch}>
           <FontAwesomeIcon icon={faMoon} />

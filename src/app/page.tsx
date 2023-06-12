@@ -2,6 +2,8 @@ import Avatar from "../components/avatar/avatar";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 
+import Upload from "src/components/upload";
+
 async function getAuthor() {
   const options = {
     method: "POST",
