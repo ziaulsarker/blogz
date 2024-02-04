@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Nav from "../components/nav";
 import "../styles/_globals.scss";
 
-import { Roboto_Mono } from "@next/font/google";
+import { Roboto_Mono } from "next/font/google";
 
 const roboto = Roboto_Mono({
   weight: ["400", "500"],
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body data-theme="light" className={roboto.className}>
+      <body className={roboto.className}>
         <Nav />
         <main className="container">{children}</main>
       </body>

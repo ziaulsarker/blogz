@@ -12,9 +12,9 @@ export default function Nav(props: NavProps): React.ReactElement {
           <div className={styles["nav--logo"]}>
             <Link href="/">SWE-Z</Link>
           </div>
-          <div>
+          {/* <div>
             <Switch variant="square" />
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>
