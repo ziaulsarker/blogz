@@ -1,12 +1,24 @@
 import { NextResponse } from 'next/server'
+import { readdir} from 'node:fs/promises'
+import * as matter from 'gray-matter';
 
 export async function GET(request: Request) {
-// Given an incoming request...
-const headers = new Headers({ 'x-test': 'bitch more'})
-headers.append('two-g', "geees up hop")
 
-// And product a response with the new headers
-const res =  new NextResponse(JSON.stringify({one: "test"}), {headers});
-return res;
+const foundPosts: any[] = []
+
+try {
+  const posts = await readdir('src/posts');
+  posts.map(file => {
+    const post = matter.read(`src/posts/${file}`)
+    foundPosts.push(post)
+  })
+
+  return NextResponse.json(foundPosts, {status: 200})
+
+
+} catch (err) {
+  return NextResponse.json(err, {status: 400})
+}
+
 
 }

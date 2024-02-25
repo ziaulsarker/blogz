@@ -1,31 +1,21 @@
-import Avatar from "../components/avatar/avatar";
+"use client";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 
-import Upload from "src/components/upload";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
 
-async function getAuthor() {
-  const options = {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: `{
-      author {
-          name
-      }
-  }`,
-    }),
-  };
-
-  const res = await fetch("http://localhost:4000/graphql", options);
+async function getPosts() {
+  const url = "http://localhost:3000/api/posts";
+  const res = await fetch(url);
 
   return res.json();
 }
 
 export default async function Page() {
-  const data = await getAuthor();
+  const posts = await getPosts();
+
+  console.log(posts);
 
   return (
     <div>
@@ -34,6 +24,17 @@ export default async function Page() {
         title="Hi i am Ziaul Sarker."
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
+
+      {posts.map(async (post) => {
+        const markup = await serialize(post.content ?? "");
+        // eslint-disable-next-line react/jsx-key
+        return (
+          <div key={post.data.title}>
+            <h1>{post.data.title}</h1>
+            {/* <MDXRemote {...markup} /> */}
+          </div>
+        );
+      })}
     </div>
   );
 }

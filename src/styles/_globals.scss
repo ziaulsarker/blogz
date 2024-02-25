@@ -25,6 +25,14 @@ body[data-theme="dark"] {
   }
 }
 
+body[data-theme="light"] {
+  background-color: #fff;
+  color: var(--color-black-2);
+  nav a {
+    color: var(--color-black-2);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--color-black-2);
@@ -32,6 +40,16 @@ body[data-theme="dark"] {
 
     nav a {
       color: #fff;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: var(--color-black-2);
+    nav a {
+      color: var(--color-black-2);
     }
   }
 }
