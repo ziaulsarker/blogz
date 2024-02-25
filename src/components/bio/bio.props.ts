@@ -1,4 +1,4 @@
-import { StaticImageData } from "next-env";
+import { StaticImageData } from "next/image";
 
 interface SharedBioProps {
   src?: string | StaticImageData;
