@@ -7,7 +7,11 @@ const nextConfig = {
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
-  sassOptions: { includePaths: [path.join(__dirname, "styles")] }
+  sassOptions: { includePaths: [path.join(__dirname, "styles")] },
+  
+  experimental: {
+    mdxRs: true,
+  },
 };
 
 module.exports = withMDX(nextConfig);

@@ -3,6 +3,7 @@ interface SwitchProps {
   bgColor?: string;
   left?: string;
   right?: string;
+  theme?: string;
 } 
 
 export default SwitchProps;

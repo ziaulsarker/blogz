@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Nav from "../components/nav";
 import "../styles/_globals.scss";
 
@@ -20,10 +21,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme")?.value ?? "";
+
   return (
     <html>
       <head />
-      <body className={roboto.className}>
+      <body className={roboto.className} data-theme={theme}>
         <Nav />
         <main className="container">{children}</main>
       </body>

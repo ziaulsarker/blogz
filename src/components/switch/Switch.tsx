@@ -1,20 +1,15 @@
 "use client";
-import React, { useState, useLayoutEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+
 import SwitchProps from "./Switch.props";
 import styles from "./Switch.module.scss";
 import clsx from "clsx";
+import setTheme from "src/serverActions/setThemeAction";
 
-function Switch({ variant = "square" }: SwitchProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  useLayoutEffect(() => {
-    const haseTheme = localStorage.getItem("theme");
-    const isDarkTheme = haseTheme === "dark";
-    document.body.dataset.theme = isDarkTheme ? "dark" : "light";
-    isDarkTheme && setIsChecked(true);
-  }, []);
+function Switch({ variant = "square", theme }: SwitchProps) {
+  const isChecked = theme === "dark";
 
   const trackClasses = clsx(
     {
@@ -24,10 +19,8 @@ function Switch({ variant = "square" }: SwitchProps) {
   );
 
   const handleOnChange = (event: React.SyntheticEvent) => {
-    const _isChecked = (event.target as HTMLInputElement).checked;
-    setIsChecked(_isChecked);
-    localStorage.setItem("theme", _isChecked ? "dark" : "light");
-    document.body.dataset.theme = _isChecked ? "dark" : "light";
+    const isDarkMode = (event.target as HTMLInputElement)?.checked;
+    setTheme(isDarkMode);
   };
 
   return (
@@ -44,6 +37,7 @@ function Switch({ variant = "square" }: SwitchProps) {
       <input
         type="checkbox"
         id="theme-switch"
+        name="thme"
         checked={isChecked}
         onChange={handleOnChange}
       />
