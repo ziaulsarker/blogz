@@ -17,7 +17,7 @@ try {
 
 
 } catch (err) {
-  return NextResponse.json(err, {status: 400})
+  return NextResponse.json('opps somethig went wrong', {status: 400})
 }
 
 

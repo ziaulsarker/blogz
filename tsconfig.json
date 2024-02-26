@@ -8,7 +8,10 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/public/*": ["public/*"],
+      "@/public/*": [
+        "public/*"
+      ],
+      "react": [ "./node_modules/@types/react" ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -35,8 +38,10 @@
     ".next/types/**/*.ts",
     "src/components/app/[...slug]",
     "src/**/*.ts",
-    "src/**/*.tsx"
-, "src/context/ThemeProvider.js", "jest.config.js"  ],
+    "src/**/*.tsx",
+    "src/context/ThemeProvider.js",
+    "jest.config.js"
+  ],
   "exclude": [
     "node_modules"
   ]

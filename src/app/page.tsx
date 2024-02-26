@@ -1,16 +1,12 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
-
-import { serialize } from "next-mdx-remote/serialize";
-
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { Suspense } from "react";
+import { BASE_URL } from "src/utils";
+import PostGrid from "src/components/postsGrid/postGrid";
 
 async function getPosts() {
-  const url = "http://localhost:3000/api/posts";
+  const url = `${BASE_URL}/api/posts`;
   const res = await fetch(url);
-
-  return res.json();
+  return !res.ok ? [] : res.json();
 }
 
 export default async function Page() {
@@ -24,17 +20,7 @@ export default async function Page() {
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
 
-      {posts.map(async (post: any) => {
-        return (
-          <div key={post.data.title}>
-            <h1>{post.data.title}</h1>
-            <Suspense fallback={<>Loading...</>}>
-              {/* @ts-expect-error Server Component */}
-              <MDXRemote source={post.content} components={{}} />
-            </Suspense>
-          </div>
-        );
-      })}
+      <PostGrid posts={posts} />
     </div>
   );
 }
