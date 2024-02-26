@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useContext, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import SwitchProps from "./Switch.props";
@@ -9,15 +9,12 @@ import clsx from "clsx";
 function Switch({ variant = "square" }: SwitchProps) {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  // the if condition surpress next js warning
-  if (typeof window !== "undefined") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useLayoutEffect(() => {
-      const haseTheme = localStorage.getItem("theme");
-      document.body.dataset.theme = haseTheme === "dark" ? "dark" : "light";
-      haseTheme === "dark" && setIsChecked(true);
-    }, []);
-  }
+  useLayoutEffect(() => {
+    const haseTheme = localStorage.getItem("theme");
+    const isDarkTheme = haseTheme === "dark";
+    document.body.dataset.theme = isDarkTheme ? "dark" : "light";
+    isDarkTheme && setIsChecked(true);
+  }, []);
 
   const trackClasses = clsx(
     {
