@@ -22,13 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = cookies();
-  const theme = cookieStore.get("theme")?.value ?? "";
+  const theme = cookieStore.get("theme")?.value ?? "light";
 
   return (
     <html>
       <head />
       <body className={roboto.className} data-theme={theme}>
-        <Nav />
+        <Nav theme={theme} />
         <main className="container">{children}</main>
       </body>
     </html>

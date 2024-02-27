@@ -7,10 +7,7 @@ import Avatar from "../avatar/avatar";
 import NavProps from "./Nav.props";
 import styles from "./nav.module.scss";
 
-export default function Nav(props: NavProps): React.ReactElement {
-  const myCookes = cookies();
-  const themeFromCookie = myCookes.get("theme")?.value ?? "";
-
+export default function Nav({ theme }: NavProps): React.ReactElement {
   return (
     <nav className={styles.nav}>
       <div className={styles["nav--container"]}>
@@ -19,7 +16,7 @@ export default function Nav(props: NavProps): React.ReactElement {
             <Link href="/">SWE-Z</Link>
           </div>
           <div>
-            <Switch variant="square" theme={themeFromCookie} />
+            <Switch variant="square" theme={theme} />
           </div>
         </div>
       </div>
