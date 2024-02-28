@@ -1,7 +1,13 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { usePost } from "../../hooks/usePosts";
 
-export default async function RemoteMdxPage({ params: { slug } }) {
-  console.log({ slug });
+export default async function RemoteMdxPage({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const postData = await usePost(slug);
+
   return (
     <MDXRemote
       source={`

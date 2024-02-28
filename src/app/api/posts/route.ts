@@ -15,7 +15,6 @@ try {
 
   return NextResponse.json(foundPosts, {status: 200})
 
-
 } catch (err) {
   return NextResponse.json('opps somethig went wrong', {status: 400})
 }
