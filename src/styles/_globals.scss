@@ -33,27 +33,6 @@ body[data-theme="light"] {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--color-black-2);
-    color: #fff;
-
-    nav a {
-      color: #fff;
-    }
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #fff;
-    color: var(--color-black-2);
-    nav a {
-      color: var(--color-black-2);
-    }
-  }
-}
-
 .container {
   @include container;
 }

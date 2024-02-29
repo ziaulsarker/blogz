@@ -1,4 +1,3 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 
 export default function PostGrid({ posts } = { posts: [] }) {
@@ -21,7 +20,7 @@ export default function PostGrid({ posts } = { posts: [] }) {
         }}
       >
         <div>
-          <h2>{post.data.title}</h2>
+          <h2 className="text-red">{post.data.title}</h2>
           <div>
             <span>{new Date(post.data.published).toLocaleDateString()}</span>
           </div>
