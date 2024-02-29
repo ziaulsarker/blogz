@@ -1,0 +1,15 @@
+.postGrid {
+  &:hover {
+    scale: 1.0125;
+    color: var(--color-green);
+    transition: all 0.25s linear;
+  }
+}
+
+body[data-theme="dark"] {
+  .postGrid {
+    &:hover {
+      color: var(--color-yellow-0);
+    }
+  }
+}

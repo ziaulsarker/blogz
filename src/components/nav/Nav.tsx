@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 
 import Switch from "../switch";
-import Avatar from "../avatar/avatar";
 
 import NavProps from "./Nav.props";
 import styles from "./nav.module.scss";

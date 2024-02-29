@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: "Ziaul Sarker Personal Blog",
   description:
     "I explain my coding journy through the world fo software engineering.",
+
+  other: {
+    author: "Ziaul Sarker",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +30,6 @@ export default function RootLayout({
 
   return (
     <html>
-      <head />
       <body className={roboto.className} data-theme={theme}>
         <Nav theme={theme} />
         <main className="container">{children}</main>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./postGrid.module.scss";
 
 export default function PostGrid({ posts } = { posts: [] }) {
   return posts.map(
@@ -19,7 +20,7 @@ export default function PostGrid({ posts } = { posts: [] }) {
           color: "inherit",
         }}
       >
-        <div>
+        <div className={styles.postGrid}>
           <h2 className="text-red">{post.data.title}</h2>
           <div>
             <span>{new Date(post.data.published).toLocaleDateString()}</span>
