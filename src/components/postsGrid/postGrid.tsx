@@ -20,13 +20,13 @@ export default function PostGrid({ posts } = { posts: [] }) {
           color: "inherit",
         }}
       >
-        <div className={styles.postGrid}>
-          <h2 className="text-red">{post.data.title}</h2>
-          <div>
-            <span>{new Date(post.data.published).toLocaleDateString()}</span>
+        <article className={styles.postGrid}>
+          <div className={styles.published}>
+            <span>{new Date(post.data.published).toDateString()}</span>
           </div>
-          <p>{post.data.description}</p>
-        </div>
+          <h2 className={styles.title}>{post.data.title}</h2>
+          <p className={styles.description}>{post.data.description}</p>
+        </article>
       </Link>
     )
   );
