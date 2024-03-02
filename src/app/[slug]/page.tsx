@@ -25,9 +25,7 @@ export default async function RemoteMdxPage({
       <div>
         <Link href="/" className={styles.back}>
           <span>
-            <Suspense fallback={<p>Loading...</p>}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </Suspense>
+            <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           home
         </Link>
