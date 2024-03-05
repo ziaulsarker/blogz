@@ -1,10 +1,24 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { usePost } from "../../hooks/usePosts";
-import Link from "next/link";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import styles from "./(styles)/page.module.scss";
+import { ReactNode } from "react";
+import { MergeComponents } from "@mdx-js/react/lib";
+import { MDXComponents } from "mdx/types";
+
+const componentsMapper: MDXComponents | MergeComponents | null | undefined = {
+  p: ({ children }: { children?: ReactNode }) => (
+    <p className="text-sm md:text-base">{children}</p>
+  ),
+  Span: ({ children }: { children?: ReactNode }) => (
+    <span className="block text-xs md:text-sm mt-4 mb-2">{children}</span>
+  ),
+
+  code: ({ children }: { children?: ReactNode }) => (
+    <code className="">
+      <pre>{children}</pre>
+    </code>
+  ),
+};
 
 export default async function RemoteMdxPage({
   params: { slug },
@@ -26,14 +40,7 @@ export default async function RemoteMdxPage({
       <h1 className="text-xl lg:text-2xl xl:text-3xl mb-4">
         {postData.data.title}
       </h1>
-      <MDXRemote
-        source={postData.content}
-        components={{
-          p: ({ children }) => (
-            <p className="text-sx md:text-base">{children}</p>
-          ),
-        }}
-      />
+      <MDXRemote source={postData.content} components={componentsMapper} />
     </article>
   );
 }

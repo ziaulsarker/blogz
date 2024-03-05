@@ -9,7 +9,21 @@ category:
   - D&S
 ---
 
-Maps were introduced as a new data structure in ES6. It is similar to a regular JS object as its a key-value pair store
+Maps were introduced as a new data structure in ES6. It is similar to a regular JS object as its a key-value pair store, but the main difference is that Maps allows you to use keys of any type while traditional Objects only allow strings.
+
+<Span> example: </Span>
+<div className="bg-[#282a36] p-4">
+```javascript
+  const objAsKey = {key: 'key', value: 'value'};
+  const obj = {}
+
+  obj[objAsKey] = 'foo'
+
+  console.log(obj) // this results in {[object Object]: 'foo'}
+```
+</div>
+
+
 
 
 
