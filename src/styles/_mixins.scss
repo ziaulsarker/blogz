@@ -12,10 +12,12 @@
 
 @mixin container {
   margin: 0 1rem;
+  margin: 0 auto;
+  padding: 0 15px;
 
   @include tablet {
     max-width: 40rem;
-    margin: 0 auto;
+    padding: 0;
   }
 
   @include desktop {

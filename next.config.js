@@ -9,9 +9,6 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
   sassOptions: { includePaths: [path.join(__dirname, "styles")] },
   
-  experimental: {
-    mdxRs: true,
-  },
 };
 
 module.exports = withMDX(nextConfig);

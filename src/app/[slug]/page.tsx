@@ -13,32 +13,27 @@ export default async function RemoteMdxPage({
 }) {
   const postData = await usePost(slug);
 
-  console.log({ postData });
-
   return (
-    <div>
-      <article>
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "300px",
-          }}
-        >
-          <Image fill alt={postData.data.title} src="/maps-in-js.jpeg" />
-        </div>
-        <h1>{postData.data.title}</h1>
-        <MDXRemote source={postData.content} />
-      </article>
-
-      <div>
-        <Link href="/" className={styles.back}>
-          <span>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </span>
-          home
-        </Link>
+    <article className="my-4 md:my-6 lg:my-8">
+      <div className="relative w-full h-[300px] mb-4">
+        <Image
+          fill
+          alt={postData.data.title}
+          src={postData.data.img}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
-    </div>
+      <h1 className="text-xl lg:text-2xl xl:text-3xl mb-4">
+        {postData.data.title}
+      </h1>
+      <MDXRemote
+        source={postData.content}
+        components={{
+          p: ({ children }) => (
+            <p className="text-sx md:text-base">{children}</p>
+          ),
+        }}
+      />
+    </article>
   );
 }
