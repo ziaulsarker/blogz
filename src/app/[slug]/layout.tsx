@@ -21,7 +21,7 @@ export default function PostLayout({
 
       {children}
 
-      <div className="flex flex-row text-xs">
+      <div className="flex flex-row text-xs mb-8">
         <Link href="/" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
