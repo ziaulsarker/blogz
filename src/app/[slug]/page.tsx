@@ -1,11 +1,9 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { usePost } from "../../hooks/usePosts";
 import Image from "next/image";
-import { ReactNode } from "react";
-import { MergeComponents } from "@mdx-js/react/lib";
-import { MDXComponents } from "mdx/types";
 import rehypeHighlight from "rehype-highlight";
 import { SerializeOptions } from "next-mdx-remote/dist/types";
+import { componentsMapper } from "src/utils";
+import { usePost } from "../../hooks/usePosts";
 
 const options = {
   mdxOptions: {
@@ -13,27 +11,6 @@ const options = {
     rehypePlugins: [rehypeHighlight],
   },
 } as SerializeOptions;
-
-const componentsMapper: MDXComponents | MergeComponents | null | undefined = {
-  p: ({ children }: { children?: ReactNode }) => (
-    <p className="text-sm md:text-base mb-4">{children}</p>
-  ),
-  Span: ({ children }: { children?: ReactNode }) => (
-    <span className="block text-xs md:text-sm mb-2">{children}</span>
-  ),
-
-  ul: ({ children }: { children?: ReactNode }) => (
-    <ul className="mx-6 mb-4"> {children} </ul>
-  ),
-  li: ({ children }: { children?: ReactNode }) => (
-    <li className="list-disc mb-2 text-sm"> {children} </li>
-  ),
-  code: ({ children }: { children?: ReactNode }) => (
-    <code className="bg-[#282a36] text-white p-6 md:p-8 mb-4 block">
-      <pre>{children}</pre>
-    </code>
-  ),
-};
 
 export default async function RemoteMdxPage({
   params: { slug },

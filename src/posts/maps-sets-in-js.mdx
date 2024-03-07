@@ -14,6 +14,7 @@ Maps were introduced as a new data structure in ES6. It is similar to a regular 
 <Span> example: </Span>
 <div>
 ```javascript
+// Using Objects
 const objAsKey = {key: 'key', value: 'value'};
 const obj = {}
 
@@ -21,10 +22,7 @@ obj[objAsKey] = 'foo'
 
 console.log(obj) // this results in {[object Object]: 'foo'}
 
-
-// USING MAPS
-
-
+// Using Maps
 const objAsMapKey = {key: 'key', value: 'value'};
 
 // for every user, let's store their visits count

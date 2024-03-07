@@ -3,6 +3,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import styles from "./(styles)/page.module.scss";
 
+import type { Metadata, ResolvingMetadata } from "next";
+import { usePost } from "src/hooks/usePosts";
+
+export async function generateMetadata(
+  { params: { slug } }: { params: { slug: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const {
+    data: { category },
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = await usePost(slug);
+
+  return {
+    title: `${slug} by Ziaul Sarker`,
+    description: `${slug} by Ziaul Sarker`,
+    category: category.join(", "),
+  };
+}
+
 export default function PostLayout({
   children,
 }: {
