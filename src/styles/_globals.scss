@@ -46,6 +46,7 @@ body[data-theme="light"] {
 
 pre {
   color: #fff;
+  text-wrap: wrap;
 
   .hljs-keyword {
     color: #ff79c6;
@@ -63,7 +64,7 @@ pre {
     color: #50fa7b;
   }
   .hljs-comment {
-    color: #f8f8f2;
+    color: #8b949e;
   }
 
   .hljs-number {

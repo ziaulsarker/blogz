@@ -12,7 +12,7 @@ category:
 Maps were introduced as a new data structure in ES6. It is similar to a regular JS object as its a key-value pair store, but the main difference is that Maps allows you to use keys of any type while traditional Objects only allow strings.
 
 <Span> example: </Span>
-<div className="bg-[#282a36] text-white p-4 mb-4">
+<div>
 ```javascript
 const objAsKey = {key: 'key', value: 'value'};
 const obj = {}
@@ -47,6 +47,44 @@ Some map methods and properties are:
   - map.clear() - removes everything from the map.
   - map.size - returns the current element count.
 
+<Span> example: </Span>
+
+<div>
+```javascript
+// creates the map
+const myMap = new Map();
+
+// stores the value by the key
+myMap.set('name', 'Ziaul Sarker');
+
+// the .set() method is cainable it returns a new instance of the Map object
+myMap
+  .set('title', 'Software Engineer')
+  .set('hobby', 'coding')
+  .set('key', 'value')
+  
+
+// returns the value by the key, undefined if key doesn’t exist in map
+const name = myMap.get('name')
+
+// returns true if the key exists, false otherwise
+const hasKey = myMap.has('key')
+
+// removes the element (the key/value pair) by the key
+myMap.delete('key')
+console.log(myMap) // Map(3) {'name' => 'Ziaul Sarker', 'title' => 'Software Engineer', 'hobby' => 'coding'}
+
+// returns the current element count
+const lengthOfMap = myMap.size
+
+// removes everything from the map
+myMap.clear()
+console.log(myMap) // Map(0) {size: 0}
+
+```
+</div>
+
+
 Maps also has built in methods for ittation over a map
   - map.keys() - returns an iterable for the maps keys.
   - map.values() - sreturns an iterable for the maps values.
@@ -56,7 +94,7 @@ which can be itterated over using the for of loop
 
 <Span> example: </Span>
 
-<div className="bg-[#282a36] text-white p-4 mb-4">
+<div>
 ```javascript
 const mapEntries = new Map([
   ['koby', 1],
