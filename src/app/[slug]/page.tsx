@@ -4,6 +4,15 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { MergeComponents } from "@mdx-js/react/lib";
 import { MDXComponents } from "mdx/types";
+import rehypeHighlight from "rehype-highlight";
+import { SerializeOptions } from "next-mdx-remote/dist/types";
+
+const options = {
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: [rehypeHighlight],
+  },
+} as SerializeOptions;
 
 const componentsMapper: MDXComponents | MergeComponents | null | undefined = {
   p: ({ children }: { children?: ReactNode }) => (
@@ -46,7 +55,11 @@ export default async function RemoteMdxPage({
       <h1 className="text-xl lg:text-2xl xl:text-3xl mb-4">
         {postData.data.title}
       </h1>
-      <MDXRemote source={postData.content} components={componentsMapper} />
+      <MDXRemote
+        source={postData.content}
+        components={componentsMapper}
+        options={options}
+      />
     </article>
   );
 }

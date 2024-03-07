@@ -43,3 +43,30 @@ body[data-theme="light"] {
 .container {
   @include container;
 }
+
+pre {
+  color: #fff;
+
+  .hljs-keyword {
+    color: #ff79c6;
+  }
+
+  .hljs-string {
+    color: #f1fa8c;
+  }
+
+  .hljs-title.class_ {
+    color: #8be9fd;
+  }
+
+  .hljs-title.function_ {
+    color: #50fa7b;
+  }
+  .hljs-comment {
+    color: #f8f8f2;
+  }
+
+  .hljs-number {
+    color: #bd93f9;
+  }
+}
