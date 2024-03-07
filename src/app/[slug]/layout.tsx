@@ -12,7 +12,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const {
-    data: { category },
+    data: { category = [] } = {},
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = await usePost(slug);
 
@@ -39,13 +39,18 @@ export default function PostLayout({
         </Link>
         <div className="flex items-center">
           <p className="text-xs text-bold font-extrabold mr-2 font-mono">by</p>
-          <Image
-            width={30}
-            height={30}
-            src="/me.jpeg"
-            alt="Ziaul Sarker"
-            className="block rounded-full"
-          />
+          <Link
+            href="https://www.linkedin.com/in/ziaul-sarker-58b11374/"
+            target="_blank"
+          >
+            <Image
+              width={30}
+              height={30}
+              src="/me.jpeg"
+              alt="Ziaul Sarker"
+              className="rounded-full"
+            />
+          </Link>
         </div>
       </div>
 

@@ -24,16 +24,16 @@ export default async function RemoteMdxPage({
       <div className="relative w-full h-[300px] mb-4">
         <Image
           fill
-          alt={postData.data.title}
-          src={postData.data.img}
+          alt={postData?.data?.title}
+          src={postData?.data?.img}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <h1 className="text-xl lg:text-2xl xl:text-3xl mb-4">
-        {postData.data.title}
+        {postData?.data?.title}
       </h1>
       <MDXRemote
-        source={postData.content}
+        source={postData?.content}
         components={componentsMapper}
         options={options}
       />
