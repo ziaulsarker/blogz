@@ -13,8 +13,14 @@ const componentsMapper: MDXComponents | MergeComponents | null | undefined = {
     <span className="block text-xs md:text-sm mt-4 mb-2">{children}</span>
   ),
 
+  ul: ({ children }: { children?: ReactNode }) => (
+    <ul className="p-4"> {children} </ul>
+  ),
+  li: ({ children }: { children?: ReactNode }) => (
+    <li className="list-disc mb-2 text-sm"> {children} </li>
+  ),
   code: ({ children }: { children?: ReactNode }) => (
-    <code className="">
+    <code className="text-wrap p-2 px-6">
       <pre>{children}</pre>
     </code>
   ),

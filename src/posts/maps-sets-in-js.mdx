@@ -12,16 +12,77 @@ category:
 Maps were introduced as a new data structure in ES6. It is similar to a regular JS object as its a key-value pair store, but the main difference is that Maps allows you to use keys of any type while traditional Objects only allow strings.
 
 <Span> example: </Span>
-<div className="bg-[#282a36] p-4">
+<div className="bg-[#282a36] text-white p-4 mb-4">
 ```javascript
-  const objAsKey = {key: 'key', value: 'value'};
-  const obj = {}
+const objAsKey = {key: 'key', value: 'value'};
+const obj = {}
 
-  obj[objAsKey] = 'foo'
+obj[objAsKey] = 'foo'
 
-  console.log(obj) // this results in {[object Object]: 'foo'}
+console.log(obj) // this results in {[object Object]: 'foo'}
+
+
+// USING MAPS
+
+
+const objAsMapKey = {key: 'key', value: 'value'};
+
+// for every user, let's store their visits count
+const myMap = new Map();
+
+// john is the key for the map
+myMap.set(objAsMapKey, 123);
+
+console.log( myMap.get(objAsMapKey) ); // 123
 ```
 </div>
+
+
+Some map methods and properties are:
+  - new Map() - creates the map.
+  - map.set(key, value) - stores the value by the key.
+  - map.get(key) - returns the value by the key, undefined if key doesn’t exist in map.
+  - map.has(key) - returns true if the key exists, false otherwise.
+  - map.delete(key) - removes the element (the key/value pair) by the key.
+  - map.clear() - removes everything from the map.
+  - map.size - returns the current element count.
+
+Maps also has built in methods for ittation over a map
+  - map.keys() - returns an iterable for the maps keys.
+  - map.values() - sreturns an iterable for the maps values.
+  - map.entries() - returns a new map iterator object that contains the [key, value] pairs for each element in this map in insertion order.
+
+which can be use itterated over using the for of loop
+
+<Span> example: </Span>
+
+<div className="bg-[#282a36] text-white p-4 mb-4">
+```javascript
+let mapEntries = new Map([
+  ['koby', 1],
+  ['mj', 2],
+  ['lbj', 3]
+]);
+
+// iterate over keys (vegetables)
+for (let key of mapEntries.keys()) {
+  console.log(key); // koby, mj, lbj
+}
+
+// iterate over values (amounts)
+for (let value of mapEntries.values()) {
+  console.log(value); // 1,2,3
+}
+
+// iterate over [key, value] entries
+// the same as let [key, value] of mapEntries
+for (let [key, value] of mapEntries.entries()) { 
+  console.log(key, value); // koby,1 (and so on)
+}
+```
+</div>
+
+
 
 
 
