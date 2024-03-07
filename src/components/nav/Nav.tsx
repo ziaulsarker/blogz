@@ -11,7 +11,7 @@ export default function Nav({ theme }: NavProps): React.ReactElement {
       <div className={styles["nav--container"]}>
         <div className={styles["nav--wrapper"]}>
           <div className={styles["nav--logo"]}>
-            <Link href="/">SWE-Z</Link>
+            <Link href="/">ZS</Link>
           </div>
           <div>
             <Switch variant="square" theme={theme} />

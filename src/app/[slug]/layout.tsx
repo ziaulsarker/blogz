@@ -1,6 +1,7 @@
 import { faArrowLeft, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./(styles)/page.module.scss";
 
 import type { Metadata, ResolvingMetadata } from "next";
@@ -29,13 +30,23 @@ export default function PostLayout({
 }) {
   return (
     <div id="post">
-      <div className="text-xs">
+      <div className="text-xs flex flex-row items-center justify-between">
         <Link href="/" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           Back to all posts
         </Link>
+        <div className="flex items-center">
+          <p className="text-xs text-bold font-extrabold mr-2 font-mono">by</p>
+          <Image
+            width={30}
+            height={30}
+            src="/me.jpeg"
+            alt="Ziaul Sarker"
+            className="block rounded-full"
+          />
+        </div>
       </div>
 
       {children}
