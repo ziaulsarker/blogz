@@ -2,6 +2,8 @@ import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import { BASE_URL } from "src/utils";
 import PostGrid from "src/components/postsGrid/postGrid";
+import Pill from "../components/pill/pill";
+import { useCategories } from "src/hooks";
 
 async function getPosts() {
   const url = `${BASE_URL}/api/posts`;
@@ -10,7 +12,7 @@ async function getPosts() {
 }
 
 export default async function Page() {
-  const posts = await getPosts();
+  const [posts, categores] = await Promise.all([getPosts(), useCategories()]);
 
   return (
     <div>
@@ -20,6 +22,7 @@ export default async function Page() {
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
 
+      <Pill />
       <PostGrid posts={posts} />
     </div>
   );

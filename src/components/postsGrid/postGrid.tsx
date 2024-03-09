@@ -18,6 +18,7 @@ export default function PostGrid({ posts } = { posts: [] }) {
         style={{
           textDecoration: "none",
           color: "inherit",
+          display: "block",
         }}
       >
         <article className={styles.postGrid}>
