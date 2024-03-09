@@ -14,7 +14,7 @@ function Bio(props: Iprops) {
   return (
     <article className={bioClasses}>
       {src && (
-        <div className={styles["bio__img"]}>
+        <div className={`${styles["bio__img"]} flex justify-center`}>
           <Avatar
             src={src}
             alt="Ziaul Sarker"

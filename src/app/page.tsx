@@ -4,6 +4,7 @@ import { BASE_URL } from "src/utils";
 import PostGrid from "src/components/postsGrid/postGrid";
 import Pill from "../components/pill/pill";
 import { useCategories } from "src/hooks";
+import CategoryGrid from "src/components/categoryGrid/categoryDrid";
 
 async function getPosts() {
   const url = `${BASE_URL}/api/posts`;
@@ -22,7 +23,7 @@ export default async function Page() {
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
 
-      <Pill />
+      <CategoryGrid categories={categores} />
       <PostGrid posts={posts} />
     </div>
   );
