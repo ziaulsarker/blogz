@@ -1,0 +1,21 @@
+---
+title: What are middlewares 
+slug: what-are-middlewares
+img: /middlewares.jpeg
+description: What are middlewares and how can we leverage them in our application.
+published: 2024-03-02
+category: 
+  - express
+  - NodeJS
+---
+
+Middlewares are just functions that has access to the request and response objects as well as the next middleware in the req/res middlewares cycle.
+
+Some map methods and properties are:
+  - perform any buisness/application logic.
+  - Make updates to the incoming request and the outgoing response objects.
+  - End the request-response cycle.
+  - Call the next middleware function in the stack.
+
+<Span> example: </Span>
+

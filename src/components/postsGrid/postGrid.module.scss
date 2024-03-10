@@ -7,10 +7,6 @@
     margin-bottom: 45px;
   }
 
-  @include desktop {
-    margin-bottom: 60px;
-  }
-
   &:hover {
     scale: 1.0125;
     color: var(--color-green);
