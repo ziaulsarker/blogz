@@ -31,7 +31,7 @@ export default function PostLayout({
   return (
     <div id="post">
       <div className="text-xs flex flex-row items-center justify-between">
-        <Link href="/" className={styles.back}>
+        <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
@@ -57,7 +57,7 @@ export default function PostLayout({
       {children}
 
       <div className="flex flex-row text-xs mb-8">
-        <Link href="/" className={styles.back}>
+        <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
