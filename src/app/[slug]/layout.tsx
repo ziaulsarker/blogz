@@ -5,7 +5,8 @@ import Image from "next/image";
 import styles from "./(styles)/page.module.scss";
 
 import type { Metadata, ResolvingMetadata } from "next";
-import { usePost } from "src/hooks/usePosts";
+import { usePost, useSinglePostCategory } from "src/hooks/index";
+import Pill from "src/components/pill/pill";
 
 export async function generateMetadata(
   { params: { slug } }: { params: { slug: string } },
@@ -29,11 +30,14 @@ export async function generateMetadata(
   };
 }
 
-export default function PostLayout({
+export default async function PostLayout({
   children,
+  params: { slug },
 }: {
   children: React.ReactNode;
+  params: { slug: string };
 }) {
+  const postCategories = await useSinglePostCategory(slug);
   return (
     <div id="post">
       <div className="text-xs flex flex-row items-center justify-between">
@@ -58,6 +62,21 @@ export default function PostLayout({
             />
           </Link>
         </div>
+      </div>
+
+      <div className="flex flex-row px-4 md:pl-0 my-8 mt-4">
+        {postCategories.map((text) => (
+          <div key={text} className="mr-3">
+            <Pill
+              text={text}
+              href={{
+                pathname: "/",
+                query: { category: text },
+              }}
+              prefix={"#"}
+            />
+          </div>
+        ))}
       </div>
 
       {children}

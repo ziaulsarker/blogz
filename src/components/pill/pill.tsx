@@ -5,9 +5,15 @@ export interface IPill {
   text: string;
   href?: string | LinkProps | UrlObject;
   isActive?: boolean;
+  prefix?: string;
 }
 
-export default function Pill({ text, href, isActive = false }: IPill) {
+export default function Pill({
+  text,
+  href,
+  isActive = false,
+  prefix = "",
+}: IPill) {
   const defaultClasses =
     "px-3 py-1 inline-flex text-xs rounded-full hover:bg-[#49c5b6] text-white dark:text-[#222]  dark:hover:bg-[#e7b10a] dark:hover:text-[#fff] transition-all duration-200 ease-in-out font-bold";
 
@@ -23,6 +29,7 @@ export default function Pill({ text, href, isActive = false }: IPill) {
       }}
       className={`${defaultClasses} ${activeClasses}`}
     >
+      {prefix && <span>{prefix}</span>}
       <span>{text.toUpperCase()}</span>
     </Link>
   ) : (
