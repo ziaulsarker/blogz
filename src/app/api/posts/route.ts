@@ -4,15 +4,19 @@ import * as matter from 'gray-matter';
 
 export async function GET(request: Request) {
 
-const foundPosts: any[] = []
+  const foundPosts: any[] = []
+
   try {
     const posts = await readdir('src/posts');
+
     posts.map(file => {
       const post = matter.read(`src/posts/${file}`)
       foundPosts.push(post)
     })
 
-    return NextResponse.json(foundPosts, {status: 200})
+    const sortedPosts = foundPosts.toSorted( (a, b) => b.data.published - a.data.published )
+
+    return NextResponse.json(sortedPosts, {status: 200})
 
   } catch (err) {
     return NextResponse.json('opps somethig went wrong', {status: 400})

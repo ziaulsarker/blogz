@@ -4,19 +4,18 @@ import * as matter from 'gray-matter';
 
 export async function GET(request: Request) {
 
-const postCategories = new Set<string>();
+const postCategories: Array<string> = [];
   try {
     const posts = await readdir('src/posts');
+    
     posts.map(file => {
       const post = matter.read(`src/posts/${file}`)
-      postCategories.add(post.data.category)
+      postCategories.push(...post.data.category)
     })
 
-    return NextResponse.json([...postCategories].flat(), {status: 200})
+    return NextResponse.json([...new Set(postCategories)], {status: 200})
 
   } catch (err) {
     return NextResponse.json('opps somethig went wrong', {status: 400})
   }
-
-
 }
