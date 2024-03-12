@@ -22,7 +22,7 @@ export const componentsMapper:
   ),
 
   ul: ({ children }: { children?: ReactNode }) => (
-    <ul className="mx-6 mb-4"> {children} </ul>
+    <ul className="mx-6 mb-4 md:mb-6"> {children} </ul>
   ),
   li: ({ children }: { children?: ReactNode }) => (
     <li className="list-disc mb-2 text-sm"> {children} </li>

@@ -21,7 +21,7 @@ export default async function RemoteMdxPage({
 
   return (
     <article className="my-4 md:my-6 lg:my-8">
-      <div className="relative w-full h-[300px] mb-4">
+      <div className="relative w-full h-[300px] my-4 md:my-6">
         <Image
           fill
           alt={postData?.data?.title}
@@ -29,7 +29,7 @@ export default async function RemoteMdxPage({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <h1 className="text-xl lg:text-2xl xl:text-3xl mb-4">
+      <h1 className="text-xl lg:text-2xl xl:text-3xl my-4">
         {postData?.data?.title}
       </h1>
       <MDXRemote

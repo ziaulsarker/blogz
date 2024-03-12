@@ -14,9 +14,14 @@ export const metadata: Metadata = {
   title: "Ziaul Sarker Personal Blog",
   description:
     "I explain my coding journy through the world fo software engineering.",
+  keywords:
+    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development",
 
   other: {
     author: "Ziaul Sarker",
+    "page-type": "Blogging",
+    "page-topic":
+      "Software Engineer, AI, Coding & Programming, Machine Learning, Software Development",
   },
 };
 
