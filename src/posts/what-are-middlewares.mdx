@@ -80,11 +80,11 @@ const firstMiddleWare = async (req, res) => {
 };
 
 const secondMiddleWare = async (req, res) => {
-  res.end();
+  res.send('second middleware');
 };
 
 const thirdMiddleWare = async (req, res) => {
-  res.end();
+  res.send('third middleware');
 };
 
 // sice we end the request in the first middleware we never excute the second and third middlewares in the stack.
