@@ -1,0 +1,45 @@
+---
+title: Discriminated Unions in TS
+slug: discriminated-unions-in-ts
+img: /unions.jpeg
+description: What are discriminated unions in typescript.
+published: 2024-03-05
+category: 
+  - typescript
+  - next
+---
+
+What are Discriminated unions in typescript
+
+<Span>example: </Span>
+<div>
+```typescript
+import { StaticImageData } from "next/image";
+
+interface SharedBioProps {
+  src?: string | StaticImageData;
+}
+
+interface BioWtihChildren extends SharedBioProps {
+  children: React.ReactNode;
+  title?: never;
+  text?: never
+}
+
+interface BioWithTitleAndText extends SharedBioProps {
+  children?: never;
+  title: string
+  text: string;
+}
+
+type BioProps = BioWtihChildren | BioWithTitleAndText;
+
+export default BioProps;
+```
+</div>
+
+
+
+
+
+
