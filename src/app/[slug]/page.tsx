@@ -2,6 +2,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import rehypeHighlight from "rehype-highlight";
 import { SerializeOptions } from "next-mdx-remote/dist/types";
+import { notFound } from "next/navigation";
 import { componentsMapper } from "src/utils";
 import { usePost } from "../../hooks/usePosts";
 
@@ -18,6 +19,10 @@ export default async function RemoteMdxPage({
   params: { slug: string };
 }) {
   const postData = await usePost(slug);
+
+  if (!Object.keys(postData).length) {
+    notFound();
+  }
 
   return (
     <article className="my-4 md:my-6 lg:my-8">
