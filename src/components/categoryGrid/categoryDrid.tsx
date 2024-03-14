@@ -7,7 +7,13 @@ interface ICatProps {
 
 export default function CategoryGrid({ categories, active }: ICatProps) {
   return (
-    <div className="flex flex-row px-4 md:pl-0 my-8 mt-4">
+    <div
+      className="flex flex-row flex-wrap px-4 pl-0 my-8 mt-4"
+      style={{
+        columnGap: "1rem",
+        rowGap: "1rem",
+      }}
+    >
       <div className="mr-3">
         <Pill
           text="all"
@@ -20,7 +26,7 @@ export default function CategoryGrid({ categories, active }: ICatProps) {
       </div>
       {categories.map((text) => {
         return (
-          <div key={text} className="mr-3">
+          <div key={text}>
             <Pill
               text={text}
               isActive={active === text}
