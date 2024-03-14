@@ -6,35 +6,65 @@ description: What are discriminated unions in typescript.
 published: 2024-03-05
 category: 
   - typescript
-  - next
+  - react
 ---
 
-What are Discriminated unions in typescript
+A discriminated union in typescript is a a feature that allows you to create variations of a type that shares a union. 
 
 <Span>example: </Span>
 <div>
 ```typescript
-import { StaticImageData } from "next/image";
-
+// create a shared interface between the two types
 interface SharedBioProps {
-  src?: string | StaticImageData;
+  src?: string;
 }
 
+// one type has children and type of never for its union type
 interface BioWtihChildren extends SharedBioProps {
   children: React.ReactNode;
   title?: never;
   text?: never
 }
 
+// this union type has text and title and children is of type never.
 interface BioWithTitleAndText extends SharedBioProps {
   children?: never;
   title: string
   text: string;
 }
 
+// here we creat the discriminated union. 
 type BioProps = BioWtihChildren | BioWithTitleAndText;
 
 export default BioProps;
+```
+</div>
+<div>
+```tsx
+// here we import the type and us as our props interface in our react app
+import BioProps from './bioProps.ts'
+function BioComonent(props: BioProps) {
+  const { src = "", title, text, children } = props;
+  return (
+    <article className={bioClasses}>
+      {src && (
+          <Avatar
+            src={src}
+            alt="Ziaul Sarker"
+            style={{ height: "3.5rem", width: "3.5rem" }}
+          />
+      )}
+      {children ? (
+        children
+      ) : (
+        <div className={styles["bio__copy"]}>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </div>
+      )}
+    </article>
+  )
+}
 ```
 </div>
 
