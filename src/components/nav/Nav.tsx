@@ -3,7 +3,7 @@ import Link from "next/link";
 import Switch from "../switch";
 
 import NavProps from "./Nav.props";
-import styles from "./nav.module.scss";
+import styles from "./Nav.module.scss";
 
 export default function Nav({ theme }: NavProps): React.ReactElement {
   return (
