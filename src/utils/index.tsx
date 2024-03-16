@@ -3,7 +3,7 @@ import { MDXComponents } from "mdx/types";
 import { ReactNode } from "react";
 
 const LOCAL = "http://localhost:3000";
-const PROD = "https://blogz-git-main-ziaul-sarkers-projects.vercel.app/";
+const PROD = "https://blogz.vercel.app/";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const BASE_URL = isDevelopment ? LOCAL : PROD;
