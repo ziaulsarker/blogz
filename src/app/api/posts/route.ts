@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
     const sortedPosts = foundPosts.toSorted( (a, b) => b.data.published - a.data.published )
 
-    return NextResponse.json(sortedPosts, {status: 200})
+    return NextResponse.json(posts, {status: 200})
 
   } catch (err) {
     return NextResponse.json('opps somethig went wrong', {status: 400})
