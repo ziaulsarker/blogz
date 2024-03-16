@@ -31,7 +31,7 @@ export default async function Page({
       />
 
       <CategoryGrid categories={categores} active={category as string} />
-      <PostGrid posts={posts} />
+      <PostGrid posts={postsToRender} />
       {category && postsToRender.length === 0 && (
         <>
           <p>
