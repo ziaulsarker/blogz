@@ -1,6 +1,6 @@
 import { MergeComponents } from "@mdx-js/react/lib";
 import { MDXComponents } from "mdx/types";
-import { resolve } from "node:path";
+import { join } from "node:path";
 import { ReactNode } from "react";
 
 const LOCAL = "http://localhost:3000/";
@@ -13,9 +13,9 @@ export function checkEnvironment() {
   return isDevelopment ? LOCAL : PROD;
 }
 
-export const postsDir = resolve(process.cwd(), "src", "posts");
+export const postsDir = join(process.cwd(), "src", "posts");
 export const postFile = (file: string) =>
-  resolve(process.cwd(), "src", `posts/${file}`);
+  join(process.cwd(), "src", `posts/${file}`);
 
 export const componentsMapper:
   | MDXComponents
