@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const foundPosts: any[] = []
 
   try {
-    const posts = await readdir('src/posts');
+    const posts = await readdir('src/posts/');
 
     posts.map(file => {
       const post = matter.read(`src/posts/${file}`)
@@ -16,10 +16,10 @@ export async function GET(request: Request) {
 
     const sortedPosts = foundPosts.toSorted( (a, b) => b.data.published - a.data.published )
 
-    return NextResponse.json(posts, {status: 200})
+    return NextResponse.json(sortedPosts, {status: 200})
 
   } catch (err) {
-    return NextResponse.json('opps somethig went wrong', {status: 400})
+    return NextResponse.json({err: `opps somethig went wrong`}, {status: 400})
   }
 
 

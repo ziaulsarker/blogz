@@ -16,6 +16,6 @@ export async function GET(request: Request) {
     return NextResponse.json([...new Set(postCategories)], {status: 200})
 
   } catch (err) {
-    return NextResponse.json('opps somethig went wrong', {status: 400})
+    return NextResponse.json({err: 'opps cant find any posts categories'}, {status: 400})
   }
 }

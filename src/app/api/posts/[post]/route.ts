@@ -8,7 +8,7 @@ export async function GET(request: Request,   { params: { post } }: { params: { 
     return NextResponse.json(postData, {status: 200})
 
   } catch (err) {
-    return NextResponse.json({err: 'opps cant find any posts'}, {status: 400})
+    return NextResponse.json({err: `opps cant find post: ${post}`}, {status: 400})
   }
 
 }
