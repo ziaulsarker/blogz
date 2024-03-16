@@ -2,23 +2,16 @@ import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import { BASE_URL } from "src/utils";
 import PostGrid from "src/components/postsGrid/postGrid";
-import Pill from "../components/pill/pill";
-import { useCategories } from "src/hooks";
-import CategoryGrid from "src/components/categoryGrid/categoryDrid";
+import { useCategories, usePosts } from "src/hooks";
+import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
-
-async function getPosts() {
-  const url = `${BASE_URL}/api/posts`;
-  const res = await fetch(url);
-  return !res.ok ? [] : res.json();
-}
 
 export default async function Page({
   searchParams: { category },
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const [posts, categores] = await Promise.all([getPosts(), useCategories()]);
+  const [posts, categores] = await Promise.all([usePosts(), useCategories()]);
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },

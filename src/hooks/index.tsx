@@ -1,5 +1,5 @@
-import { usePost } from "./usePosts";
+import { usePost, usePosts } from "./usePosts";
 import { useCategories, useSinglePostCategory } from "./useCategories";
 import useStorage from "./useStorage";
 
-export { useStorage, usePost, useCategories, useSinglePostCategory };
+export { useStorage, usePost, usePosts, useCategories, useSinglePostCategory };
