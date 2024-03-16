@@ -4,7 +4,7 @@ import * as matter from 'gray-matter';
 
 export async function GET(request: Request) {
 
-const postCategories: Array<string> = [];
+  const postCategories: Array<string> = [];
   try {
     const posts = await readdir('src/posts');
     
