@@ -2,13 +2,15 @@ import { MergeComponents } from "@mdx-js/react/lib";
 import { MDXComponents } from "mdx/types";
 import { ReactNode } from "react";
 
-const LOCAL = "http://localhost:3000";
-const PROD = "https://blogz.vercel.app/";
+const LOCAL = "http://localhost:3000/";
+const PROD = "https://blogz-vf5d.vercel.app/";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const BASE_URL = isDevelopment ? LOCAL : PROD;
-export const checkEnvironment = () => process.env.NODE_ENV;
 
+export function checkEnvironment() {
+  return isDevelopment ? LOCAL : PROD;
+}
 export const componentsMapper:
   | MDXComponents
   | MergeComponents
