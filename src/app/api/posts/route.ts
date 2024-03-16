@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     const posts = await readdir(resolve('./src/posts'));
 
     posts.map(file => {
-      const post = matter.read(`./src/posts/${file}`)
+      const post = matter.read(resolve(`./src/posts/${file}`))
       foundPosts.push(post)
     })
 
