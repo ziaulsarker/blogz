@@ -1,6 +1,5 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
-import { BASE_URL } from "src/utils";
 import PostGrid from "src/components/postsGrid/postGrid";
 import { useCategories, usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
