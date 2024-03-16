@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server'
 import { readdir} from 'node:fs/promises'
 import * as matter from 'gray-matter';
+import path from 'node:path';
 
 export async function GET(request: Request) {
 
   const foundPosts: any[] = []
 
   try {
-    const posts = await readdir('src/posts');
+    const posts = await readdir(`${path.resolve('src/posts')}`);
 
     posts.map(file => {
       const post = matter.read(`src/posts/${file}`)
