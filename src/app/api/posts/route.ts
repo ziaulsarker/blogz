@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     return NextResponse.json(sortedPosts, {status: 200})
 
   } catch (err) {
-    return NextResponse.json({err: `opps somethig went wrong`}, {status: 400})
+    return NextResponse.json({err}, {status: 400})
   }
 
 
