@@ -15,7 +15,7 @@ export default function CategoryGrid({ categories = [], active }: ICatProps) {
           rowGap: "1rem",
         }}
       >
-        <div className="mr-3">
+        <div>
           <Pill
             text="all"
             isActive={active === "all" || !active}
