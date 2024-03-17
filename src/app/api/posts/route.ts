@@ -9,6 +9,8 @@ export async function GET(request: Request) {
   try {
     const posts = await readdir(postsDir);
 
+    console.log('posts', {posts, postsDir})
+
     posts.map(file => {
       const post = matter.read(postFile(file))
       foundPosts.push(post)
