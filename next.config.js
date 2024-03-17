@@ -8,7 +8,6 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
   sassOptions: { includePaths: [path.join(__dirname, "styles")] },
-  webpack: false
 };
 
 module.exports = withMDX(nextConfig);
