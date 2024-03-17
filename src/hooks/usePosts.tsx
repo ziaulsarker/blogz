@@ -28,8 +28,8 @@ export async function usePosts() {
       (a, b) => b.data.published - a.data.published
     );
 
-    return { posts: sortedPosts, categories };
+    return { posts: sortedPosts, categories, err: null };
   } catch (err) {
-    return { posts: [], categories: [] };
+    return { posts: [], categories: [], err };
   }
 }

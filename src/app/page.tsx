@@ -1,4 +1,3 @@
-"use client";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
@@ -11,6 +10,7 @@ export default async function Page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { posts, categories } = await usePosts();
   const filteredPosts = posts.filter(
     ({
