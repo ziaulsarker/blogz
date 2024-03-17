@@ -23,12 +23,11 @@ export default async function Page({
     foundPosts.push(post);
   });
 
-  const posts = foundPosts.toSorted(
-    (a, b) => b.data.published - a.data.published
-  );
+  foundPosts.sort((a, b) => b.data.published - a.data.published);
 
-  const filteredPosts = posts.filter(({ data: { category: postCategories } }) =>
-    postCategories.includes(category as string)
+  const filteredPosts = foundPosts.filter(
+    ({ data: { category: postCategories } }) =>
+      postCategories.includes(category as string)
   );
 
   const shouldRenderAllPosts = category === "all" || !category;
