@@ -1,3 +1,4 @@
+"use client";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
