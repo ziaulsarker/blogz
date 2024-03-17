@@ -41,9 +41,12 @@ export default async function Page({
         title="Hi I am Ziaul Sarker."
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
-
+      {JSON.stringify(categories)}
       <CategoryGrid categories={categories} active={category as string} />
+
+      {JSON.stringify(postsToRender)}
       <PostGrid posts={postsToRender as unknown as IPost[]} />
+
       {category && postsToRender.length === 0 && (
         <>
           <p>
