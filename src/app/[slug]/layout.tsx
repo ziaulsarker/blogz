@@ -12,20 +12,19 @@ export async function generateMetadata(
   { params: { slug } }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const {
-    title,
-    data: { category = [] } = {},
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = await usePost(slug);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const postData = await usePost(slug);
   const parentMetadata = await parent;
 
   return {
     title: `${slug} by Ziaul Sarker`,
     description: `${slug} by Ziaul Sarker`,
-    category: category.join(", "),
+    category: postData.data?.category.join(", "),
     other: {
-      keywords: category.concat(parentMetadata.keywords).join(", "),
-      "page-topic": title,
+      keywords: postData.data?.category
+        .concat(parentMetadata.keywords as string | ConcatArray<string>)
+        .join(", "),
+      "page-topic": postData.data?.title,
     },
   };
 }
