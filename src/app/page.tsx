@@ -13,8 +13,6 @@ export default async function Page({
 }) {
   const [posts, categores] = await Promise.all([usePosts(), useCategories()]);
 
-  const p = await usePosts();
-
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },
@@ -25,8 +23,6 @@ export default async function Page({
 
   const shouldRenderAllPosts = category === "all" || !category;
   const postsToRender = shouldRenderAllPosts ? posts : filteredPosts;
-
-  console.log({ shouldRenderAllPosts, postsToRender, posts, filteredPosts, p });
 
   return (
     <div>
