@@ -37,7 +37,7 @@ export const componentsMapper:
   ),
   code: ({ children }: { children?: ReactNode }) => (
     <code className="bg-[#282a36] text-white p-6 md:p-8 mb-4 block">
-      <pre>{children}</pre>
+      <pre className="overflow-x-scroll">{children}</pre>
     </code>
   ),
 };
