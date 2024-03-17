@@ -13,9 +13,9 @@ export function checkEnvironment() {
   return isDevelopment ? LOCAL : PROD;
 }
 
-export const postsDir = join(process.cwd(), "/src/posts");
+export const postsDir = join(process.cwd(), "src/posts");
 export const postFile = (file: string) =>
-  join(process.cwd(), `/src/posts/${file}`);
+  join(process.cwd(), `src/posts/${file}`);
 
 export const componentsMapper:
   | MDXComponents
