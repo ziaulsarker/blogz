@@ -31,7 +31,7 @@ export default async function Page({
   );
 
   const shouldRenderAllPosts = category === "all" || !category;
-  const postsToRender = shouldRenderAllPosts ? posts : filteredPosts;
+  const postsToRender = shouldRenderAllPosts ? foundPosts : filteredPosts;
 
   return (
     <div>
