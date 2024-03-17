@@ -39,6 +39,8 @@ export default async function Page({
     }) => postCategories.includes(category as string)
   );
 
+  console.log({ filteredPosts, posts, foundPosts, categories });
+
   const shouldRenderAllPosts = category === "all" || !category;
   const postsToRender = shouldRenderAllPosts ? posts : filteredPosts;
 
