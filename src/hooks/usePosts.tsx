@@ -24,9 +24,9 @@ export async function usePosts() {
       categories.push(...post.data.category);
     });
 
-    const sortedPosts = foundPosts.toSorted(
-      (a, b) => b.data.published - a.data.published
-    );
+    const sortedPosts =
+      foundPosts?.toSorted?.((a, b) => b.data.published - a.data.published) ??
+      foundPosts?.sort?.((a, b) => b.data.published - a.data.published).slice();
 
     return { posts: sortedPosts, categories, err: null };
   } catch (err) {
