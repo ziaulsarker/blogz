@@ -1,22 +1,34 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
-import PostGrid from "src/components/postsGrid/postGrid";
+import PostGrid, { IPost } from "src/components/postsGrid/postGrid";
 import { usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
+import { readdir } from "fs/promises";
+import { postFile, postsDir } from "src/utils";
+import matter from "gray-matter";
 
 export default async function Page({
   searchParams: { category },
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { posts, categories } = await usePosts();
-  const filteredPosts = posts.filter(
-    ({
-      data: { category: postCategories },
-    }: {
-      data: { category: string[] };
-    }) => postCategories.includes(category as string)
+  const { categories } = await usePosts();
+
+  const foundPosts: matter.GrayMatterFile<string>[] = [];
+  const postsFoundInDir = await readdir(postsDir, { encoding: "utf-8" });
+
+  postsFoundInDir.map((file) => {
+    const post = matter.read(postFile(file));
+    foundPosts.push(post);
+  });
+
+  const posts = foundPosts.toSorted(
+    (a, b) => b.data.published - a.data.published
+  );
+
+  const filteredPosts = posts.filter(({ data: { category: postCategories } }) =>
+    postCategories.includes(category as string)
   );
 
   const shouldRenderAllPosts = category === "all" || !category;
@@ -31,7 +43,7 @@ export default async function Page({
       />
 
       <CategoryGrid categories={categories} active={category as string} />
-      <PostGrid posts={postsToRender} />
+      <PostGrid posts={postsToRender as unknown as IPost[]} />
       {category && postsToRender.length === 0 && (
         <>
           <p>
