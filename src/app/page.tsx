@@ -4,14 +4,33 @@ import PostGrid from "src/components/postsGrid/postGrid";
 import { usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
+import { readdir } from "fs/promises";
+import { postFile, postsDir } from "src/utils";
+import matter from "gray-matter";
 
 export default async function Page({
   searchParams: { category },
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { posts, categories } = await usePosts();
+  const foundPosts: any[] = [];
+  let posts;
+  const categories: Array<string> = [];
+
+  try {
+    const postsFiles = await readdir(postsDir, { encoding: "utf-8" });
+
+    postsFiles.map((file) => {
+      const post = matter.read(postFile(file));
+      foundPosts.push(post);
+      categories.push(...post.data.category);
+    });
+
+    posts = foundPosts.toSorted((a, b) => b.data.published - a.data.published);
+  } catch (err) {
+    posts = [];
+  }
+
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },
