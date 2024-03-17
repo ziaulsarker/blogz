@@ -16,7 +16,7 @@ export async function usePosts() {
   const categories: Array<string> = [];
 
   try {
-    const posts = await readdir(postsDir);
+    const posts = await readdir(postsDir, { encoding: "utf-8" });
 
     posts.map((file) => {
       const post = matter.read(postFile(file));
