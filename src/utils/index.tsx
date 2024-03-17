@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { ReactNode } from "react";
 
 const LOCAL = "http://localhost:3000/";
-const PROD = "https://blogz-vf5d.vercel.app/";
+const PROD = "https://blogz.vercel.app/";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const BASE_URL = isDevelopment ? LOCAL : PROD;
