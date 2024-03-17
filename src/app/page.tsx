@@ -1,34 +1,16 @@
-"use clent";
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
-import { useCategories } from "src/hooks";
+import { usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
-import { postFile, postsDir } from "src/utils";
-import { readdir } from "fs/promises";
-import matter from "gray-matter";
 
 export default async function Page({
   searchParams: { category },
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const categories = await useCategories();
-
-  const postsInDir = await readdir(postsDir);
-
-  const foundPosts: any[] = [];
-
-  postsInDir.forEach((file) => {
-    const post = matter.read(postFile(file));
-    foundPosts.push(post);
-  });
-
-  const posts = foundPosts.toSorted(
-    (a, b) => b.data.published - a.data.published
-  );
-
+  const { posts, categories } = await usePosts();
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },

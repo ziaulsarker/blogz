@@ -20,7 +20,7 @@ export default async function RemoteMdxPage({
 }) {
   const postData = await usePost(slug);
 
-  if (!Object.keys(postData).length) {
+  if (postData.err) {
     notFound();
   }
 
@@ -29,8 +29,8 @@ export default async function RemoteMdxPage({
       <div className="relative w-full h-[300px] my-4 md:my-6">
         <Image
           fill
-          alt={postData?.data?.title}
-          src={postData?.data?.img}
+          alt={postData.data?.title}
+          src={postData.data?.img}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
@@ -38,7 +38,7 @@ export default async function RemoteMdxPage({
         {postData?.data?.title}
       </h1>
       <MDXRemote
-        source={postData?.content}
+        source={postData.content}
         components={componentsMapper}
         options={options}
       />
