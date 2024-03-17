@@ -2,7 +2,7 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
-import { useCategories, usePosts } from "src/hooks";
+import { useCategories } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export default async function Page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const [posts, categores] = await Promise.all([usePosts(), useCategories()]);
+  const { categories, posts } = await useCategories();
 
   const filteredPosts = posts.filter(
     ({
@@ -32,7 +32,7 @@ export default async function Page({
         text="This is my perosnal blog where i share my thoughts and knowleged about Software Engeneering."
       />
 
-      <CategoryGrid categories={categores} active={category as string} />
+      <CategoryGrid categories={categories} active={category as string} />
       <PostGrid posts={postsToRender} />
       {category && postsToRender.length === 0 && (
         <>
