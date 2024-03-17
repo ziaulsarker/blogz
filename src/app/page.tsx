@@ -14,7 +14,7 @@ export default async function Page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { categories } = await useCategories();
+  const categories = await useCategories();
 
   const postsInDir = await readdir(postsDir);
 
