@@ -1,38 +1,16 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
-// import { usePosts } from "src/hooks";
+import { usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
-import { readdir } from "fs/promises";
-import matter from "gray-matter";
-import { postsDir, postFile } from "src/utils";
-
-async function getPosts() {
-  const foundPosts: any[] = [];
-  const categories: Array<string> = [];
-
-  const posts = await readdir(postsDir, { encoding: "utf-8" });
-
-  posts.map((file) => {
-    const post = matter.read(postFile(file));
-    foundPosts.push(post);
-    categories.push(...post.data.category);
-  });
-
-  const sortedPosts = foundPosts.toSorted(
-    (a, b) => b.data.published - a.data.published
-  );
-
-  return { posts: sortedPosts, categories, err: null };
-}
 
 export default async function Page({
   searchParams: { category },
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { posts, categories } = await getPosts();
+  const { posts, categories } = await usePosts();
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },
