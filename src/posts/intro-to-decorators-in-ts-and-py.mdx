@@ -1,0 +1,125 @@
+---
+title: Intro to decorators
+slug: intro-to-decorators-in-ts-and-py
+img: /decorators.jpeg
+description: A brief intoroduction to decorators.
+published: 2024-03-08
+category: 
+  - javascript
+  - functional programming
+  - typescript
+  - python
+---
+
+A decorators is a way we can modify or extend a class, or a function (meathod, accessor, or a property) without having to mutate the callable that is being decorated. The callables behavior is only mutated when decorated. 
+
+Bacically a decorater is just a function we can use as a wrapper for the callable that is being decorated.
+
+<Span> example: in python</Span>
+
+<div>
+```python
+# create the decorator that will "DECORATE" a callable (funtion / class / meathod) that its passed.
+def lowercase_decorator(fn) :
+  result_of_callable = fn()
+  return result_of_callable.lower()
+
+# the callable that will "DECORATED"
+def funtion_to_deforate() :
+  return 'Hello WORLD!'
+
+
+
+un_decorated_callable_result = funtion_to_deforate()
+decorated_callable_result = lowercase_decorator(funtion_to_deforate)
+
+# invoke the callables 
+# the actully function result with out it being mutated
+print(un_decorated_callable_result) # 'Hello WORLD!'
+
+# the decorated result 
+print(decorated_callable_result) # 'hello world!'
+```
+</div>
+
+In essence that is the logic behind decorater, however we dont write them like shoed above. we write decorators with the @expression in python and typescript
+
+<div>
+```python
+def lowercase_decorator(fn) :
+
+  def decorated_callable() :
+    result_of_callable = fn()
+    return result_of_callable.lower()
+  
+  return decorated_callable
+
+# the original callable
+def callable_to_deforate() :
+  return 'Hello WORLD!'
+
+# the callable that will "DECORATED"
+@lowercase_decorator
+def decorated_callable() :
+  return 'Hello WORLD!'
+
+
+originale_callable = decorated_callable
+decorated_original_callable = lowercase_decorator(callable_to_deforate)
+
+# invoke the callables 
+# the actully function result with out it being mutated
+print(originale_callable()) # 'Hello WORLD!'
+
+# the decorated result 
+print(decorated_original_callable()) # 'hello world!'
+```
+</div>
+
+<Span> example: in typescript using a class</Span>
+<div>
+```typescript
+function lowercaseDecorator() {
+  return function <T extends { new(...args: any[]): any }> (decorater: T) {
+    return class extends decorater {
+      msg : string;
+      sayMsg() {
+        return  this.msg.toLowerCase()
+      }
+    }
+  }
+
+}
+
+
+//  the original callable
+@lowercaseDecorator
+class MyCallable {
+  constructor(private msg: string) {
+    this.msg = msg
+  }
+  
+  sayMsg() {
+    return this.msg
+  }
+}
+
+const myFn = new MyCallable("HELLO WORLD!")
+
+console.log(myFn.sayMsg()) // 'hello world!'
+```
+</div>
+
+what makes decorators special. In my opioin decorators allow us to write better funtional code by allowing us to beeter compose and abstarte code. 
+
+we can think of a decorator as a higher order function (a function that either takes a function as and argument or returns a function)
+
+some usecase for decorators would be taskes
+  - loggin.
+  - auhenticating.
+  - tracing and instrumentation
+  - metrics and analytics
+  - mutatation 
+
+
+

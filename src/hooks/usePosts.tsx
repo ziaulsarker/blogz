@@ -28,7 +28,11 @@ export async function usePosts() {
       foundPosts?.toSorted?.((a, b) => b.data.published - a.data.published) ??
       foundPosts?.sort?.((a, b) => b.data.published - a.data.published).slice();
 
-    return { posts: sortedPosts, categories, err: null };
+    return {
+      posts: sortedPosts,
+      categories: [...new Set(categories)],
+      err: null,
+    };
   } catch (err) {
     return { posts: [], categories: [], err };
   }
