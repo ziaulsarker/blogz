@@ -63,7 +63,7 @@ export default async function PostLayout({
         </div>
       </div>
 
-      <div className="flex flex-row px-4 md:pl-0 my-8 mt-4">
+      <div className="flex flex-row px-4 pl-0 my-8 mt-4 flex-wrap gap-2 md:gap-1">
         {postCategories.map((text) => (
           <div key={text} className="mr-3">
             <Pill
