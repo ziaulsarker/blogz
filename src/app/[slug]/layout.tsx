@@ -128,7 +128,7 @@ export default async function PostLayout({
           <span>
             <FontAwesomeIcon icon={faShare} />
           </span>
-          Share in FB
+          Share on FB
         </Link>
 
         <span className="hidden md:inline-block"> / </span>
