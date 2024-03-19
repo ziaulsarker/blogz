@@ -97,7 +97,7 @@ export default async function PostLayout({
 
       {children}
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-xs mb-8">
+      <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-xs my-8">
         <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
