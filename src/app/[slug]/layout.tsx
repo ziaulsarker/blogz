@@ -2,6 +2,7 @@ import {
   faArrowLeft,
   faArrowUp,
   faCodeFork,
+  faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -47,7 +48,7 @@ export default async function PostLayout({
   return (
     <div id="post">
       <div className="text-xs flex flex-row items-center justify-between">
-        <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+        <div className="flex flex-col gap-3 md:flex-row md:gap-4">
           <Link href="/?category=all" className={styles.back}>
             <span>
               <FontAwesomeIcon icon={faArrowLeft} />
@@ -55,7 +56,7 @@ export default async function PostLayout({
             Back to all posts
           </Link>
           <span className="hidden md:inline-block"> / </span>
-          <Link href={gitHubEditLink} className={styles.back}>
+          <Link href={gitHubEditLink} className={styles.back} target="_blank">
             <span>
               <FontAwesomeIcon icon={faCodeFork} />
             </span>
@@ -97,7 +98,8 @@ export default async function PostLayout({
 
       {children}
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-xs my-8">
+      <hr className="opacity-10 my-8" />
+      <div className="flex flex-col gap-3 md:flex-row md:gap-4 text-xs mb-8">
         <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -107,11 +109,26 @@ export default async function PostLayout({
 
         <span className="hidden md:inline-block"> / </span>
 
-        <Link href={gitHubEditLink} className={styles.back}>
+        <Link href={gitHubEditLink} className={styles.back} target="_blank">
           <span>
             <FontAwesomeIcon icon={faCodeFork} />
           </span>
           Edit on GitHub
+        </Link>
+
+        <span className="hidden md:inline-block"> / </span>
+        <Link
+          href={`https://www.facebook.com/sharer.php?u=https://blogz.vercel.app&amp;t=${encodeURIComponent(
+            slug
+          )}`}
+          target="_blank"
+          rel="noopener"
+          className={styles.back}
+        >
+          <span>
+            <FontAwesomeIcon icon={faShare} />
+          </span>
+          Share in FB
         </Link>
 
         <span className="hidden md:inline-block"> / </span>

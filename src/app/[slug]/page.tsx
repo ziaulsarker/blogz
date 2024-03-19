@@ -25,7 +25,7 @@ export default async function RemoteMdxPage({
   }
 
   return (
-    <article className="my-4 md:my-6 lg:my-8">
+    <article className="my-4 md:my-6 lg:my-8 mb-0">
       <div className="relative w-full h-[300px] my-4 md:my-6">
         <Image
           fill
