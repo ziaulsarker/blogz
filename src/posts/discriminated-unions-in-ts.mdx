@@ -40,24 +40,23 @@ export default BioProps;
 ```
 </div>
 <div>
-```tsx
+```typescript
 // here we import the type and us as our props interface in our react app
 import BioProps from './bioProps.ts'
 function BioComonent(props: BioProps) {
   const { src = "", title, text, children } = props;
   return (
-    <article className={bioClasses}>
+    <article>
       {src && (
           <Avatar
             src={src}
-            alt="Ziaul Sarker"
-            style={{ height: "3.5rem", width: "3.5rem" }}
           />
       )}
+
       {children ? (
         children
       ) : (
-        <div className={styles["bio__copy"]}>
+        <div>
           <h3>{title}</h3>
           <p>{text}</p>
         </div>

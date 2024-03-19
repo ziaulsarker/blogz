@@ -1,5 +1,6 @@
 import { MergeComponents } from "@mdx-js/react/lib";
 import { MDXComponents } from "mdx/types";
+import Image from "next/image";
 import { resolve } from "node:path";
 import { ReactNode } from "react";
 
@@ -34,6 +35,11 @@ export const componentsMapper:
   ),
   li: ({ children }: { children?: ReactNode }) => (
     <li className="list-disc mb-2 text-sm"> {children} </li>
+  ),
+  RenderUIResult: ({ src }: { src: string }) => (
+    <div className="my-4">
+      <Image height={200} width={400} src={`/${src}.png`} alt={src} />
+    </div>
   ),
   code: ({ children }: { children?: ReactNode }) => (
     <code className="bg-[#282a36] text-white p-6 md:p-8 mb-4 block">
