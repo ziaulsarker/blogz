@@ -47,3 +47,8 @@ export const componentsMapper:
     </code>
   ),
 };
+
+export const editOnGitHubLink = (slug: string): string =>
+  `https://github.com/ziaulsarker/blogz/edit/main/src/posts/${encodeURIComponent(
+    slug
+  )}.mdx`;
