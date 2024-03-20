@@ -31,6 +31,9 @@ export async function generateMetadata(
         .concat(parentMetadata.keywords as string | ConcatArray<string>)
         .join(", "),
       "page-topic": postData.data?.title,
+      "og:image": postData.data?.img,
+      "og:title": postData.data?.title,
+      "og:description": postData.data?.description,
     },
   };
 }
@@ -42,7 +45,7 @@ export default async function PostLayout({
   children: React.ReactNode;
   params: { slug: string };
 }) {
-  const postCategories = await useSinglePostCategory(slug);
+  const post = await usePost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
 
   return (
@@ -82,7 +85,7 @@ export default async function PostLayout({
       </div>
 
       <div className="flex flex-row px-4 pl-0 my-8 mt-4 flex-wrap gap-2 md:gap-1">
-        {postCategories.map((text) => (
+        {post.data?.category.map((text: string) => (
           <div key={text} className="mr-3">
             <Pill
               text={text}
@@ -106,9 +109,7 @@ export default async function PostLayout({
           </span>
           Back to all posts
         </Link>
-
         <span className="hidden md:inline-block"> / </span>
-
         <Link href={gitHubEditLink} className={styles.back} target="_blank">
           <span>
             <FontAwesomeIcon icon={faCodeFork} />
@@ -117,22 +118,6 @@ export default async function PostLayout({
         </Link>
 
         <span className="hidden md:inline-block"> / </span>
-        <Link
-          href={`https://www.facebook.com/sharer.php?u=https://ziaulsarker.com&amp;t=${encodeURIComponent(
-            slug
-          )}`}
-          target="_blank"
-          rel="noopener"
-          className={styles.back}
-        >
-          <span>
-            <FontAwesomeIcon icon={faShare} />
-          </span>
-          Share on FB
-        </Link>
-
-        <span className="hidden md:inline-block"> / </span>
-
         <Link href="#post" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowUp} />
