@@ -118,7 +118,7 @@ export default async function PostLayout({
 
         <span className="hidden md:inline-block"> / </span>
         <Link
-          href={`https://www.facebook.com/sharer.php?u=https://blogz.vercel.app&amp;t=${encodeURIComponent(
+          href={`https://www.facebook.com/sharer.php?u=https://ziaulsarker.com&amp;t=${encodeURIComponent(
             slug
           )}`}
           target="_blank"
