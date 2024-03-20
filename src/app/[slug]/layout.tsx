@@ -2,6 +2,7 @@ import {
   faArrowLeft,
   faArrowUp,
   faCodeFork,
+  faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { usePost } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
+import Share from "src/components/share/share";
 
 export async function generateMetadata(
   { params: { slug } }: { params: { slug: string } },
@@ -48,7 +50,7 @@ export default async function PostLayout({
   const gitHubEditLink = editOnGitHubLink(slug);
 
   return (
-    <div id="post">
+    <div id="post" className="relative">
       <div className="text-xs flex flex-row items-center justify-between">
         <div className="flex flex-col gap-3 md:flex-row md:gap-4">
           <Link href="/?category=all" className={styles.back}>
@@ -64,6 +66,22 @@ export default async function PostLayout({
             </span>
             Edit on GitHub
           </Link>
+
+          <div className="flex items-center gap-2 md:hidden text-bold">
+            <span>
+              <FontAwesomeIcon icon={faShare} />
+            </span>
+            <Share
+              slug={slug}
+              quote={post.data?.description}
+              hashtag={post.data?.category
+                .map((cat: string) => `#${cat}`)
+                .join(" ")}
+              size={30}
+              title={post.data?.title}
+              rounded
+            />
+          </div>
         </div>
 
         <div className="flex items-center">
@@ -102,6 +120,22 @@ export default async function PostLayout({
 
       <hr className="opacity-10 my-8 border-[#222] dark:border-[#fff]" />
       <div className="flex flex-col gap-3 md:flex-row md:gap-4 text-xs mb-8">
+        <div className="flex items-center gap-2 md:hidden text-bold">
+          <span>
+            <FontAwesomeIcon icon={faShare} />
+          </span>
+          <Share
+            slug={slug}
+            quote={post.data?.description}
+            hashtag={post.data?.category
+              .map((cat: string) => `#${cat}`)
+              .join(" ")}
+            size={30}
+            title={post.data?.title}
+            rounded
+          />
+        </div>
+
         <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -123,6 +157,18 @@ export default async function PostLayout({
           </span>
           Scroll to top
         </Link>
+      </div>
+
+      <div className="hidden md:block md:absolute h-full top-4 md:top-0 right-0 md:-right-14 ">
+        <Share
+          slug={slug}
+          quote={post.data?.description}
+          hashtag={post.data?.category
+            .map((cat: string) => `#${cat}`)
+            .join(" ")}
+          size={35}
+          title={post.data?.title}
+        />
       </div>
     </div>
   );
