@@ -2,7 +2,6 @@ import {
   faArrowLeft,
   faArrowUp,
   faCodeFork,
-  faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -10,7 +9,7 @@ import Image from "next/image";
 import styles from "./(styles)/page.module.scss";
 
 import type { Metadata, ResolvingMetadata } from "next";
-import { usePost, useSinglePostCategory } from "src/hooks/index";
+import { usePost } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 
@@ -31,6 +30,9 @@ export async function generateMetadata(
         .concat(parentMetadata.keywords as string | ConcatArray<string>)
         .join(", "),
       "page-topic": postData.data?.title,
+      "og:image": postData.data?.img,
+      "og:title": postData.data?.title,
+      "og:description": postData.data?.description,
     },
   };
 }
@@ -42,13 +44,13 @@ export default async function PostLayout({
   children: React.ReactNode;
   params: { slug: string };
 }) {
-  const postCategories = await useSinglePostCategory(slug);
+  const post = await usePost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
 
   return (
     <div id="post">
       <div className="text-xs flex flex-row items-center justify-between">
-        <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+        <div className="flex flex-col gap-3 md:flex-row md:gap-4">
           <Link href="/?category=all" className={styles.back}>
             <span>
               <FontAwesomeIcon icon={faArrowLeft} />
@@ -82,7 +84,7 @@ export default async function PostLayout({
       </div>
 
       <div className="flex flex-row px-4 pl-0 my-8 mt-4 flex-wrap gap-2 md:gap-1">
-        {postCategories.map((text) => (
+        {post.data?.category.map((text: string) => (
           <div key={text} className="mr-3">
             <Pill
               text={text}
@@ -99,16 +101,14 @@ export default async function PostLayout({
       {children}
 
       <hr className="opacity-10 my-8 border-[#222] dark:border-[#fff]" />
-      <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-xs mb-8">
+      <div className="flex flex-col gap-3 md:flex-row md:gap-4 text-xs mb-8">
         <Link href="/?category=all" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           Back to all posts
         </Link>
-
         <span className="hidden md:inline-block"> / </span>
-
         <Link href={gitHubEditLink} className={styles.back} target="_blank">
           <span>
             <FontAwesomeIcon icon={faCodeFork} />
@@ -117,22 +117,6 @@ export default async function PostLayout({
         </Link>
 
         <span className="hidden md:inline-block"> / </span>
-        <Link
-          href={`https://www.facebook.com/sharer.php?u=https://blogz.vercel.app&amp;t=${encodeURIComponent(
-            slug
-          )}`}
-          target="_blank"
-          rel="noopener"
-          className={styles.back}
-        >
-          <span>
-            <FontAwesomeIcon icon={faShare} />
-          </span>
-          Share in Facebook
-        </Link>
-
-        <span className="hidden md:inline-block"> / </span>
-
         <Link href="#post" className={styles.back}>
           <span>
             <FontAwesomeIcon icon={faArrowUp} />
