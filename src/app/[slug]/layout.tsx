@@ -13,7 +13,6 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { usePost, useSinglePostCategory } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
-import Share from "src/components/share/share";
 
 export async function generateMetadata(
   { params: { slug } }: { params: { slug: string } },
@@ -117,29 +116,7 @@ export default async function PostLayout({
           </span>
           Edit on GitHub
         </Link>
-        <span className="hidden md:inline-block"> / </span>
 
-        <Share
-          slug={slug}
-          quote={post.data?.description}
-          hashtag={post.data?.category
-            .map((cat: string) => `#${cat}`)
-            .join(" ")}
-        />
-        <span className="hidden md:inline-block"> / </span>
-        <Link
-          href={`https://www.facebook.com/sharer.php?u=https://ziaulsarker.com&amp;t=${encodeURIComponent(
-            slug
-          )}`}
-          target="_blank"
-          rel="noopener"
-          className={styles.back}
-        >
-          <span>
-            <FontAwesomeIcon icon={faShare} />
-          </span>
-          Share on FB
-        </Link>
         <span className="hidden md:inline-block"> / </span>
         <Link href="#post" className={styles.back}>
           <span>
