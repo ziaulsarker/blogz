@@ -101,7 +101,7 @@ export default async function PostLayout({
 
       {children}
 
-      <hr className="opacity-10 my-8" />
+      <hr className="opacity-10 my-8 border-[#222] dark:border-[#fff]" />
       <div className="flex flex-col gap-3 md:flex-row md:gap-4 text-xs mb-8">
         <Link href="/?category=all" className={styles.back}>
           <span>
