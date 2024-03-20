@@ -6,7 +6,15 @@ import {
   FacebookIcon,
 } from "next-share";
 
-function Share({ slug, ...restProps }: { slug: string }) {
+function Share({
+  slug,
+  quote,
+  hashtag,
+}: {
+  slug: string;
+  quote?: string;
+  hashtag?: string;
+}) {
   return (
     <div>
       <LinkedinShareButton url={`https://ziaulsarker.com/${slug}`}>
@@ -15,7 +23,8 @@ function Share({ slug, ...restProps }: { slug: string }) {
 
       <FacebookShareButton
         url={`https://ziaulsarker.com/${slug}`}
-        {...restProps}
+        quote={quote}
+        hashtag={hashtag}
       >
         <FacebookIcon size={32} />
       </FacebookShareButton>
