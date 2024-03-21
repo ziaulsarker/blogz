@@ -27,7 +27,7 @@ export default async function Page({
       <Bio
         src={AvatarSrc}
         title="Hi I am Ziaul Sarker."
-        text="This is my perosnal blog where i share my thoughts and knowledge about Software Engeneering."
+        text="This is my personal blog where i share my thoughts and knowledge about Software Engeneering."
       />
 
       <CategoryGrid categories={categories} active={category as string} />
