@@ -41,7 +41,7 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
                   </h2>
                 )}
                 {post.data.description && (
-                  <p className="text-base">{post.data.description}</p>
+                  <p className="text-sm">{post.data.description}</p>
                 )}
               </article>
             </div>
