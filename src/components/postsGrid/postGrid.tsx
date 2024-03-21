@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./postGrid.module.scss";
+import Image from "next/image";
 
 export interface IPost {
   data: {
@@ -7,6 +7,7 @@ export interface IPost {
     description: string;
     published: string;
     slug: string;
+    img: string;
   };
   content: string;
 }
@@ -14,15 +15,7 @@ export interface IPost {
 export default function PostGrid({ posts }: { posts: IPost[] }) {
   return posts.length > 0 ? (
     posts.map(
-      (post: {
-        data: {
-          title: string;
-          description: string;
-          published: string;
-          slug: string;
-        };
-        content: string;
-      }) =>
+      (post: IPost) =>
         !!post.data.published && (
           <Link
             key={post.data.title}
@@ -32,14 +25,26 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
               color: "inherit",
               display: "block",
             }}
+            className="mb-8 shadow-md rounded hover:shadow-xl hover:shadow-[#49c5b6] hover:dark:shadow-[#e7b10a]"
           >
-            <article className={styles.postGrid}>
-              <div className={styles.published}>
-                <span>{new Date(post.data.published).toDateString()}</span>
+            <div className="grid md:grid-cols-[1fr,3fr]">
+              <div className="relative h-36 md:h-auto">
+                <Image fill src={post?.data.img} alt={post.data.title} />
               </div>
-              <h2 className={styles.title}>{post.data.title}</h2>
-              <p className={styles.description}>{post.data.description}</p>
-            </article>
+              <article className="p-4">
+                <div className="text-xs">
+                  <span>{new Date(post.data.published).toDateString()}</span>
+                </div>
+                {post.data.title && (
+                  <h2 className="mb-2 text-xl color-[#49c5b6]">
+                    {post.data.title}
+                  </h2>
+                )}
+                {post.data.description && (
+                  <p className="text-base">{post.data.description}</p>
+                )}
+              </article>
+            </div>
           </Link>
         )
     )
