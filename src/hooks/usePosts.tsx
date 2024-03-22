@@ -30,7 +30,7 @@ export async function usePosts() {
 
     return {
       posts: sortedPosts,
-      categories: [...new Set(categories)],
+      categories: [...new Set(categories?.toSorted?.() ?? categories.sort?.())],
       err: null,
     };
   } catch (err) {

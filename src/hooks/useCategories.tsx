@@ -14,7 +14,9 @@ export async function useCategories(): Promise<Array<string>> {
       post.data.published && postCategories.push(...post.data.category);
     });
 
-    return [...new Set(postCategories)];
+    return [
+      ...new Set(postCategories?.toSorted?.() ?? postCategories.sort?.()),
+    ];
   } catch (err) {
     return [];
   }
