@@ -25,7 +25,7 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
               color: "inherit",
               display: "block",
             }}
-            className="mb-8 shadow-md rounded hover:shadow-xl hover:shadow-[#49c5b6] hover:dark:shadow-[#e7b10a]"
+            className="mb-8 shadow-md rounded hover:shadow-xl dark:shadow-[#000] hover:shadow-[#49c5b6] hover:dark:shadow-[#e7b10a]"
           >
             <div className="grid md:grid-cols-[1fr,3fr]">
               <div className="relative h-36 md:h-auto">
