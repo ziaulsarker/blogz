@@ -21,7 +21,7 @@ export async function usePosts() {
     posts.map((file) => {
       const post = matter.read(postFile(file));
       foundPosts.push(post);
-      categories.push(...post.data.category);
+      post.data.published && categories.push(...post.data.category);
     });
 
     const sortedPosts =
