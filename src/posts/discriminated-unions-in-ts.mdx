@@ -19,21 +19,21 @@ interface SharedBioProps {
   src?: string;
 }
 
-// one type has children and type of never for its union type
+// create one interface for component with children of type ReactNode and text and title of type never 
 interface BioWtihChildren extends SharedBioProps {
   children: React.ReactNode;
   title?: never;
   text?: never
 }
 
-// this union type has text and title and children is of type never.
+// create one interface for component with children of type never and text and title of type ReactNode 
 interface BioWithTitleAndText extends SharedBioProps {
   children?: never;
   title: string
   text: string;
 }
 
-// here we creat the discriminated union. 
+// here we create the discriminated union. 
 type BioProps = BioWtihChildren | BioWithTitleAndText;
 
 export default BioProps;

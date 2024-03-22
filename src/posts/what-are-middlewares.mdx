@@ -11,7 +11,7 @@ category:
 
 Middlewares are just functions that has access to the request and response objects as well as the next middleware in the req/res middlewares cycle.
 
-Basically, middlewares are just and array of function that our req goes through.
+Basically, middlewares are just an array of function that our req goes through.
 
 Some key features of middlewares are
   - perform any buisness/application logic.
@@ -23,7 +23,7 @@ Some key features of middlewares are
 <div>
 ```javascript
 // this function below is an example of a middleware in express.js
-// its responsible for handleing any requests needed to crete a new user in our application.
+// its responsible for handling any requests needed to create a new user in our application.
 const signupUserController = async (req, res) => {
     // map data to create schema
     const userData = {
@@ -53,7 +53,7 @@ router.post("/users/signup", signupUserController);
 <div>
 ```javascript
 // with the function we can read the incoming request. 
-// or make updtes to the request.
+// or make updates to the request.
 const logReq = async (req, res) => {
   // read the request
   console.log(`request method is ${req.method} to ${res.url}`);
@@ -61,11 +61,11 @@ const logReq = async (req, res) => {
   // modify the request to use in next middleware in the stack
   req.isLogged = true;
 
-  // modify the ourgoing resposnse
+  // modify the outgoing resposnse
   res.send('req is modified')
 };
 
-// we the use the middleware for all routs. 
+// we use the middleware for all routs. 
 router.use("/", logReq);
 ```
 </div>
@@ -96,28 +96,28 @@ router.use("/", firstMiddleWare, secondMiddleWare, thirdMiddleWare);
 <div>
 ```javascript
 // first middleware in stack
-// we call the res.end() method to end the current request and stoping it from the going to the next middleware in the stack
+// we call the res.end() method to end the current request and stoping it from going to the next middleware in the stack
 const firstMiddleWare = async (req, res, next) => {
   req.firstMiddleWareRan = true;
 
-  // calling the next fn lets express knwo to go to the next middleware in the stack.
+  // invoking the next fn lets express know to go to the next middleware in the stack.
   next();
 };
 
 const secondMiddleWare = async (req, res, next) => {
     req.secondMiddleWareRan = true;
-    // calling the next fn lets express knwo to go to the next middleware in the stack.
+    // invoking the next fn lets express know to go to the next middleware in the stack.
   next();
 };
 
 const thirdMiddleWare = async (req, res) => {
   console.log(req) // {firstMiddleWareRan: true, secondMiddleWareRan: true}
 
-    // calling the next fn lets express knwo to go to the next middleware in the stack.
+    // invoking the next fn lets express know to go to the next middleware in the stack.
   res.send("all middlewares ran");
 };
 
-// we exicute all middlewares in the stack [firstMiddleWare, secondMiddleWare, thirdMiddleware]
+// we execute all middlewares in the stack [firstMiddleWare, secondMiddleWare, thirdMiddleware]
 router.use("/", firstMiddleWare, secondMiddleWare, thirdMiddleWare);
 ```
 </div>
