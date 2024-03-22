@@ -11,7 +11,7 @@ export async function useCategories(): Promise<Array<string>> {
 
     posts.map((file) => {
       const post = matter.read(postFile(file));
-      postCategories.push(...post.data.category);
+      post.data.published && postCategories.push(...post.data.category);
     });
 
     return [...new Set(postCategories)];
