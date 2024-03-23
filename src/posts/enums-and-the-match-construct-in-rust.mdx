@@ -1,0 +1,150 @@
+---
+title: Enums and the match construct in rust 
+slug: enums-and-the-match-construct-in-rust
+img: /enums-and-the-match-construct-in-rust.jpeg
+description: What are Enums and how can we enumerate over its variants.
+published: 2024-03-16
+category: 
+  - rust
+---
+
+Enums, short for enumerations is a set of constants (variations / values) that we can use to say the type / value of something should be one of the types / values (variants / contants) of the enum.
+
+<Span> example: </Span>
+
+<div>
+```rust
+// a user enum which shows the different variants of what a user role might be
+enum UserRole {
+    ADMIN,
+    USER,
+    GUEST,
+}
+
+// a language enum which shows the different variants of what a user favorite programming language might be
+enum ProgrammingLanguages {
+    RUST,
+    JS,
+    PYTHON,
+}
+
+struct UserModel {
+    role: UserRole, // the value of role now has to a variant of the UserRole enum
+    fav_language: ProgrammingLanguages, // the value of fav now has to a variant of the ProgrammingLanguages
+}
+```
+</div>
+
+Although enums are a feature in many programming languages, rust has a built in control flow expression called <strong className='bg-[#49c5b6] text-white dark:bg-[#e7b10a]'>match</strong>. The match expression lets you map a set of variants to values this variant and value pair is also called an arm in rust. 
+
+<Span> example: match in rust</Span>
+<div>
+```rust
+// create a enum to match values to 
+enum Directions {
+  North,
+  South,
+  East,
+  West,
+}
+
+// create a function that return a matched enum variant to a value.
+fn mapDirectionsToStr(direction: Directions) -> &'static str {
+  match direction {
+      Directions::North => "^",
+      Directions::South => "v",
+      Directions::East => ">",
+      Directions::West => "<",
+  }
+}
+
+let directionSunRaises = mapDirectionsToStr(Directions::East);
+
+println!("the sun raises in the {}", directionSunRaises) // the sun raises in the >
+```
+</div>
+
+the <strong>match</strong> expression is exhaustive, meaning that we must test for all possible cases
+
+<Span> example: </Span>
+<div>
+```rust
+// create a enum to match values to 
+enum Directions {
+  North,
+  South,
+  East,
+  West,
+}
+
+// this is NO good, we are missing the "West" case in our match expression.
+fn mapDirectionsToStr(direction: Directions) -> &'static str {
+  // the compiler will trow the follwing err
+  // missing match arm: `West` not covered
+  match direction {
+      Directions::North => "^",
+      Directions::South => "v",
+      Directions::East => ">",
+  }
+}
+
+let directionSunRaises = mapDirectionsToStr(Directions::East);
+
+println!("the sun raises in the {}", directionSunRaises) // the sun raises in the >
+```
+</div>
+
+rust provides a way of handling any missing match arms in our cases. After defining explicitly the cases you want to match for, you can add one last arm to the match expression the last arm will tell the rust compiler to match that for all other missing cases run the catch all arm.
+
+<Span> example: catch all arm</Span>
+
+<div>
+```rust
+// create a enum to match values to 
+enum Directions {
+  North,
+  South,
+  East,
+  West,
+}
+
+// this is NO good, we have missing cases in our match expression.
+fn mapDirectionsToStr(direction: Directions) -> &'static str {
+  match direction {
+      Directions::North => "^",
+      Directions::South => "v",
+      // the compiler wont trow an error like the example above since we now provided a catch all arm.
+      // last arm will tell the rust compiler to match that for missing cases from our enum and use the value returned from the arm
+      CatchAllArm => "?"
+  }
+}
+
+// since EAST is not covered in our match expression rust will use the catchAllArm case.
+let directionSunRaises = mapDirectionsToStr(Directions::East);
+
+println!("the sun raises in the {}", directionSunRaises) // the sun raises in the ?
+```
+</div>
+
+The CatchAllArm case name is arbitrary we can name it what ever we want, but in rust its convention to use the _ and the name of the catch all arms case.
+
+
+<div>
+```rust
+fn mapDirectionsToStr(direction: Directions) -> &'static str {
+  // the compiler will trow the follwing err
+  // missing match arm: `West` not covered
+  match direction {
+      Directions::North => "^",
+      Directions::South => "v",
+      // its convention to use the _ and the name of the catch all arm
+      _ => "?"
+  }
+}
+
+// since EAST is not covered in our match expression rust will use the catchAllArm case.
+let directionSunRaises = mapDirectionsToStr(Directions::East);
+
+println!("the sun raises in the {}", directionSunRaises) // the sun raises in the ?
+```
+</div>
