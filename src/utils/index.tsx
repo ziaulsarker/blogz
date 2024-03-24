@@ -3,6 +3,7 @@ import { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import { resolve } from "node:path";
 import { ReactNode } from "react";
+import { usePosts } from "src/hooks";
 
 const LOCAL = "http://localhost:3000/";
 const PROD = "https://www.ziaulsarker.com/";
@@ -52,3 +53,31 @@ export const editOnGitHubLink = (slug: string): string =>
   `https://github.com/ziaulsarker/blogz/edit/main/src/posts/${encodeURIComponent(
     slug
   )}.mdx`;
+
+export interface Sitemap {
+  url: string;
+  lastModified?: string | Date;
+  changeFrequency?:
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never";
+  priority?: number;
+  alternates?: {
+    languages?: Languages<string>;
+  };
+}
+
+export const generateSiteMapFromPosts = async (): Promise<Sitemap[]> => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { posts } = await usePosts();
+  return posts.map((post) => ({
+    url: `${BASE_URL}/${post?.data.slug}`,
+    changeFrequency: "weekly",
+    lastModified: new Date(post?.data.published),
+    priority: 0.9,
+  }));
+};
