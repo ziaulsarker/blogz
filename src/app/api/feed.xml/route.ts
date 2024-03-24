@@ -7,7 +7,7 @@ export async function GET() {
 
 
     const feed = new RSS({
-        title: 'Ziaul Sarker writes about software',
+        title: 'Ziaul Sarker writes about Software Engineering',
         description: "Ziaul Sarker's Blog",
         generator: 'RSS for Node and Next.js',
         feed_url:  `${BASE_URL}/api/feed.xml`,
