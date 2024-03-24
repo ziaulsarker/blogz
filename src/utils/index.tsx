@@ -5,8 +5,8 @@ import { resolve } from "node:path";
 import { ReactNode } from "react";
 import { usePosts } from "src/hooks";
 
-const LOCAL = "http://localhost:3000/";
-const PROD = "https://www.ziaulsarker.com/";
+const LOCAL = "http://localhost:3000";
+const PROD = "https://www.ziaulsarker.com";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const BASE_URL = isDevelopment ? LOCAL : PROD;
