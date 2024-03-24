@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "page-topic":
       "Software Engineer, AI, Coding & Programming, Machine Learning, Software Development",
   },
+  icons: {
+    icon: "/me.jpeg", // /public path
+  },
 };
 
 export default function RootLayout({
