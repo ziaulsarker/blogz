@@ -4,6 +4,7 @@ import PostGrid from "src/components/postsGrid/postGrid";
 import { usePosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
+import NewsLetter from "src/components/newsLetter/newLetter";
 
 export default async function Page({
   searchParams: { category },
@@ -51,6 +52,7 @@ export default async function Page({
           </div>
         </>
       )}
+      {/* <NewsLetter /> */}
     </div>
   );
 }
