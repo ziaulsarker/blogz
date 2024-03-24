@@ -67,7 +67,7 @@ export interface Sitemap {
     | "never";
   priority?: number;
   alternates?: {
-    languages?: Languages<string>;
+    languages?: Array<string>;
   };
 }
 
