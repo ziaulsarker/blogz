@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "I explain my coding journy through the world fo software engineering.",
   keywords:
-    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development",
+    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engine",
 
   other: {
     author: "Ziaul Sarker",
