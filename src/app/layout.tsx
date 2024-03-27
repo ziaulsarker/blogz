@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Nav from "../components/nav";
+import { Analytics } from "@vercel/analytics/react";
 import "../styles/_globals.scss";
 
 import { Roboto_Mono } from "next/font/google";
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className={roboto.className} data-theme={theme}>
         <Nav theme={theme} />
         <main className="container">{children}</main>
+        <Analytics />
       </body>
     </html>
   );
