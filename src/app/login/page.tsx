@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import LoginForm from "src/components/loginForm/LoginForm";
 
 export default async function Page() {
