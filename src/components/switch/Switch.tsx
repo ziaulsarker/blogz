@@ -18,6 +18,10 @@ function Switch({ variant = "square", theme }: SwitchProps) {
     styles.track
   );
 
+  const tackThemClassesRoll = clsx(
+    styles[`theme-switch-${isChecked ? "dark" : "light"}`]
+  );
+
   const handleOnChange = (event: React.SyntheticEvent) => {
     const isDarkMode = (event.target as HTMLInputElement)?.checked;
     setTheme(isDarkMode);
@@ -25,7 +29,7 @@ function Switch({ variant = "square", theme }: SwitchProps) {
 
   return (
     <div className={styles.switch}>
-      <label htmlFor="theme-switch">
+      <label htmlFor="theme-switch" className={tackThemClassesRoll}>
         <span className={styles.lightSwitch}>
           <FontAwesomeIcon icon={faSun} />
         </span>
@@ -37,7 +41,7 @@ function Switch({ variant = "square", theme }: SwitchProps) {
       <input
         type="checkbox"
         id="theme-switch"
-        name="thme"
+        name="theme"
         checked={isChecked}
         onChange={handleOnChange}
       />

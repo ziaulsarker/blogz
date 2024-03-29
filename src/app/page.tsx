@@ -52,7 +52,7 @@ export default async function Page({
           </div>
         </>
       )}
-      {/* <NewsLetter /> */}
+      <NewsLetter />
     </div>
   );
 }

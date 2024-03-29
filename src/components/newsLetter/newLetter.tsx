@@ -3,50 +3,64 @@ import { newsLetterFormServerAction } from "src/app/actions";
 import SubmitButton from "../submitBtn/submit";
 import { useState } from "react";
 
-// eslint-disable-next-line @next/next/no-async-client-component
-export default async function NewsLetter() {
-  const [uiState, setUiState] = useState<{
-    data: { newSubscriber?: { email: string; id: string } };
+export default function NewsLetter() {
+  const [formState, setFormState] = useState<{
     err: string | null;
+    data: { newSubscriber?: { email: string; id: string } };
   }>({
+    err: "",
     data: {},
-    err: null,
   });
 
-  const clientFormAction = async (formData: FormData) => {
+  const clientFormSection = async (formData: FormData) => {
+    if (!formData.get("email"))
+      return setFormState({
+        err: "Please enter email to subscribe",
+        data: {},
+      });
     const { data, err } = JSON.parse(
       await newsLetterFormServerAction(formData)
     );
-    setUiState({ data, err });
+    setFormState({ data, err });
   };
 
-  console.log({ uiState });
   return (
     <div className="grid lg:grid-cols-[3fr,2fr] my-8 md:my-12 shadow p-4 dark:shadow-[#e7b10a] shadow-[#49c5b6]">
-      {!uiState.data?.newSubscriber?.email ||
-        (!uiState.err && (
-          <div className="">
+      <div className="">
+        {!formState.err && !formState?.data.newSubscriber?.email && (
+          <div>
             <h3 className="text-lg">Get new posts straight to your inbox</h3>
             <p className="text-sm mb-4 lg:mb-0">
               Enter you email to stay up to date
             </p>
           </div>
-        ))}
-      {uiState.data?.newSubscriber?.email && (
-        <div>
-          <h3 className="text-lg">
-            Thanks {uiState.data?.newSubscriber?.email} for subscribing!
-          </h3>
-        </div>
-      )}
-      {uiState.err && typeof uiState.err === "string" && (
-        <div>
-          <h3 className="text-lg">{uiState.err}</h3>
-        </div>
-      )}
+        )}
+
+        {formState?.err && (
+          <div>
+            <h3 className="text-lg">
+              <span className="dark:text-[#e7b10a] text-[#49c5b6]">
+                {formState.err}
+              </span>{" "}
+            </h3>
+          </div>
+        )}
+
+        {formState?.data?.newSubscriber?.email && (
+          <div>
+            <h3 className="text-lg">
+              Thanks{" "}
+              <span className="dark:text-[#e7b10a] text-[#49c5b6]">
+                {formState?.data?.newSubscriber?.email}
+              </span>{" "}
+              for subscribing
+            </h3>
+          </div>
+        )}
+      </div>
       <div>
         <form
-          action={clientFormAction}
+          action={clientFormSection}
           className="flex flex-col md:flex-row lg:flex-col gap-2 item-center"
         >
           <input
