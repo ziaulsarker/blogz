@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import Nav from "../components/nav";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import Nav from "../components/nav";
 import "../styles/_globals.scss";
 
 import { Roboto_Mono } from "next/font/google";
@@ -43,6 +45,7 @@ export default function RootLayout({
         <Nav theme={theme} />
         <main className="container">{children}</main>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
