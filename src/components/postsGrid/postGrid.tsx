@@ -29,7 +29,12 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
           >
             <div className="grid md:grid-cols-[1fr,3fr]">
               <div className="relative h-36 md:h-auto">
-                <Image fill src={post?.data.img} alt={post.data.title} />
+                <Image
+                  fill
+                  src={post?.data.img}
+                  alt={post.data.title}
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <article className="p-4">
                 <div className="text-xs">

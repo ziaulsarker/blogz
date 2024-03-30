@@ -26,7 +26,7 @@ export default function NewsLetter() {
 
   return (
     <div className="grid lg:grid-cols-[3fr,2fr] my-8 md:my-12 shadow p-4 dark:shadow-[#e7b10a] shadow-[#49c5b6]">
-      <div className="">
+      <div className="text-center md:text-left">
         {!formState.err && !formState?.data.newSubscriber?.email && (
           <div>
             <h3 className="text-lg">Get new posts straight to your inbox</h3>
