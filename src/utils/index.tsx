@@ -4,6 +4,7 @@ import Image from "next/image";
 import { resolve } from "node:path";
 import { ReactNode } from "react";
 import { usePosts } from "src/hooks";
+import Link from "next/link";
 
 const LOCAL = "http://localhost:3000";
 const PROD = "https://www.ziaulsarker.com";
@@ -37,15 +38,20 @@ export const componentsMapper:
   li: ({ children }: { children?: ReactNode }) => (
     <li className="list-disc mb-2 text-sm"> {children} </li>
   ),
-  RenderUIResult: ({ src }: { src: string }) => (
+  RenderUIResult: ({ src, ...rest }: { src: string }) => (
     <div className="my-4">
-      <Image height={200} width={400} src={`/${src}.png`} alt={src} />
+      <Image height={200} width={400} src={`/${src}.png`} alt={src} {...rest} />
     </div>
   ),
   code: ({ children }: { children?: ReactNode }) => (
     <code className="bg-[#282a36] text-white p-6 md:p-8 mb-4 block">
       <pre className="overflow-x-scroll">{children}</pre>
     </code>
+  ),
+  A: ({ children, href, ...args }: { children?: ReactNode; href: string }) => (
+    <Link href={href} {...args}>
+      {children}
+    </Link>
   ),
 };
 
