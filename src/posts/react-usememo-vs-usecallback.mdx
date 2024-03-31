@@ -1,0 +1,100 @@
+---
+title: useMemo vs useCallback 
+slug: react-usememo-vs-usecallback
+img: /react-usememo-vs-usecallback.jpeg
+description: What is useMemo and useCallback in React and what is the difference between them.
+published: 2024-03-30
+category: 
+  - react
+---
+When we think about performance optimizations in react, one idea that comes to mind is memoization, luckily react provides two hooks one called <em><strong>useMemo</strong></em> and <em><strong>useCallback</strong></em>
+
+<h3 className='text-xl mb-4'>So what is useCallback and useMemo and what is the difference between them?</h3>
+
+<em><strong>useCallback</strong></em> is a way we can tell react to cache a functions reference in between rerenders. The useCallback hook takes a callback function and a dependency arry to indicate when the refrence should be updated.
+
+lets say i have a form component that signs up a new user. That form has a button with a onSumbit which we have declared in the component scope, and even if the signature of that function does not change it gets recreated on evey rerender, on way we can tell react to not recreate the onSubmit handler on evey rerender
+is to use wrap the onSubmit handler in the useCallback hook
+
+<Span> example:  useCallback</Span>
+<div>
+```jsx
+import { useCallback } from 'react';
+
+function SomeComponent(() => {
+
+    // this function will be recreacted on evey rerender 
+    const handleSubmit = (formData) => {
+      // some logic 
+    };
+
+    //  this will not be recreated on evey rerender, React will use a cached reference, unless we update our `handleSubmit` since its a dependency of the useCallback
+    cons someOtherHandler  = useCallback(handleSubmit, [handleSubmit])
+
+    return (
+      <form onSubmit={handleSubmit}>
+      </form>
+    )
+
+});
+```
+</div>
+
+In The example above the <em>handleSubmit</em> will be recreated on evey rerender of the component but <em>someOtherHandler</em> will be refrenced unless something in the dependency arry is updated.
+
+
+
+<Span> example:  useMemo</Span>
+<div>
+```jsx
+import { useMemo } from 'react';
+
+function SomeComponent(() => {
+
+    // this function will be recreacted on evey rerender 
+    const handleSubmit = (formData) => {
+      // some logic 
+    };
+
+    //  this will not be recreated on evey rerender, React will use a cached reference, unless we update our `handleSubmit` since its a dependency of the useMemo
+    cons someOtherHandler  = useMemo(() => handleSubmit, [handleSubmit])
+
+    return (
+      <form onSubmit={handleSubmit}>
+      </form>
+    )
+
+});
+```
+</div>
+
+now you might be thinking well both the expamles above look similar so what is the difference between them?
+
+Both <em><strong>useCallback</strong></em> and <em><strong>useMemo</strong></em> have a similar api and both are intended to cache the result of the hook they are being assignd to.
+  - in <em>useCallback</em>, the callback function that is passed as the first argument is what gets cached, in <em>useMemo</em> whatever gets returned from the callback function is what gets cached.
+  - <em>useCallback</em> is recomended to be used to cache function refrence not its result ex (callbacks).
+  - <em>useMemo</em> is recomended to be used to save the result of expensive functions 
+
+  
+  ```js 
+  function PostsList({ todos, tab, theme }) {
+
+    // this declaration will be recreated on every subsequent rerender unless we wrap it in a useCallback
+    const filterPosts = () => {}, [posts]
+
+    // this declaration will be cached on every subsequent rerender.
+    const filteredPostsCallback = useCallback(() => {}, [posts]);
+  }
+  ``` 
+
+
+  ```js 
+  function PostsList({ todos, tab, theme }) {
+    // if we have a lot of posts filtering them on rerender can be taxing and expensive. 
+    const filteredPostsMemo = useMemo(() => filterPosts(posts), [posts]);
+  }
+  ``` 
+
+in short <em><strong>useCallback</strong></em> will return the function that is passed with out invoking the function and <em><strong>useMemo</strong></em> with invoke the function that is passed and cached its return value and not the declaration.
+
+in both  <em><strong>useCallback</strong></em> and <em><strong>useMemo</strong></em> react will call your function during the initial render. On any subsequent renders, react will return the same value again if the dependencies have not changed since the previous render. Both use <strong><em>Object.is</em></strong> under the hood to compare the dependencies in between renders
