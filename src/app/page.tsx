@@ -28,9 +28,15 @@ export default async function Page({
       <Bio
         src={AvatarSrc}
         title="Hi I am Ziaul Sarker."
-        text="This is my personal blog where i share my thoughts and knowledge about Software Engeneering."
+        text="Just a place where i share my thoughts about Software Engineering."
       />
-
+      <NewsLetter
+        className="shadow-none mt-0 md:mt-0 lg:grid-cols-1 md:my-6"
+        formClasses={{
+          base: "grid md:grid-cols-2 md:mt-2",
+          btn: "md:mt-0 lg:mt-0",
+        }}
+      />
       <CategoryGrid categories={categories} active={category as string} />
       <PostGrid posts={postsToRender} />
       {category && postsToRender.length === 0 && (

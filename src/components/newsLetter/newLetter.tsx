@@ -3,7 +3,13 @@ import { newsLetterFormServerAction } from "src/app/actions";
 import SubmitButton from "../submitBtn/submit";
 import { useState } from "react";
 
-export default function NewsLetter() {
+export default function NewsLetter({
+  className,
+  formClasses,
+}: {
+  className?: string;
+  formClasses?: { base?: string; btn?: string };
+}) {
   const [formState, setFormState] = useState<{
     err: string | null;
     data: { newSubscriber?: { email: string; id: string } };
@@ -25,7 +31,9 @@ export default function NewsLetter() {
   };
 
   return (
-    <div className="grid lg:grid-cols-[3fr,2fr] my-8 md:my-12 shadow p-4 dark:shadow-[#e7b10a] shadow-[#49c5b6]">
+    <div
+      className={`grid lg:grid-cols-[3fr,2fr] my-8 md:my-12 shadow p-4 dark:shadow-[#e7b10a] shadow-[#49c5b6] ${className}`}
+    >
       <div className="text-center md:text-left">
         {!formState.err && !formState?.data.newSubscriber?.email && (
           <div>
@@ -61,14 +69,14 @@ export default function NewsLetter() {
       <div>
         <form
           action={clientFormSection}
-          className="flex flex-col md:flex-row lg:flex-col gap-2 item-center"
+          className={`flex flex-col md:flex-row lg:flex-col gap-2 item-center ${formClasses?.base}`}
         >
           <input
             type="email"
             name="email"
             className="w-full block h-[40px] border p-2 focus:shadow-md bg-transparent border-[#49c5b6] dark:border-[#e7b10a]  outline-0 rounded placeholder:text-small"
           />
-          <SubmitButton copy="subscribe" />
+          <SubmitButton copy="subscribe" className={formClasses?.btn} />
         </form>
       </div>
     </div>
