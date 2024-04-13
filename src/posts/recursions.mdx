@@ -3,11 +3,12 @@ title: Recursions
 slug: Recursions
 img: /Recursions.jpeg
 description: What are Recursions.
-published: null
+published: 2024-04-07
 category: 
   - javascript
   - python
-  - Data Structures
+  - data structures
+  - functional programming
 ---
 
 <blockquote cite="https://www.azquotes.com/quote/1335859" className="my-4 md:my-6">
@@ -18,8 +19,44 @@ category:
 
 In a programing context a recursion is just a function that calls itself. 
 
-In orders to trully understand recursion we need to familiarize our selfs with a data structure called a <strong><em> stack</em> </strong> and the javascript <em><strong>event loop</strong></em>,
+In orders to trully understand recursion we need to familiarize our selfs with a data structure called a <strong><em> stack</em> </strong> and how <strong><em> functions </em></strong> work in context of the programing language.
 
-A <strong><em> stack</em> </strong>, is a <strong><em>LIFO (last in first out)</em></strong> data structure similiar to a javascript arrays or a python lists with an exception that we can only add / remove items from the top of the stack or the last item if you think of arrays / lists
+A <strong><em>stack</em></strong>, is a <strong><em>LIFO (last in first out)</em></strong> data structure similiar to a javascript arrays or a python lists with an exception that we can only add / remove items from the top of the stack or the last item if you think of arrays / lists
 
+<strong><em>functions</em></strong> are ususally the bread and butter of most languages. Most programing languages share some common traits when it comes to functions, they have parameters and accept arguments, there is ususally some value returned, and they create closures around its local variables.
 
+Behind the scenes when we invoke functions it creats whats knows as frames. Frams are basically just details about the function call like what arguments it was called with, where in the exectution context was it called from, all its lexical scope and signature. these frames are then pushed onto our call stack and after its exectution it returns a value and the exectution context is returned to where it was invoked from.
+
+This concept is very important beacuse the stack has a finight amount of frames that it can hold at a time until it overflows (<em><strong>stack overflow</strong> </em>), and since a <strong><em>recursion</em></strong> is just a function that keeps calling it self, if we dont tell it to stop it will keep calling it self and pushing frams into the stack until the stack runs out of memory and our program crashes (infinite loop).
+
+<Span> example: recursive case</Span>
+<div>
+```javascript
+function stackOverflow(args) {
+  const newArgs = args;
+  // calling it self (recursive case)
+  // causes infinite loop
+  return stackOverflow(newArgs);
+}
+```
+</div>
+
+<span className="mb-4 block">In order to prevent the stack from over flowing we need to tell the function when to stop calling it self, this is called a base case.</span>
+<Span> example: base case</Span>
+<div>
+```javascript
+function recursiveFunctionAddToNumber(number) {
+  // when to stop calling it self (base case)
+  // prevents infinite loop
+  if (number === 0)  return number;
+  // calling it self (recursive case)
+  return number + recursiveFunctionAddToNumber(number - 1);
+}
+```
+</div>
+
+<h2 className="mb-4">All recursive functions are made up of two key aspects</h2>
+  - <em>Base Case</em>, when to stop calling it self so we dont cause a stack overflow.
+  - <em>Recursive Case</em>, to self invoke, calling it self.
+
+recursion is a more elegant way to do itterations.
