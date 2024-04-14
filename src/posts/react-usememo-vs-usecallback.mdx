@@ -7,11 +7,11 @@ published: 2024-03-30
 category: 
   - react
 ---
-When we think about performance optimizations in react, one idea that comes to mind is memoization, luckily react provides two hooks one called <em><strong>useMemo</strong></em> and <em><strong>useCallback</strong></em>
+When we think about performance optimizations in react, one idea that comes to mind is memoization, luckily react provides two hooks one called ***useMemo*** and ***useCallback***
 
 <h3 className='text-xl mb-4'>So what is useCallback and useMemo and what is the difference between them?</h3>
 
-<em><strong>useCallback</strong></em> is a way we can tell react to cache a functions reference in between rerenders. The useCallback hook takes a callback function and a dependency arry to indicate when the refrence should be updated.
+***useCallback*** is a way we can tell react to cache a functions reference in between rerenders. The useCallback hook takes a callback function and a dependency arry to indicate when the refrence should be updated.
 
 lets say i have a form component that signs up a new user. That form has a button with a onSumbit which we have declared in the component scope, and even if the signature of that function does not change it gets recreated on evey rerender, on way we can tell react to not recreate the onSubmit handler on evey rerender
 is to use wrap the onSubmit handler in the useCallback hook
@@ -40,7 +40,7 @@ function SomeComponent(() => {
 ```
 </div>
 
-In The example above the <em>handleSubmit</em> will be recreated on evey rerender of the component but <em>someOtherHandler</em> will be refrenced unless something in the dependency arry is updated.
+In The example above the *handleSubmit* will be recreated on evey rerender of the component but *someOtherHandler* will be refrenced unless something in the dependency arry is updated.
 
 
 
@@ -70,10 +70,10 @@ function SomeComponent(() => {
 
 now you might be thinking well both the expamles above look similar so what is the difference between them?
 
-Both <em><strong>useCallback</strong></em> and <em><strong>useMemo</strong></em> have a similar api and both are intended to cache the result of the hook they are being assignd to.
-  - in <em>useCallback</em>, the callback function that is passed as the first argument is what gets cached, in <em>useMemo</em> whatever gets returned from the callback function is what gets cached.
-  - <em>useCallback</em> is recomended to be used to cache function refrence not its result ex (callbacks).
-  - <em>useMemo</em> is recomended to be used to save the result of expensive functions 
+Both ***useCallback*** and ***useMemo*** have a similar api and both are intended to cache the result of the hook they are being assignd to.
+  - in *useCallback*, the callback function that is passed as the first argument is what gets cached, in *useMemo* whatever gets returned from the callback function is what gets cached.
+  - *useCallback* is recomended to be used to cache function refrence not its result ex (callbacks).
+  - *useMemo* is recomended to be used to save the result of expensive functions 
 
   
   ```js 
@@ -95,6 +95,6 @@ Both <em><strong>useCallback</strong></em> and <em><strong>useMemo</strong></em>
   }
   ``` 
 
-in short <em><strong>useCallback</strong></em> will return the function that is passed with out invoking the function and <em><strong>useMemo</strong></em> with invoke the function that is passed and cached its return value and not the declaration.
+in short ***useCallback*** will return the function that is passed with out invoking the function and ***useMemo*** with invoke the function that is passed and cached its return value and not the declaration.
 
-in both  <em><strong>useCallback</strong></em> and <em><strong>useMemo</strong></em> react will call your function during the initial render. On any subsequent renders, react will return the same value again if the dependencies have not changed since the previous render. Both use <strong><em>Object.is</em></strong> under the hood to compare the dependencies in between renders
+in both  ***useCallback*** and ***useMemo*** react will call your function during the initial render. On any subsequent renders, react will return the same value again if the dependencies have not changed since the previous render. Both use <strong>*Object.is*</strong> under the hood to compare the dependencies in between renders

@@ -10,11 +10,11 @@ category:
   - react
 ---
 
-<em> 
-At the time of the writing this post <strong> useFormStatus </strong> hook in react is currently only available in React’s Canary and experimental channels.
-</em>
+*
+At the time of the writing this post**useFormStatus***hook in react is currently only available in React’s Canary and experimental channels.
+*
 
-<strong> useFormStatus </strong> is part of reacts effort for server component. useFormStatus is a react hook hence the prefix "use" that captures details on the most recent form submitted.
+**useFormStatus***is part of reacts effort for server component. useFormStatus is a react hook hence the prefix "use" that captures details on the most recent form submitted.
 
 <Span> example: useFormStatus</Span>
 <div>
@@ -23,9 +23,9 @@ const { pending, data, method, action } = useFormStatus();
 ```
 </div>
 
-useFormStatus retuns an obj with 4 values <strong> pending </strong> <strong> data </strong> <strong> method </strong> <strong> action </strong>
+useFormStatus retuns an obj with 4 values**pending*****data*****method*****action***
 
-<strong> pending </strong> tells you if the current form is doing an async task and if the form is actively submitting an action
+**pending***tells you if the current form is doing an async task and if the form is actively submitting an action
 
 <Span> example: using tailwind and react</Span>
 <div>
@@ -207,7 +207,7 @@ and react will render the loadingSpinner component
 const { data} = useFormStatus();
 ```
 </div>
-<strong> data </strong> property that gets retured from the useFormStatus hook has information about the data being submitted. 
+**data***property that gets retured from the useFormStatus hook has information about the data being submitted. 
 
 for the example we demonstated above the
 
@@ -228,7 +228,7 @@ const { meathod} = useFormStatus();
 console.log(meathod) // GET (unless otherwise specified)
 ```
 </div>
-<strong> meathod </strong> has information about the HTTP methods (GET, POST, PUT, PATCH, DELETE) about the type of request being submitted. by default the request is a GET request
+**meathod***has information about the HTTP methods (GET, POST, PUT, PATCH, DELETE) about the type of request being submitted. by default the request is a GET request
 
 
 
@@ -242,7 +242,7 @@ console.log(meathod) // GET (unless otherwise specified)
 const { action} = useFormStatus();
 ```
 </div>
-<strong> action </strong> is the refrence to the server action function passes to the form.
+**action***is the refrence to the server action function passes to the form.
 
 for the code example used above the action is 
 

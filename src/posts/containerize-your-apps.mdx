@@ -12,9 +12,9 @@ You ever hear the saying "it works on my machine", well with containerization an
 
 The other day i was writing a helper function for a side project in javascript. In the signature of the function i was using the <strong className='bg-[#49c5b6] text-white dark:bg-[#e7b10a]'>toSorted()</strong> method that was introduced recently in es6, to sort an array of Dates in order, without modifying the original. I wrote the code, some tests, and validated the chages locally. We push the changes to prod and bam my changes are not working, i spent hours trying to debug my code, but counld not fild any errors locally. Then i sated going through my dependencies and finding out that the version of js runtime on my local machine was not mactching up to what was in production. Later I found out i was running node 16 in prod but node 20 locally. Thats one of the issues containerization fixes. 
 
-<strong>What is  containerization?</strong>
+***What is  containerization?***
 when we create an application there are many technologies that our app requires to work, for example a database, a web server, a UI, system tools, system libraries, etc and all those things may have its own versioning. Containerization is a process in where we create a standard unit of software that packages up code and all its dependencies which we call "container"
 
 Now with containerization every application can run with the same configuratiots and dependencies as your local machine.
 
-<strong><em>Docker</em></strong> helps you create continers that you can execute called docker images.
+***Docker*** helps you create continers that you can execute called docker images.

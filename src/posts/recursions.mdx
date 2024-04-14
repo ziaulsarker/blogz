@@ -19,15 +19,15 @@ category:
 
 In a programing context a recursion is just a function that calls itself. 
 
-In orders to trully understand recursion we need to familiarize our selfs with a data structure called a <strong><em> stack</em> </strong> and how <strong><em> functions </em></strong> work in context of the programing language.
+In orders to trully understand recursion we need to familiarize our selfs with a data structure called a ***stack*** and how ***functions*** work in context of the programing language.
 
-A <strong><em>stack</em></strong>, is a <strong><em>LIFO (last in first out)</em></strong> data structure similiar to a javascript arrays or a python lists with an exception that we can only add / remove items from the top of the stack or the last item if you think of arrays / lists
+A ***stack***, is a ***LIFO (last in first out)*** data structure similiar to a javascript arrays or a python lists with an exception that we can only add / remove items from the top of the stack or the last item if you think of arrays / lists
 
-<strong><em>functions</em></strong> are ususally the bread and butter of most languages. Most programing languages share some common traits when it comes to functions, they have parameters and accept arguments, there is ususally some value returned, and they create closures around its local variables.
+***functions*** are ususally the bread and butter of most languages. Most programing languages share some common traits when it comes to functions, they have parameters and accept arguments, there is ususally some value returned, and they create closures around its local variables.
 
 Behind the scenes when we invoke functions it creats whats knows as frames. Frams are basically just details about the function call like what arguments it was called with, where in the exectution context was it called from, all its lexical scope and signature. these frames are then pushed onto our call stack and after its exectution it returns a value and the exectution context is returned to where it was invoked from.
 
-This concept is very important beacuse the stack has a finight amount of frames that it can hold at a time until it overflows (<em><strong>stack overflow</strong> </em>), and since a <strong><em>recursion</em></strong> is just a function that keeps calling it self, if we dont tell it to stop it will keep calling it self and pushing frams into the stack until the stack runs out of memory and our program crashes (infinite loop).
+This concept is very important beacuse the stack has a finight amount of frames that it can hold at a time until it overflows (***stack overflow***), and since a ***recursion*** is just a function that keeps calling it self, if we dont tell it to stop it will keep calling it self and pushing frams into the stack until the stack runs out of memory and our program crashes (infinite loop).
 
 <Span> example: recursive case</Span>
 <div>
