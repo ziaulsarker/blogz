@@ -96,6 +96,10 @@ export default async function PostLayout({
               src="/me.jpeg"
               alt="Ziaul Sarker"
               className="rounded-full"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
             />
           </Link>
         </div>
