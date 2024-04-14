@@ -58,7 +58,7 @@ export default async function Page({
           </div>
         </>
       )}
-      <NewsLetter />
+      {postsToRender.length > 5 && <NewsLetter />}
     </div>
   );
 }
