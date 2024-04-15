@@ -33,7 +33,7 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
                   fill
                   src={post?.data.img}
                   alt={post.data.title}
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", objectPosition: "cover top" }}
                 />
               </div>
               <article className="p-4">
