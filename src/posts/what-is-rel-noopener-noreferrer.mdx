@@ -1,0 +1,19 @@
+---
+title: What are the rel='noopener' and rel='noreferrer' attributes
+slug: what-is-rel-noopener-noreferrer
+img: /what-is-rel-noopener-noreferrer.jpeg
+description: how can we improve our web sites security and privacy using the rel='noopener noreferrer' attributes.
+published: 2024-04-09
+category: 
+  - HTML
+---
+
+The html link (anchor tag) has an attribute that we can set called <code>target="_blank"</code>, when we want to open hyperlinks on a new tab. If these links are links to external websites this can pose as performance and security threats. 
+
+rel='noopener' and rel='noreferrer' can help neutralize those threats.
+
+when we open external site using <code>target="_blank"</code> attribute, that site has access to our ***window*** object via ***window.opener*** property. if that is a malicious website then you can image how that may pose an issue.
+
+***rel="noopener"*** prevents the new page from accessing the window.opener property and ensures it runs in a separate process.
+
+***rel="noreferrer"*** ensures more sticter privacy policies on your website. When we visit an external site that site can get information about where you came from, where were you refered from. The ***noreferrer*** property hides that information. This is useful when we dont want to expose our sites users information about what site they previously visited.
