@@ -3,7 +3,7 @@ title: Closures in Javascript
 slug: closures-in-javascript
 img: /closures-in-javascript.jpeg
 description: What are closures.
-published: null
+published: 2024-04-11
 category: 
   - javascript
   - functional programming
@@ -18,4 +18,64 @@ This opens up posibility to do some cools stuff like
   - create private variables
   - supply arguments cronologically (currying / partial aplication)
 
+<Span> example: abstact logic </Span>
+<div>
+```javascript
+// we return a function that cretes a closure over the multiplier argument.
+const makeMultiplier = multiplier => numToMultiply => multiplier * numToMultiply
+const multiplyByFive = makeMultiplier(5);
 
+const result = multiplyByFive(100);
+console.log(result); // 500;
+```
+</div>
+In this example we abstact the multiplication logic to create a closure over the multiplier argument in the function that get returned from makeMultiplier.
+
+<hr className="block my-6 md:my-8 opacity-5"/>
+
+<Span> example: private variables </Span>
+<div>
+```javascript
+const authenticateUser = () => {
+  // this creates a private variable called isAuthenticated
+  let isAuthenticated = false;
+
+  const signIn = () => {
+    isAuthenticated = true;
+  }
+
+  const signOut = () => {
+      isAuthenticated = true;
+  }
+
+  const checkUserAuthnticationStatus = () => isAuthenticated;
+
+  return {
+    signIn, signOut, checkUserAuthnticationStatus
+  }
+}
+
+const { signIn, signOut, checkUserAuthnticationStatus } = authenticateUser();
+
+console.log(checkUserAuthnticationStatus) // log the private variable.
+```
+</div>
+
+In the example above in the body of the authenticateUser function we create a private variable called isAuthenticated, the reason this is considered private is because there is no direct way to update that value after we execute the function other than the ***"signIn"*** and ***"signOut"*** helper functions. we create a clouser in our return value over the local variable.
+
+<hr className="block my-6 md:my-8 opacity-5"/>
+
+<Span> example:  supply arguments cronologically (currying / partial aplication)</Span>
+<div>
+```javascript
+const curry = fn => firstArg => secondArg => fn(firstArg, secondArg)
+
+const generateFullName = curry((firstName, lastName) => `Hi i am ${firstName} ${lastName}`)
+const ziaul = generateFullName("ziaul")('sarker')
+
+console.log(ziaul) // hi i am ziaul sarker
+```
+</div>
+
+In the example above we first create a curry function that takes in a funtion then it returns two funtion for two argumets that we passin, then we can call it like so by supplyin with the necessary arguments. In our example we used two arguments but this can be expanded to fix any number. 
+one use case of this would be, lets say we need to hit a bunch of apis one after the other, and the result of one api call becomes the argument of the next api call. 
