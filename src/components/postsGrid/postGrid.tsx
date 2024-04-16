@@ -34,6 +34,7 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
                   src={post?.data.img}
                   alt={post.data.title}
                   style={{ objectFit: "cover", objectPosition: "cover top" }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <article className="p-4">

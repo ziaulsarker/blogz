@@ -33,6 +33,7 @@ export default async function RemoteMdxPage({
           src={postData.data?.img}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: "cover", objectPosition: "center" }}
+          priority
         />
       </div>
       <h1 className="text-xl lg:text-2xl xl:text-3xl my-4">
