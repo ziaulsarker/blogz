@@ -1,0 +1,56 @@
+---
+title: What is the FileReader api
+slug: file-reader-api
+img: /file-reader-api.jpeg
+description: read files with out the need for a backend server.
+published: 2024-04-21
+category: 
+  - javascript
+  - HTML
+---
+
+In the past reading from files was not possible form with in the browser, we would have to upload that file to a server, the server then would parse that data and send it back to the client.
+
+Current modern day browsers makes working with files in our local filesystem a breeze with out the need for a backend server or plugins.
+
+***FileReader*** allows us to read the contents of the file. 
+
+<Span> example: </Span>
+<div>
+```javascript
+  // create a new file reader object that has methods to handles reading of files.
+  const fileReader = new FileReader();
+  
+  // add events to process a successful or failed attempt to read the file.
+  fileReader.addEventListener('load', event => {
+    // here have access to the files contents once it loaded, as part of the event.target.result
+    console.log(event.target.result) // event.target.result has the contents of the file.
+  })
+
+  fileReader.addEventListener('error', event => {
+    // here can process the request if there is an error reading the file.
+    console.error('error reading the file', event) // we can process any error, here im just loggin it out.
+  })
+
+  fileReader.readAsText(file) // inits the file reading process. this will either be successful or failed.
+
+```
+</div>
+
+One thing to keep in mind is that unlike most server side file readers, we cant just pass a path to it we have to pass in a File / Blob obj. which we can use the ***input element with a type of file***
+
+<Span> example: input type file</Span>
+<div>
+```javascript
+<input type='file' id='read-file'/>
+
+const inputFiled = document.getElementById('read-file');
+const fileReader = new FileReader();
+
+inputFiled.addEventListener('change', event => {
+  const [file] = event.target.files; // here we destructure the fist file then pass into our reader
+
+  fileReader.readAsText(file); // here we read the files from the upload.
+});
+```
+</div>
