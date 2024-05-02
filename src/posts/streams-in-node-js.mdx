@@ -12,7 +12,7 @@ category:
 
 Streams are just instances of the EventEmitter. We can think of streams as a sequnce of data / events called chunks. 
 
-Since Node node js has a I/O architecture, streams are great because we can respond to those input / envets as they come in. That is how node js gives us the impression that its multi-threaded even though it is single threaded.
+Since Node js has a I/O architecture, streams are great because we can respond to those input / envets as they come in. That is how node js gives us the impression that its multi-threaded even though it is single threaded.
 
 Traditionally lets say if we were a single-threaded and we were reading from a file, we would first read the file save those chunks into what are called buffers then return that data back, now this works fine if we were just reading a few byts of data, but lets say the file we are reading is 10GB or more, we now have to save all those chunks into a buffer, then once we finsish reading the file we send the information back, the larger the file the longer the delay or even loss of pysical memory depending on device. You can see how that can he problametic. 
 
