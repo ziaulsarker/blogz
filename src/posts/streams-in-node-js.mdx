@@ -1,0 +1,27 @@
+---
+title: Streams in node.js
+slug: streams-in-node-js
+img: /streams-in-node-js.jpeg
+description: what are streams in node.js 
+published: 2024-05-01
+category: 
+  - node
+---
+
+"stream all the things"
+
+Streams are just instances of the EventEmitter. We can think of streams as a sequnce of data / events called chunks. 
+
+Since Node node js has a I/O architecture, streams are great because we can respond to those input / envets as they come in. That is how node js gives us the impression that its multi-threaded even though it is single threaded.
+
+Traditionally lets say if we were a single-threaded and we were reading from a file, we would first read the file save those chunks into what are called buffers then return that data back, now this works fine if we were just reading a few byts of data, but lets say the file we are reading is 10GB or more, we now have to save all those chunks into a buffer, then once we finsish reading the file we send the information back, the larger the file the longer the delay or even loss of pysical memory depending on device. You can see how that can he problametic. 
+
+This is where streams comes in. So now if we were reding the same large file no longer have to save those chunks into a buffer, we simply return the chunks directly back to the client and no need for a buffer.
+
+A good example of this is, if you remember back in the early years of the internet let say if you were watching a video online you would get a buffering warning, that because the video as it was being read from the server was saving those chunks into a buffer before sending it back to the client. Now in the modern world day we have steaming wher as we are reading the video we are also sending it back.
+
+That is why the team "streaming" comes from, like we "streaming netflix" or "streaming servevice".
+
+In node there are a lot streams, some examles are the common ***fs.createReadableStream***, ***fs.createWriteableStream***. Tecnically even the ***HTTP request and res*** object are steams. 
+
+
