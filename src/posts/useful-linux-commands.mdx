@@ -1,0 +1,59 @@
+---
+title: Useful Linux commands
+slug: useful-linux-commands
+img: /Useful-linux-commands.jpeg
+description: Some Useful and cool linux commands.
+published: 2024-05-05
+category: 
+  - linux
+  - devops
+---
+
+Linux is very popular open source operating system, just like mac and windows you can use a graphical interface with it, but to truly harness the power or linux its recommended to use its shell (command line interface). In windows its **cmd** and in mac its the **terminal**
+
+Before i continue i want to go over what a command really is. Since Linux is vastly customizable, there are a lot of different variations of linux that share the core programs but also come with its own programs and user interface and look and feel. These variations are whats called ***distros*** (distributions), some popular distros are Ubuntu, Arch Linux, Linux Mint. A command is a way to run a program that runs on that distros using the shell (command line interface). A command consist of that **programs name** along with any **options and/or arguments**.
+
+Now a lot of us already use basics file system commands in our day to day already like **ls** (list files), **mkdir** (make directory) but these are some other ones i find useful.
+<hr className="opacity-10 my-6 border-[#222] dark:border-[#fff]" />
+<strong className="bg-[#49c5b6] text-white dark:bg-[#e7b10a]">diff</strong> command is used to compare two files or directories. when comparing files it compares them line by line and when comparing directories it compares the files in those directories. 
+
+<Span>`diff [options] file1 file2`</Span>
+<Span> &uarr; this will compare two files line by line print out its differences</Span>
+
+<Span>`diff [options] directory1 directory2`</Span>
+<Span> &uarr; this will compare two directories and list its differences</Span>
+
+<hr className="opacity-10 my-6 border-[#222] dark:border-[#fff]" />
+
+<strong className="mt-4 bg-[#49c5b6] text-white dark:bg-[#e7b10a]">grep</strong> this command is very powerful it can take a text or regular expression called pattern and iterate over a file(s) and list any line where it finds that pattern.
+
+<Span>`grep [options] pattern [files]`</Span>
+<Span> &uarr; this will iterate over all the files and list the lines where it finds those patterns in the files.</Span>
+
+<hr className="opacity-10 my-6 border-[#222] dark:border-[#fff]" />
+
+<strong className="mt-4 bg-[#49c5b6] text-white dark:bg-[#e7b10a]">cat</strong> you ever want to read the contents of a file right inside your command line interface? well the cat command does just that, it prints the entirety of the file. It concatenates the file into one stdout (standard output).
+
+<Span>`cat file`</Span>
+<Span> &uarr; this will list the whole file content inside the terminal</Span>
+
+<hr className="opacity-10 my-6 border-[#222] dark:border-[#fff]" />
+<strong className="mt-4 bg-[#49c5b6] text-white dark:bg-[#e7b10a]">convert</strong>, often times i would need to convert an image type from one format to another or even compress the image, prior to to knowing about this command i would use some sort of online converter, but we can easily use the **convert** command. Keep in mind that the **convert** command does not come built in with most distributions, It is part of the package called <a href='https://www.imagemagick.org/script/download.php#macosx' rel="noopener noreferrer" target="_blank">ImageMagick</a>
+
+<Span>`convert [input-options] input-file [output-options] output-file`</Span>
+<Span>`convert me.jpeg me.jpg`</Span>
+<Span> &uarr; this will take an input file of a type and create a new file of another type </Span>
+
+<Span>`convert me.jpeg -quality 50% me.jpg`</Span>
+<Span> &uarr; this will take an input file of a type and create a new **compressed** file of another type </Span>
+
+<hr className="opacity-10 my-6 border-[#222] dark:border-[#fff]" />
+
+<strong className="mt-4 bg-[#49c5b6] text-white dark:bg-[#e7b10a]">aspell</strong>, since i can not spell this is the perfect command for me, it runs a spell checker for any file with suggestions. This package does not come pre installed with OS so we need to install it with homebrew 
+
+<Span>`brew install aspell`</Span>
+
+<Span>`aspell -c file`</Span>
+<Span> &uarr; this will check the file and give suggestions on words it does not recognize </Span>
+
+<p className='text-xs my-4'> *This is a great alternative to when <a href='https://www.linkedin.com/in/keithlopez/' className='bg-[#49c5b6] text-white dark:bg-[#e7b10a]' rel="noopener noreferrer" target="_blank">**KeithBot**</a> is not around to help correct my spelling mistakes*</p>
