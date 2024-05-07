@@ -1,0 +1,80 @@
+---
+title: Honey Pot Technique 
+slug: honey-pot-technique
+img: /honey-pot-technique.jpeg
+description: What is the honey pot technique and how can we leverage it to create more secured forms.
+published: 2024-05-06
+category: 
+  - HTML
+  - web security
+---
+
+In the context of computer science a honey pot works as a security mechanism to bait spam bot and potential attackers into thinking they have compromised your machine. 
+
+This technique is often times used with HTML forms to prevent bots from spaming your site.
+
+The idea is when a bot goes through your site, it fills out any forms it can find to spam your site with fake data so we create a "Honey Pot" to bait them we do this by creating a hidden form field on our forms which is visually hidden so a real user wont fill out that field but a bot will, and on the form submission we can check if that form field was filled out. If it was then we know it was a bot and we can reject submission.
+
+There are a few way to acheive this 
+  - css to hide the field
+  - using input type hidden
+  - wrapping in a container and placing it off viewport
+
+
+so lets say we have a form to capture new users on a site.
+
+
+```html
+<form id='signup-form'>
+  <input type='text' name='username' />
+  <input type='email' name='email' />
+  <input type='password' name='password' />
+
+  <!-- we create the honepot field -->
+  <input type='text' name='user-name' class='user-name'/> 
+   <!--  this field will be hidden from the user visually, so they only see and fill out the fields above -->
+   <!-- a bot will scand your site, see this field and fill it out  -->
+
+   <input type='submit' value='sign up' /> 
+   <!-- we need to hide this visually from a used -->
+</form>
+```
+
+we need to now hide the honey pot field from the user visually, we can either use the form type hidden but bot are getting smarter so css is a better solution in my opinion.
+
+```css
+.user-name {
+  visibility : hidden;
+  opacity : 0;
+  display: none;
+}
+```
+
+we approach above works fine but i like to not keep the form field hidden but rather be on the screen just not in visibility. Another approach is to give it position absolute and use a directtion that makes it out of the visibility of the viewport. This way if the bot is smart enough it might pick up on the hidden css properties so i find the approach that below a better solution.
+
+```css
+.user-name {
+  position: absolute;
+  right: 99999px;
+}
+```
+
+so now we can validate if that field has a value at the time of the form submission and if it has a value then reject the submission.
+
+```javascript
+const myform = document.getElementById('signup-form');
+
+myform.addEventListener('submit', event => {
+  const formData = new FormData(event.target)
+
+  // here we will check to if the honey pot field was filled out. and perform the necessary validatidating.
+  const honePotHasData = formData.get('user-name'); // check to if the honey pot has worked and baited the bot.
+
+
+ // validate the data
+  if(honePotHasData) {
+    // usually if the honey pot has data you dont want to submit that information to your database most tend to just return nothing but i prefe we dont save the data but still return a successfull msg that way the bot thinks it got a good submission.
+    return null
+  }
+})
+```
