@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { ReactNode } from "react";
 import { usePosts } from "src/hooks";
 import Link from "next/link";
+import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
 
 const LOCAL = "http://localhost:3000";
 const PROD = "https://www.ziaulsarker.com";
@@ -70,10 +71,11 @@ export interface Sitemap {
     | "weekly"
     | "monthly"
     | "yearly"
-    | "never";
+    | "never"
+    | undefined;
   priority?: number;
   alternates?: {
-    languages?: Array<string>;
+    languages?: Languages<string>;
   };
 }
 
