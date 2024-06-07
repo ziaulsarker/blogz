@@ -11,9 +11,12 @@ category:
 
 Javascript out of the box is a dynamic programing language, but does not provide great tooling and type safety like some typed languages. This is where typescript shines. 
 
-Typescript provides a type system to existin javascript. Our variable can now have a types and interfaces associated with them. Typescript also provides a great tooling system, for our IDEs, some of which are autocomplete, type annotations, etc.
+Typescript provides a type system to existing javascript. Our variable can now have a types and interfaces associated with them. Typescript also provides a great tooling system, for our IDEs, some of which are autocomplete, type annotations, etc.
 
-One thing to keep in mind is that **"all javascript is considered typescript but not all typescript is considered javascript"**. This makes it very easy to migrate existion javascript projects to typescript, all we have to do is update the .js/.jsx file extension to .ts/.tsx and thats it.
+One thing to keep in mind is that **"all javascript is considered typescript but not all typescript is considered javascript"**. 
+
+This makes it very easy to migrate existion javascript projects to typescript, all we have to do is update the .js/.jsx file extension to .ts/.tsx and thats it.
+
 
 With typescripts type annotations, we are able to spot bugs in our code sooner for example.
 
@@ -31,8 +34,11 @@ the same code in typeScript below will produce the following
 ```typescript
 const me = {name: 'ziaul', hobby: 'code code code', location: 'NYC'}
 
-console.log(me.age) // this code will indicate an error in the IDE
+console.log(me.someRandomProperty) // this code will indicate an error in the IDE
 ```
+<RenderUIResult src='ts-type-anotaion' style={{width: '100%', objectFit: 'cover'}}/>
 </div>
-Property 'age' does not exist on type **'{"name: string; hobby: string; location: string;"}'** As you can see Typescript helps us identify the issue before we run the code.
+Property 'someRandomProperty' does not exist on type **'{"name: string; hobby: string; location: string;"}'** 
+
+As you can see Typescript helps us identify the issue before we run the code.
 
