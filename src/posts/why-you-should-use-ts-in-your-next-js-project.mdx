@@ -3,13 +3,13 @@ title: Why you should use typescript in your next javascript project.
 slug: why-you-should-use-ts-in-your-next-js-project
 img: /why-you-should-use-ts-in-your-next-js-projects.jpeg
 description: All javascript code is typescript code, but not all typescript code is javascript code. So why should you use typescript in your next javascript project.
-published: null
+published: 2024-06-09
 category: 
   - typescript
   - javascript
 ---
 
-Javascript out of the box is a dynamic programing language, but does not provide great tooling and type safety like some typed languages. This is where typescript shines. 
+Javascript out of the box is a dynamic programming language, but does not provide great tooling and type safety like some typed languages. This is where typescript shines. 
 
 Typescript provides a type system to existing javascript. Our variable can now have a types and interfaces associated with them. Typescript also provides a great tooling system, for our IDEs, some of which are autocomplete, type annotations, etc.
 
@@ -45,10 +45,14 @@ As you can see Typescript helps us identify the issue before we run the code.
 Typescript also comes with great support for autocomplete in our IDE environments. 
 
 Take a look at this js example below 
-```javascript
 
+<RenderUIResult src='js-auto-complete' style={{width: '100%', objectFit: 'cover'}}/>
 
-```
+you can see that it doesnot really provide very good autocomplete, however the same code using Typescript will yeild better autocomplete
+
+<RenderUIResult src='ts-auto-complete' style={{width: '100%', objectFit: 'cover'}}/>
+
+<Span> Even with these and a bunch of other features of Typescript it has no impact on runtime performance, since all the types, interfaces and type operations are removed when it generates js code. However typescript can cause build time over head since it has to complile its code to pure javascript</Span>
 
 
 
