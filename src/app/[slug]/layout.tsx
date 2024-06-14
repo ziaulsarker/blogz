@@ -14,6 +14,7 @@ import { usePost } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
+import { LikeBtn } from "src/components/likeBtn/likeBtn";
 
 export async function generateMetadata(
   { params: { slug } }: { params: { slug: string } },
@@ -173,6 +174,10 @@ export default async function PostLayout({
           size={35}
           title={post.data?.title}
         />
+
+        <div className="mt-4">
+          <LikeBtn />
+        </div>
       </div>
     </div>
   );
