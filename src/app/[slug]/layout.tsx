@@ -14,12 +14,20 @@ import { usePost } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
-import { LikeBtn } from "src/components/likeBtn/likeBtn";
+// import { LikeBtn } from "src/components/likeBtn/likeBtn";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+  parent: ResolvingMetadata;
+};
 
 export async function generateMetadata(
-  { params: { slug } }: { params: { slug: string } },
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+
+  const { slug } = await params;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const postData = await usePost(slug);
   const parentMetadata = await parent;
@@ -42,11 +50,12 @@ export async function generateMetadata(
 
 export default async function PostLayout({
   children,
-  params: { slug },
+  params,
 }: {
   children: React.ReactNode;
   params: { slug: string };
 }) {
+  const { slug } = await params;
   const post = await usePost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
 
