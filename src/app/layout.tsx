@@ -16,7 +16,7 @@ const roboto = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Ziaul Sarker Personal Blog",
   description:
-    "I explain my coding journy through the world fo software engineering.",
+    "I explain my coding journey through the world fo software engineering.",
   keywords:
     "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engine",
 
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const theme = cookieStore.get("theme")?.value ?? "light";
 
   return (
