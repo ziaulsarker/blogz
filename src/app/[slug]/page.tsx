@@ -14,10 +14,11 @@ const options = {
 } as SerializeOptions;
 
 export default async function RemoteMdxPage({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const postData = await usePost(slug);
 
   if (postData.err) {

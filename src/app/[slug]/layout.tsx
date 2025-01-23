@@ -17,10 +17,13 @@ import Share from "src/components/share/share";
 import { LikeBtn } from "src/components/likeBtn/likeBtn";
 
 export async function generateMetadata(
-  { params: { slug } }: { params: { slug: string } },
+  { params },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { slug } = await params;
+
+  // return {
   const postData = await usePost(slug);
   const parentMetadata = await parent;
 
@@ -42,11 +45,12 @@ export async function generateMetadata(
 
 export default async function PostLayout({
   children,
-  params: { slug },
+  params,
 }: {
   children: React.ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const post = await usePost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
 
