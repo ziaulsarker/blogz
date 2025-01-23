@@ -16,14 +16,17 @@ import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
 import { LikeBtn } from "src/components/likeBtn/likeBtn";
 
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 export async function generateMetadata(
-  { params },
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { slug } = await params;
-
-  // return {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const postData = await usePost(slug);
   const parentMetadata = await parent;
 
