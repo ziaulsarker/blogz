@@ -1,7 +1,7 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
 import PostGrid from "src/components/postsGrid/postGrid";
-import { usePosts } from "src/hooks";
+import { getPosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
 import NewsLetter from "src/components/newsLetter/newLetter";
@@ -12,7 +12,7 @@ export default async function Page({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { category } = await searchParams;
-  const { posts, categories } = await usePosts();
+  const { posts, categories } = await getPosts();
   const filteredPosts = posts.filter(
     ({
       data: { category: postCategories },

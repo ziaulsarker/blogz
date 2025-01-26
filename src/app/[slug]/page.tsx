@@ -4,7 +4,7 @@ import rehypeHighlight from "rehype-highlight";
 import { SerializeOptions } from "next-mdx-remote/dist/types";
 import { notFound } from "next/navigation";
 import { componentsMapper } from "src/utils";
-import { usePost } from "../../hooks/usePosts";
+import { getPost } from "../../hooks/usePosts";
 
 const options = {
   mdxOptions: {
@@ -19,7 +19,7 @@ export default async function RemoteMdxPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const postData = await usePost(slug);
+  const postData = await getPost(slug);
 
   if (postData.err) {
     notFound();

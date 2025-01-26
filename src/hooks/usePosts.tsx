@@ -2,7 +2,7 @@ import { readdir } from "node:fs/promises";
 import * as matter from "gray-matter";
 import { postFile, postsDir } from "src/utils";
 
-export async function usePost(slug: string) {
+export async function getPost(slug: string) {
   try {
     const postData = matter.read(`${postFile(slug)}.mdx`);
     return { ...postData, err: null };
@@ -11,7 +11,7 @@ export async function usePost(slug: string) {
   }
 }
 
-export async function usePosts() {
+export async function getPosts() {
   const foundPosts: any[] = [];
   const categories: Array<string> = [];
 

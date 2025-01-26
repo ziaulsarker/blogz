@@ -1,9 +1,9 @@
 import RSS from "rss"
-import { usePosts } from "src/hooks";
+import { getPosts } from "src/hooks";
 import { BASE_URL } from "src/utils";
 
 export async function GET() {
-    const {posts = []} = await usePosts();
+    const {posts = []} = await getPosts();
 
 
     const feed = new RSS({

@@ -10,30 +10,28 @@ import Image from "next/image";
 import styles from "./(styles)/page.module.scss";
 
 import type { Metadata, ResolvingMetadata } from "next";
-import { usePost } from "src/hooks/index";
+import { getPost } from "src/hooks/index";
 import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
 import { LikeBtn } from "src/components/likeBtn/likeBtn";
 
-type Props = {
+interface IProps {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
+}
 
 export async function generateMetadata(
-  { params }: Props,
+  { params }: IProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = await params;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const postData = await usePost(slug);
+  const postData = await getPost(slug);
   const parentMetadata = await parent;
 
   return {
     title: `${slug} by Ziaul Sarker`,
     description: `${slug} by Ziaul Sarker`,
-    category: postData.data?.category.join(", "),
+    keywords: postData.data?.category,
     other: {
       keywords: postData.data?.category
         .concat(parentMetadata.keywords as string | ConcatArray<string>)
@@ -54,7 +52,7 @@ export default async function PostLayout({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await usePost(slug);
+  const post = await getPost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
 
   return (

@@ -3,7 +3,7 @@ import { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import { resolve } from "node:path";
 import { ReactNode } from "react";
-import { usePosts } from "src/hooks";
+import { getPosts } from "src/hooks";
 import Link from "next/link";
 import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
 
@@ -80,8 +80,7 @@ export interface Sitemap {
 }
 
 export const generateSiteMapFromPosts = async (): Promise<Sitemap[]> => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { posts } = await usePosts();
+  const { posts } = await getPosts();
   return posts.map((post) => ({
     url: `${BASE_URL}/${post?.data.slug}`,
     changeFrequency: "weekly",

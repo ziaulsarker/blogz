@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server'
 import * as matter from 'gray-matter';
 import { postFile } from 'src/utils';
 
-export async function GET(request: Request,   { params: { post } }: { params: { post: string } }) {
+
+export async function GET(request: Request,   { params }: { params: Promise<{ post: string }> }) {
+  const { post } = await params
   try {
     const postData = matter.read(`${postFile(post)}.mdx`);
     return NextResponse.json({postData, err: null}, {status: 200})
