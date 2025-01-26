@@ -7,10 +7,11 @@ import Link from "next/link";
 import NewsLetter from "src/components/newsLetter/newLetter";
 
 export default async function Page({
-  searchParams: { category },
+  searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const { category } = await searchParams;
   const { posts, categories } = await usePosts();
   const filteredPosts = posts.filter(
     ({
