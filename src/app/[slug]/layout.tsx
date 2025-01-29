@@ -180,9 +180,9 @@ export default async function PostLayout({
           title={post.data?.title}
         />
 
-        {/* <div className="mt-4">
+        <div className="mt-4">
           <LikeBtn />
-        </div> */}
+        </div>
       </div>
     </div>
   );
