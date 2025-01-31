@@ -1,11 +1,11 @@
 "use client";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { likeAction } from "../../serverActions";
+import { likeAction } from "src/serverActions/likeBtnAction";
 
 export function LikeBtn() {
   return (
-    <button onClick={() => likeAction({ isPending: true })}>
+    <button onClick={(e) => likeAction(e)}>
       <FontAwesomeIcon
         fill={"red"}
         icon={faHeartbeat}
