@@ -15,6 +15,7 @@ import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
 import { LikeBtn } from "src/components/likeBtn/likeBtn";
+import { auth } from "@/auth";
 
 interface IProps {
   params: Promise<{ slug: string }>;
@@ -27,6 +28,10 @@ export async function generateMetadata(
   const { slug } = await params;
   const postData = await getPost(slug);
   const parentMetadata = await parent;
+
+  const session = await auth();
+
+  console.log({ session });
 
   return {
     title: `${slug} by Ziaul Sarker`,

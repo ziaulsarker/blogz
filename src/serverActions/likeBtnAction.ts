@@ -1,10 +1,14 @@
 'use server'
 
+import { signIn } from "auth";
 import React from "react";
 
 export const likeAction = async () => {
 
 
-  console.log({event}, "liked Post")
-  return "liked Post"
+const user = await signIn("google")
+
+console.log({user})
+
+setTimeout(() => {console.log({user})}, 500)
 }
