@@ -5,9 +5,14 @@ import { likeAction } from "src/serverActions/likeBtnAction";
 
 import { auth } from "@/auth";
 
-export function LikeBtn() {
+export function LikeBtn({}: {
+  onHandleChange?: (e: React.SyntheticEvent) => void;
+}) {
+  const handleClick = (e: React.SyntheticEvent) => {
+    likeAction();
+  };
   return (
-    <button onClick={(e) => likeAction(e)}>
+    <button onClick={handleClick}>
       <FontAwesomeIcon
         fill={"red"}
         icon={faHeartbeat}

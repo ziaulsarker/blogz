@@ -29,10 +29,6 @@ export async function generateMetadata(
   const postData = await getPost(slug);
   const parentMetadata = await parent;
 
-  const session = await auth();
-
-  console.log({ session });
-
   return {
     title: `${slug} by Ziaul Sarker`,
     description: `${slug} by Ziaul Sarker`,

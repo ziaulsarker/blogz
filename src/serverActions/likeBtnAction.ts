@@ -1,14 +1,12 @@
 'use server'
 
-import { signIn } from "auth";
-import React from "react";
+import { auth, signIn } from "auth";
+
 
 export const likeAction = async () => {
+  const session = await auth();
+  if (session && session.user) return session.user;
+  const user = await signIn("google")
+  return user;
 
-
-const user = await signIn("google")
-
-console.log({user})
-
-setTimeout(() => {console.log({user})}, 500)
 }
