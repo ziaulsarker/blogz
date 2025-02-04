@@ -55,7 +55,9 @@ export default async function PostLayout({
   const { slug } = await params;
   const post = await getPost(slug);
   const gitHubEditLink = editOnGitHubLink(slug);
+  const session = await auth();
 
+  console.log({ session });
   return (
     <div id="post" className="relative">
       <div className="text-xs flex flex-row items-center justify-between">
