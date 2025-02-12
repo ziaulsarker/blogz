@@ -58,6 +58,7 @@ export default async function PostLayout({
   const session = await auth();
 
   console.log({ session });
+
   return (
     <div id="post" className="relative">
       <div className="text-xs flex flex-row items-center justify-between">

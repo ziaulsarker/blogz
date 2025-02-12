@@ -5,6 +5,7 @@ import { getPosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
 import NewsLetter from "src/components/newsLetter/newLetter";
+import { SocialLoginForm } from "src/components/signupForm/SignupForm";
 
 export default async function Page({
   searchParams,
@@ -38,6 +39,8 @@ export default async function Page({
           btn: "md:!mt-0 lg:!mt-0",
         }}
       />
+
+      <SocialLoginForm />
       <CategoryGrid categories={categories} active={category as string} />
       <PostGrid posts={postsToRender} />
       {category && postsToRender.length === 0 && (

@@ -10,3 +10,14 @@ export default async function SignupForm() {
     </>
   );
 }
+
+export async function SocialLoginForm() {
+  return (
+    <>
+      <form>
+        <input type="radio" name="google" />
+        <input type="submit" value="login with social media" />
+      </form>
+    </>
+  );
+}
