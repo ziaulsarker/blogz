@@ -1,0 +1,27 @@
+---
+title: Do you scrub your data.
+slug: what-is-data-scrubbing-and-why-you-should-clean-your-data
+img: /what-is-data-scrubbing-and-why-you-should-clean-your-data.jpeg
+description: what is data scrubbing and why you should clean your data.
+published: 2025-02-14
+category: 
+  - ML/AI
+---
+
+we live in a digital age where data is all around us and with the advancement of AI / ML, data is being consumed at a rapid rate, and just like most things we consume we probably make sure its clean and is safe to digest. 
+
+The same can said for the data we feed our ML models. Although data is all around us sometimes our data can have discrepancies or needs to be converted from one type to another, or transformed in someway and this process is whats knows as data scrubbing / cleaning
+
+some common data scrubbing scenarios are.
+
+**Data Duplication** 
+some time we have duplication in data which can lead to overfilling our our ML model or yield in inaccurate measurement of metrics.
+
+**Feature Extraction**
+some times not all data is relevant data, and we need to extract one features that matter to our ML model. for example, lets says you are creating a model that measures a cars value for sale and the data set we work with may save information that is not relevant to our ML model, like how fast the previous over drove, or when the car had its last car wash. stuff that not relevant, like miles drove, wear and tear condition.
+
+**One Hot Encoding**
+this when we convert one feature (data) type to another. This is mostly done with text value being transformed into binary format value like 0 (false) and 1 (true / hot). Example let say we have a data set that has a row portraying the height and width of something and depending on the scenario we can convert both into one row by combining height and width to isBig and the value to either true or false.
+
+**Missing Feature** 
+sometimes our data can come without features that we are expecting or might have gotten corrupt during the delivery process in these cases we have be have each case accordingly ex, show some kind of err mas to user or retry the api call or other based on situation
