@@ -1,11 +1,38 @@
 ---
 title: Categorical Data in ML
 slug: what-are-categorical-data-attributes
-img: /what-are-categorical-data-attributes.png
+img: /what-are-categorical-data-attributes.jpeg
 description: What are categorical data how can they effect the accuracy of our models 
-published: null
+published: 2025-04-25
 category: 
   - ML/AI
 ---
 
-In machine learning most of the time the data we feed our models are numerical data but sometimes our data can contain categorical data, basically data that in not a number for ex a persons sex can be categorized as "male" or "female"
+In machine learning most models generally consume numerical data but thats not always the case sometimes it can intake other types of data (categorical, time series, text) for the purpose of this post ill be going over what categorical data.
+
+**Categorical data**, basically is data that in not a number, can be categorized and grouped for example a persons gender can be categorized as "male" or "female", the type of food a person likes, "Italian" or "Mexican"
+
+Most python data analyzing libraries provides api's to do this. Ill be using the pandas library to show a small example.
+
+
+```python
+# first gather all your dependencies 
+import pandas as pd
+
+# read data from source. we will pretend its in csv format
+data = pd.read_csv('YOUR_DATA_SOURCE_LOCATION.csv')
+
+# you can then examine this data then decide what can used as categorical data. One way to do that is to use the .info method on data
+
+print(data.info())
+
+# you can then look at the data type of each column and see which ones are not of type integer or float. 
+
+# once you make your selection you can retrieve each UNIQUE value within that categorical data column
+data['YOUR_CATEGORICAL_DATA_COLUMN'].value_counts()
+```
+
+and its as simple as that
+
+
+
