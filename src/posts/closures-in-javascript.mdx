@@ -9,16 +9,16 @@ category:
   - functional programming
 ---
 
-***Closures*** are a very powerfull technique we can use to do some pretty neat stuff.
+***Closures*** are a very powerful technique we can use to do some pretty neat stuff.
 
 Basically closures just allow functions at the time of declaration have access to its outer lexical scope, even after its been invoked / executed. 
 
-This opens up posibility to do some cools stuff like 
+This opens up possibility to do some cools stuff like 
   - abstract logic
   - create private variables
-  - supply arguments cronologically (currying / partial aplication)
+  - supply arguments chronologically (currying / partial application)
 
-<Span> example: abstact logic </Span>
+<Span> example: abstract logic </Span>
 <div>
 ```javascript
 // we return a function that cretes a closure over the multiplier argument.
@@ -65,7 +65,7 @@ In the example above in the body of the authenticateUser function we create a pr
 
 <hr className="block my-6 md:my-8 opacity-5"/>
 
-<Span> example:  supply arguments cronologically (currying / partial aplication)</Span>
+<Span> example:  supply arguments chronologically (currying / partial application)</Span>
 <div>
 ```javascript
 const curry = fn => firstArg => secondArg => fn(firstArg, secondArg)
@@ -77,5 +77,5 @@ console.log(ziaul) // hi i am ziaul sarker
 ```
 </div>
 
-In the example above we first create a curry function that takes in a funtion then it returns two funtion for two argumets that we passin, then we can call it like so by supplyin with the necessary arguments. In our example we used two arguments but this can be expanded to fix any number. 
+In the example above we first create a curry function that takes in a function then it returns two function for two arguments that we passing, then we can call it like so by supplying with the necessary arguments. In our example we used two arguments but this can be expanded to fix any number. 
 one use case of this would be, lets say we need to hit a bunch of apis one after the other, and the result of one api call becomes the argument of the next api call. 
