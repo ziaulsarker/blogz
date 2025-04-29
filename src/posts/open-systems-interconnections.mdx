@@ -1,0 +1,36 @@
+---
+title: What is the Open Systems Interconnections Model
+slug: open-systems-interconnections
+img: /open-systems-interconnections.jpeg
+description: What is OSI model and how can it help us better understand how the internet works.
+published: 2025-04-27
+category: 
+  - networking
+---
+
+The internet as we know it today is just a bunch of computers thats connected over a network, but what really happens when we browse the internet how does it know what files, images, text, videos, etc to serve to the requesting party. The Data gets broken down to whats known as **packets**
+
+The OSI modal is kind of like a blueprint on how these networks work. It breaks down how data (packets) is transferred across a network into 7 layers.
+
+
+
+**1. Physical Layer** - This Describes how data is transferred pshycally trough radio signals, hard wires, wifi, bluetooth, electrical signals, 
+
+
+**2. Data Link Layer** - This is the layer where information is transmitted between parties (nodes) in a local network. client (your computer or device) and the router (your wifi network). 
+
+
+**3. Network Layer** - The network layer follows the internet protocol / transmission control protocol (IP / TCP). In This layer each packet (bit of data) are labeled with information, your ip, like where its going ex the other computers ip
+
+
+**4. Transport Layer** - This layer governs how packets are is transported between parties with an open connection by various protocol ex TCP, UDP, These protocols dictate additional information on the packets ex what number of the packets is this, are all packets before this good, any missing etc. This layer also comes with error handing and re-trying the data transfer if something goes wrong.
+
+
+**5. Sessions Layer** - This Layer this responsible of keeping that connection open or closing it between the parties. This is a bit different from sessions as a web dev, that sessions is for the browser this for the connections itself by the network
+
+
+
+**6. Presentational Layer** - This layer is responsible for tansforming those packets (data) received to its proper format requested, ex is an img if so what format and things like that. 
+
+
+**7. Application Layer** - This is the layer where the data transformed by the Presentational layer is consumed by the application accordingly. 
