@@ -1,0 +1,45 @@
+---
+title: What is a skip link
+slug: what-is-a-skip-link
+img: /what-is-a-skip-link.jpeg
+description: What is a skip link and how can it create a better user experience for people using screen readers. 
+published: 2025-05-04
+category: 
+  - HTML
+---
+
+Sometimes websites are visited by people who need to navigate it using a keyboard rather then the traditional mouse, for example the visually impaired. 
+
+These users navigate through the site using the the keyboard keys ex the tab key and shift + arrow keys are used kind of like a mouse to move to next tabbable elements with in the page chronologically. 
+
+With that being said in modern web application semantically there can he a lot of html that gets generated and you can imagine how much a tabbing from a user that might take to get to something lower located within a site. This is where ship links comes in, skip links are visually hidden from the page and only appears on receiving focus, and when activated shits the focus to a another position of the site (usually another skip link or the main sections)
+
+<Span>example: of a skip link</Span>
+<div>
+```html
+<a href="#THE-ID-OF-THE-NEXT-ELEMENT-WHEN-CLICKED" class="skip-slink-styles">skip link</a>
+```
+</div>
+
+<div>
+```css
+.skip-slink-styles: {
+  position: absolute;
+  left: auto;
+  top: -100%vh;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.skip-slink-styles:focus {
+  position: static;
+  visibility: visible;
+  width: auto;
+  height: auto;
+
+}
+```
+</div>
+
