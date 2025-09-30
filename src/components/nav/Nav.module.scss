@@ -1,10 +1,10 @@
-@import "../../styles/mixins.scss";
+@use "../../styles/mixins.scss";
 
 .nav {
   background-color: transparent;
 
   &--container {
-    @include container;
+    @include mixins.container;
   }
 
   &--wrapper {
@@ -13,7 +13,7 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    @include tablet {
+    @include mixins.tablet {
       min-height: 90px;
     }
   }
@@ -25,7 +25,7 @@
       font-weight: 600;
       color: var(--color-black-2);
 
-      @include tablet {
+      @include mixins.tablet {
         font-size: 20px;
       }
     }

@@ -5,6 +5,8 @@ import { SerializeOptions } from "next-mdx-remote/dist/types";
 import { notFound } from "next/navigation";
 import { componentsMapper } from "src/utils";
 import { getPost } from "../../hooks/usePosts";
+import { Suspense } from "react";
+import LoadingSpinner from "src/components/loading/loading";
 
 const options = {
   mdxOptions: {
@@ -40,11 +42,13 @@ export default async function RemoteMdxPage({
       <h1 className="text-xl lg:text-2xl xl:text-3xl my-4">
         {postData?.data?.title}
       </h1>
-      <MDXRemote
-        source={postData.content}
-        components={componentsMapper}
-        options={options}
-      />
+      <Suspense fallback={<LoadingSpinner />}>
+        <MDXRemote
+          source={postData.content}
+          components={componentsMapper}
+          options={options}
+        />
+      </Suspense>
     </article>
   );
 }

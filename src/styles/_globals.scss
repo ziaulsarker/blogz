@@ -1,5 +1,5 @@
 @use "./_colors.scss";
-@import "./_mixins.scss";
+@use "_mixins.scss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,7 +41,7 @@ body[data-theme="light"] {
 }
 
 .container {
-  @include container;
+  @include mixins.container;
 }
 
 pre {

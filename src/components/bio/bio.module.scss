@@ -1,4 +1,4 @@
-@import "../../styles/mixins.scss";
+@use "../../styles/mixins.scss";
 .bio {
   box-sizing: border-box;
   display: grid;
@@ -6,7 +6,7 @@
   grid-column-gap: 15px;
   padding: 15px 0;
 
-  @include tablet {
+  @include mixins.tablet {
     padding: 30px 0;
   }
 
@@ -14,7 +14,7 @@
     grid-template-columns: 1fr;
     text-align: center;
 
-    @include tablet {
+    @include mixins.tablet {
       text-align: left;
       grid-template-columns: 3.5rem 1fr;
     }
@@ -24,7 +24,7 @@
     h3 {
       margin: 0.65rem 0 0.65rem 0;
 
-      @include tablet {
+      @include mixins.tablet {
         margin: 0 0 0.25rem 0;
       }
     }
