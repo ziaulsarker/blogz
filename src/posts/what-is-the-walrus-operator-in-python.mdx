@@ -12,13 +12,29 @@ Often times in python we see while loops that are written like so
 
 ```python
 def guessing_game(): 
-  # without walrus operator
     random_number = random.randint(1, 100)
     user_input = input("guess a number from 1 to 100 : ")
+    continue_game = True
+    num_of_guess = 3
 
-    while True:
+
+    while continue_game:
         if int(user_input) == random_number:
-          break
+            continue_game = False
+            print("Congratulations! You guessed the correct number.")
+            num_of_guess = 3
+     
+        if int(user_input) < random_number:
+            user_input = input("Too low! Try again: ")
+
+        if int(user_input) > random_number:
+            user_input = input("Too high! Try again: ")
+        
+        if num_of_guess == 0: 
+            continue_game = False
+            print('Oops, you have exceeded the number of tries.')
+
+        num_of_guess = num_of_guess - 1
      
 ```
 
