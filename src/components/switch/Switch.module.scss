@@ -1,9 +1,11 @@
+@use "sass:math";
+
 $width: 50px;
 $height: 25px;
 
 $radius: 50%;
 
-$track-width: $width / 2;
+$track-width: math.div($width, 2);
 
 .switch {
   height: $height;

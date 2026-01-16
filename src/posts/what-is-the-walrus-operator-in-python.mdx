@@ -1,0 +1,61 @@
+---
+title: What is the Walrus Operator in Python?
+slug: what-is-the-walrus-operator-in-python
+img: /what-is-the-walrus-operator-in-python.jpeg
+description: What is the walrus operator in Python and how to use it.
+published: 2026-01-15
+category: 
+  - python
+---
+
+Often times in python we see while loops that are written like so 
+
+```python
+def guessing_game(): 
+  # without walrus operator
+    random_number = random.randint(1, 100)
+    user_input = input("guess a number from 1 to 100 : ")
+
+    while True:
+        if int(user_input) == random_number:
+          break
+     
+```
+
+where we have a Boolean expression that is being evaluated within the while loop, but what if we could assign a variable and evaluate it at the same time, this is where the walrus operator comes in.
+
+The **expression assignment operator** (also known as the walrus operator) is represented by the symbol <code>:=</code> and allows us to assign values to variables as part of an expression.
+
+This allows us to write more concise code by combining assignment and evaluation in a single line. Here is the same while loop using the walrus operator.
+
+
+```python
+def guessing_game(): 
+   # with walrus operator
+    random_number = random.randint(1, 100)
+    while (user_input := input("guess a number from 1 to 100 : ")) != random_number:
+        pass
+```
+
+
+Now you might be wondering when to use the walrus operator, here are some use cases are in while loops, list comprehensions, and conditional statements.
+Here is an example of using the walrus operator in a list comprehension:
+
+```python
+# without walrus operator
+numbers = [1, 2, 3, 4, 5]
+squared_even_numbers = []
+for num in numbers:
+    squared = num ** 2
+    if squared % 2 == 0:
+        squared_even_numbers.append(squared)  
+    
+# with walrus operator
+numbers = [1, 2, 3, 4, 5]
+squared_even_numbers = [squared for num in numbers if (squared := num ** 2) % 2 == 0]
+```
+
+
+Now you might be wondering why its called the walrus operator, just turn to head slightly to the left and you will see it looks like a walrus with tusks!
+
+<p> **: =** </p>
