@@ -11,7 +11,9 @@
       "@/public/*": [
         "public/*"
       ],
-      "react": [ "./node_modules/@types/react" ]
+      "react": [
+        "./node_modules/@types/react"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,7 +25,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -40,7 +42,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/context/ThemeProvider.js",
-    "jest.config.js"
+    "jest.config.js",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
