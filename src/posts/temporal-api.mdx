@@ -1,13 +1,56 @@
 ---
-title: Temporal API
+title: What is the Temporal API in javascript
 slug: temporal-api
-img: /temporal-api.png
+img: /temporal-api.jpeg
 description: What is the tc39 proposed Temporal AIP.
-published: null
+published: 2026-02-09
 category: 
-  - ML/AI
+  - javascript 
+  - typescript
 ---
 
+As Javascript engineers we all had to handle dates and times and we know how cumbersome that can be. That is due to when the laguage was created the creators of the language used the **java.util.Date** api in early 2010s but since js wanted to keep its backward compatibility they kept the same api.
+
+Last year i had the opportunity to work on a project that required me to create a calendar component that had to handle different timezones and compute time and it was a nightmare. since the calendar component (a component part of a design system) had props you can pass to it, to set the date and time and there was many ways to do that (ISO string, number, date object) and also had to account daylight saving time.
+
+As of writing this post the Temporal API is a stage 3 proposal in the [***TC39***](https://tc39.es/proposal-temporal/) process. It is a new API for working with dates and times in JavaScript. It is designed to be a modern, powerful, and easy to use API for working with dates and times in JavaScript. It is intended to replace the existing Date API, which has been criticized for being difficult to use and having many quirks and edge cases.
+
+some of the features of the Temporal API include:
+  - Support for time zones and daylight saving time
+  - Support for calendar systems other than the Gregorian calendar
+  - Support for durations and intervals
+  - Support for formatting and parsing dates and times
+  - Support for arithmetic operations on dates and times
+  - Support for immutability and chaining
 
 
-https://tc39.es/proposal-temporal/#sec-temporal-now-object
+
+  some of the challenges i faced when creating the calendar component was comparing times and dates, for example if i wanted to check if a date is before or after another date i had to convert them to timestamps and then compare them but with the Temporal API i can simply use the **.before()** and **.after()** methods.
+  i had to make sure i get this right because the calendar was supposed to be used by a financial institute where customer can schedule payments or appointments and if the date and time is not correct it can cause a lot of problems for the customers and the company. Also timezones matters a lot because a customer can submit a payment in a different timezone with can effect the date and time of the payment.
+
+  ```javascript
+  // comparing two dates using the Temporal API
+  const date1 = Temporal.PlainDate.from("2026-02-01");
+  const date2 = Temporal.PlainDate.from("2026-02-09");
+  console.log(date1.before(date2)); // true
+  console.log(date1.after(date2)); // false
+  // we can also check dates from and until a certain date
+  console.log(date1.until(date2).toString()); // "P8D" - this means that date1 is 8 days until date2
+  console.log(date1.since(date2).toString()); // "-P8D" - this means that date1 is 8 days since date2
+
+  // we can also pass a obj to the from and we can even specify the tine zone.
+  const dateObj = Temporal.PlainDate.from({
+    year: 2026,
+    month: 2,
+    day: 1,
+    timeZone: Temporal.Now.timeZone(),
+  }); // "2026-02-01T00:00:00.000Z[America/New_York]"
+
+  // updating two dates using the Temporal API
+  const date3 = Temporal.PlainDate.from("2026-01-01");
+  const date4 = date3.add({ days: 1 });
+  console.log(date4.toString()); // "2026-01-02"
+  ```
+
+
+These are just brushing on some of the features of the Temporal API and there are many more that you can check out in the [TC39 proposal](https://tc39.es/proposal-temporal/). I am really excited for this API to be implemented in all browsers and i think it will make working with dates and times in JavaScript much easier and less error prone.

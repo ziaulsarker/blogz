@@ -22,7 +22,7 @@ interface IProps {
 
 export async function generateMetadata(
   { params }: IProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params;
   const postData = await getPost(slug);

@@ -11,6 +11,23 @@ const LOCAL = "http://localhost:3000";
 const PROD = "https://www.ziaulsarker.com";
 const isDevelopment = process.env.NODE_ENV === "development";
 
+export default function CustomLink(
+  props: React.AnchorHTMLAttributes<HTMLAnchorElement>,
+) {
+  const href = props.href;
+  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
+
+  if (isInternalLink) {
+    return (
+      <Link href={href} {...props}>
+        {props.children}
+      </Link>
+    );
+  }
+
+  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+}
+
 export const BASE_URL = isDevelopment ? LOCAL : PROD;
 
 export function checkEnvironment() {
@@ -54,11 +71,12 @@ export const componentsMapper:
       {children}
     </Link>
   ),
+  a: CustomLink,
 };
 
 export const editOnGitHubLink = (slug: string): string =>
   `https://github.com/ziaulsarker/blogz/edit/main/src/posts/${encodeURIComponent(
-    slug
+    slug,
   )}.mdx`;
 
 export interface Sitemap {
