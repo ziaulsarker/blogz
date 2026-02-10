@@ -18,7 +18,7 @@ export default async function Page({
       data: { category: postCategories },
     }: {
       data: { category: string[] };
-    }) => postCategories.includes(category as string)
+    }) => postCategories.includes(category as string),
   );
 
   const shouldRenderAllPosts = category === "all" || !category;
@@ -29,7 +29,7 @@ export default async function Page({
       <Bio
         src={AvatarSrc}
         title="Hi I am Ziaul Sarker."
-        text="Just a place where i share my thoughts about Software Engineering."
+        text="Just a place where i share my thoughts about all things software."
       />
       <NewsLetter
         className="shadow-none mt-0 md:mt-0 lg:!grid-cols-1 md:my-6"

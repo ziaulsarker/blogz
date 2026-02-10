@@ -15,10 +15,9 @@ const roboto = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "Ziaul Sarker Personal Blog",
-  description:
-    "I explain my coding journy through the world fo software engineering.",
+  description: "I explain my coding journey through the world of software.",
   keywords:
-    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engine",
+    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engineer",
 
   other: {
     author: "Ziaul Sarker",
