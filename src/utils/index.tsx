@@ -59,15 +59,19 @@ export const componentsMapper:
   RenderUIResult: ({
     src,
     format = ".png",
+    width = 400,
+    height = 200,
     ...rest
   }: {
     src: string;
     format?: string;
+    width?: number;
+    height?: number;
   }) => (
     <div className="my-4">
       <Image
-        height={200}
-        width={400}
+        height={height}
+        width={width}
         src={`/${src}${format}`}
         alt={src}
         {...rest}
