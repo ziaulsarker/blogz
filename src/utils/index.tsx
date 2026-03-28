@@ -56,9 +56,22 @@ export const componentsMapper:
   li: ({ children }: { children?: ReactNode }) => (
     <li className="list-disc mb-2 text-sm"> {children} </li>
   ),
-  RenderUIResult: ({ src, ...rest }: { src: string }) => (
+  RenderUIResult: ({
+    src,
+    format = ".png",
+    ...rest
+  }: {
+    src: string;
+    format?: string;
+  }) => (
     <div className="my-4">
-      <Image height={200} width={400} src={`/${src}.png`} alt={src} {...rest} />
+      <Image
+        height={200}
+        width={400}
+        src={`/${src}${format}`}
+        alt={src}
+        {...rest}
+      />
     </div>
   ),
   code: ({ children }: { children?: ReactNode }) => (
