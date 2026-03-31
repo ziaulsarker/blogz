@@ -15,7 +15,7 @@ export interface IPost {
 export default function PostGrid({ posts }: { posts: IPost[] }) {
   return posts.length > 0 ? (
     posts.map(
-      (post: IPost) =>
+      (post: IPost, index: number) =>
         !!post.data.published && (
           <Link
             key={post.data.title}
@@ -35,6 +35,8 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
                   alt={post.data.title}
                   style={{ objectFit: "cover", objectPosition: "cover top" }}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
                 />
               </div>
               <article className="p-4">
@@ -52,7 +54,7 @@ export default function PostGrid({ posts }: { posts: IPost[] }) {
               </article>
             </div>
           </Link>
-        )
+        ),
     )
   ) : (
     <h2>No Posts Found</h2>
