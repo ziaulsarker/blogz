@@ -123,3 +123,8 @@ export const generateSiteMapFromPosts = async (): Promise<Sitemap[]> => {
     priority: 0.9,
   }));
 };
+
+export const buildHref = (page: number, category?: string) => ({
+  pathname: "/",
+  query: { category: category ?? "all", page },
+});

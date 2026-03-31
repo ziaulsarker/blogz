@@ -5,13 +5,15 @@ import { getPosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
 import NewsLetter from "src/components/newsLetter/newLetter";
+import Pagination from "src/components/pagination/pagination";
+import { POSTS_PER_PAGE } from "src/utils/constants";
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { category } = await searchParams;
+  const { category, page } = await searchParams;
   const { posts, categories } = await getPosts();
   const filteredPosts = posts.filter(
     ({
@@ -23,6 +25,15 @@ export default async function Page({
 
   const shouldRenderAllPosts = category === "all" || !category;
   const postsToRender = shouldRenderAllPosts ? posts : filteredPosts;
+
+  const parsedPageNumber = parseInt((page as string) ?? "1", 10);
+  const pageNumber = isNaN(parsedPageNumber) ? 1 : parsedPageNumber;
+  const currentPage = Math.max(1, pageNumber);
+  const totalPages = Math.floor(postsToRender.length / POSTS_PER_PAGE);
+  const paginatedPosts = postsToRender.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
 
   return (
     <div>
@@ -39,7 +50,12 @@ export default async function Page({
         }}
       />
       <CategoryGrid categories={categories} active={category as string} />
-      <PostGrid posts={postsToRender} />
+      <PostGrid posts={paginatedPosts} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        category={category as string}
+      />
       {category && postsToRender.length === 0 && (
         <>
           <p>
@@ -59,7 +75,7 @@ export default async function Page({
           </div>
         </>
       )}
-      {postsToRender.length > 5 && <NewsLetter />}
+      <NewsLetter />
     </div>
   );
 }

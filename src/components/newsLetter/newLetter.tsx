@@ -25,7 +25,7 @@ export default function NewsLetter({
         data: {},
       });
     const { data, err } = JSON.parse(
-      await newsLetterFormServerAction(formData)
+      await newsLetterFormServerAction(formData),
     );
     setFormState({ data, err });
   };
