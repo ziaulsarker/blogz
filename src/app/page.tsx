@@ -1,19 +1,18 @@
 import AvatarSrc from "@/public/me.jpeg";
 import Bio from "../components/bio";
-import PostGrid from "src/components/postsGrid/postGrid";
 import { getPosts } from "src/hooks";
 import CategoryGrid from "src/components/categoryGrid/categoryGrid";
 import Link from "next/link";
 import NewsLetter from "src/components/newsLetter/newLetter";
-import Pagination from "src/components/pagination/pagination";
-import { POSTS_PER_PAGE } from "src/utils/constants";
+import InfinitePostGrid from "src/components/infinitePostGrid/infinitePostGrid";
+import ScrollToTop from "src/components/scrollToTop/scrollToTop";
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { category, page } = await searchParams;
+  const { category } = await searchParams;
   const { posts, categories } = await getPosts();
   const filteredPosts = posts.filter(
     ({
@@ -24,15 +23,17 @@ export default async function Page({
   );
 
   const shouldRenderAllPosts = category === "all" || !category;
-  const postsToRender = shouldRenderAllPosts ? posts : filteredPosts;
-
-  const parsedPageNumber = parseInt((page as string) ?? "1", 10);
-  const pageNumber = isNaN(parsedPageNumber) ? 1 : parsedPageNumber;
-  const currentPage = Math.max(1, pageNumber);
-  const totalPages = Math.floor(postsToRender.length / POSTS_PER_PAGE);
-  const paginatedPosts = postsToRender.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE,
+  const postsToRender = (shouldRenderAllPosts ? posts : filteredPosts).map(
+    ({ data }: { data: Record<string, unknown> }) => ({
+      data: {
+        title: data.title as string,
+        description: data.description as string,
+        published: data.published as string,
+        slug: data.slug as string,
+        img: data.img as string,
+      },
+      content: "",
+    }),
   );
 
   return (
@@ -50,12 +51,8 @@ export default async function Page({
         }}
       />
       <CategoryGrid categories={categories} active={category as string} />
-      <PostGrid posts={paginatedPosts} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        category={category as string}
-      />
+      <InfinitePostGrid posts={postsToRender} />
+
       {category && postsToRender.length === 0 && (
         <>
           <p>
@@ -76,6 +73,7 @@ export default async function Page({
         </>
       )}
       <NewsLetter />
+      <ScrollToTop />
     </div>
   );
 }
