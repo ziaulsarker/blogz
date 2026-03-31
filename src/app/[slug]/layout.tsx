@@ -27,19 +27,28 @@ export async function generateMetadata(
   const { slug } = await params;
   const postData = await getPost(slug);
   const parentMetadata = await parent;
+  const keywords = postData.data?.category ?? [];
 
   return {
-    title: `${slug} by Ziaul Sarker`,
-    description: `${slug} by Ziaul Sarker`,
-    keywords: postData.data?.category,
-    other: {
-      keywords: postData.data?.category
-        .concat(parentMetadata.keywords as string | ConcatArray<string>)
-        .join(", "),
-      "page-topic": postData.data?.title,
-      "og:image": postData.data?.img,
-      "og:title": postData.data?.title,
-      "og:description": postData.data?.description,
+    title: `${postData.data?.title} | Ziaul Sarker`,
+    description: postData.data?.description,
+    keywords: keywords
+      .concat((parentMetadata.keywords as string[]) ?? [])
+      .join(", "),
+    openGraph: {
+      title: postData.data?.title,
+      description: postData.data?.description,
+      images: [{ url: postData.data?.img }],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: postData.data?.title,
+      description: postData.data?.description,
+      images: [postData.data?.img],
+    },
+    alternates: {
+      canonical: `/${slug}`,
     },
   };
 }

@@ -1,15 +1,16 @@
 import { readdir } from "node:fs/promises";
 import * as matter from "gray-matter";
+import { cache } from "react";
 import { postFile, postsDir } from "src/utils";
 
-export async function getPost(slug: string) {
+export const getPost = cache(async function getPost(slug: string) {
   try {
     const postData = matter.read(`${postFile(slug)}.mdx`);
     return { ...postData, err: null };
   } catch (err) {
     return { err: `opps cant find post: ${slug}`, data: null, content: "" };
   }
-}
+});
 
 export async function getPosts() {
   const foundPosts: any[] = [];

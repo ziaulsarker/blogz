@@ -3,10 +3,11 @@ import Image from "next/image";
 import rehypeHighlight from "rehype-highlight";
 import { SerializeOptions } from "next-mdx-remote/dist/types";
 import { notFound } from "next/navigation";
-import { componentsMapper } from "src/utils";
+import { componentsMapper, postsDir } from "src/utils";
 import { getPost } from "../../hooks/usePosts";
 import { Suspense } from "react";
 import LoadingSpinner from "src/components/loading/loading";
+import { readdir } from "node:fs/promises";
 
 const options = {
   mdxOptions: {
@@ -14,6 +15,13 @@ const options = {
     rehypePlugins: [rehypeHighlight],
   },
 } as SerializeOptions;
+
+export async function generateStaticParams() {
+  const files = await readdir(postsDir, { encoding: "utf-8" });
+  return files
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => ({ slug: f.replace(/\.mdx$/, "") }));
+}
 
 export default async function RemoteMdxPage({
   params,
@@ -34,7 +42,7 @@ export default async function RemoteMdxPage({
           fill
           alt={postData.data?.title}
           src={postData.data?.img}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}
           priority
         />
