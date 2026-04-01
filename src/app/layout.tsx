@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   title: "Ziaul Sarker Personal Blog",
   description: "I explain my coding journey through the world of software.",
   keywords:
-    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engineer",
+    "HTML, CSS, JavaScript Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, Software Engineering, ML Engineering, Machine Learning Engineer, AI Engineer, Artificial Intelligence, AI Agents, Software Architecture",
 
   other: {
     author: "Ziaul Sarker",
     "page-type": "Blogging",
     "page-topic":
-      "Software Engineer, AI, Coding & Programming, Machine Learning, Software Development",
+      "Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, AI Engineering, AI Agent",
   },
   icons: {
     icon: "/me.jpeg", // /public path
