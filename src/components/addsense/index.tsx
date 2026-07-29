@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 interface AdBannerProps {
@@ -21,28 +21,26 @@ export default function AdBanner({
   adFormat = "auto",
   fullWidthResponsive = true,
 }: AdBannerProps) {
-  const pathname = usePathname();
+  const initialized = useRef(false);
 
   useEffect(() => {
-    // Wrap in a short timeout to let Next.js complete the layout paint
-    const timer = setTimeout(() => {
-      try {
-        if (typeof window !== "undefined") {
-          // Check if adsbygoogle array exists
-          ((window as any).adsbygoogle =
-            (window as any).adsbygoogle || []).push({});
-        }
-      } catch (error) {
-        console.error("AdSense push failed:", error);
-      }
-    }, 100); // 100ms is usually enough to clear hydration zero-width state
+    // Prevent double-pushing during strict mode or re-renders
+    if (initialized.current) return;
 
-    return () => clearTimeout(timer);
-  }, [pathname]); // Re-run when the user switches pages
+    try {
+      // Safely access the global window object
+      const adsbygoogle = (window as any).adsbygoogle || [];
+      adsbygoogle.push({});
+      initialized.current = true;
+    } catch (error) {
+      console.error("AdSense push error:", error);
+    }
+  }, []);
 
   return (
     <div
       className="my-6 flex justify-center w-full overflow-hidden"
+      style={{ display: "block", width: "100%", minHeight: "90px" }}
       aria-hidden="true"
     >
       <ins

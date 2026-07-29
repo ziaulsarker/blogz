@@ -67,6 +67,7 @@ export default async function PostLayout({
 
   return (
     <div id="post" className="relative">
+      <AdBanner adSlot="8110324223" adFormat="auto" />
       <div className="text-xs flex flex-row items-center justify-between">
         <div className="flex flex-col gap-3 md:flex-row md:gap-4">
           <Link href="/?category=all" className={styles.back}>
@@ -99,9 +100,6 @@ export default async function PostLayout({
             />
           </div>
         </div>
-
-        <AdBanner adSlot="8110324223" adFormat="auto" />
-
         <div className="flex items-center">
           <p className="text-xs text-bold font-extrabold mr-2 font-mono">by</p>
           <Link
