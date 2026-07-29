@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -40,6 +41,14 @@ export default async function RootLayout({
 
   return (
     <html>
+      <head>
+        <Script
+          id="adsense-init"
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4017842415006810"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={roboto.className} data-theme={theme}>
         <Nav theme={theme} />
         <main className="container">{children}</main>
