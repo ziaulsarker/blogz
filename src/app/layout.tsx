@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 
   other: {
     author: "Ziaul Sarker",
+    "google-adsense-account": "ca-pub-4017842415006810",
     "page-type": "Blogging",
     "page-topic":
       "Software Engineer, AI, Coding & Programming, Machine Learning, Software Development, AI Engineering, AI Agent",
@@ -43,11 +44,16 @@ export default async function RootLayout({
     <html>
       <head>
         <Script
-          id="adsense-init"
+          async
           strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4017842415006810"
           crossOrigin="anonymous"
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4017842415006810"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body className={roboto.className} data-theme={theme}>
         <Nav theme={theme} />
