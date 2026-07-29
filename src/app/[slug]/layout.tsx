@@ -15,6 +15,7 @@ import Pill from "src/components/pill/pill";
 import { editOnGitHubLink } from "src/utils";
 import Share from "src/components/share/share";
 import { LikeBtn } from "src/components/likeBtn/likeBtn";
+import AdBanner from "src/components/addsense";
 
 interface IProps {
   params: Promise<{ slug: string }>;
@@ -99,6 +100,8 @@ export default async function PostLayout({
           </div>
         </div>
 
+        <AdBanner adSlot="8110324223" adFormat="auto" />
+
         <div className="flex items-center">
           <p className="text-xs text-bold font-extrabold mr-2 font-mono">by</p>
           <Link
@@ -137,6 +140,7 @@ export default async function PostLayout({
 
       {children}
 
+      <AdBanner adSlot="8110324223" adFormat="auto" />
       <hr className="opacity-10 my-8 border-[#222] dark:border-[#fff]" />
       <div className="flex flex-col gap-3 md:flex-row md:gap-4 text-xs mb-8">
         <div className="flex items-center gap-2 md:hidden text-bold">

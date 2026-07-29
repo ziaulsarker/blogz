@@ -78,9 +78,24 @@ export const componentsMapper:
       />
     </div>
   ),
-  code: ({ children }: { children?: ReactNode }) => (
-    <code className="bg-[#282a36] text-white p-6 md:p-8 mb-4 block">
-      <pre className="overflow-x-scroll">{children}</pre>
+  pre: ({ children }: { children?: ReactNode }) => (
+    <pre className="overflow-x-scroll bg-[#282a36] text-white p-6 md:p-8 mb-4 rounded-lg">
+      {children}
+    </pre>
+  ),
+  code: ({
+    children,
+    className,
+  }: {
+    children?: ReactNode;
+    className?: string;
+  }) => (
+    <code
+      className={`bg-[#282a36] text-white px-1 py-0.5 rounded text-sm ${
+        className ?? ""
+      }`}
+    >
+      {children}
     </code>
   ),
   A: ({ children, href, ...args }: { children?: ReactNode; href: string }) => (

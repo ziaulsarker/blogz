@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface AdBannerProps {
   adSlot: string;
@@ -22,18 +22,23 @@ export default function AdBanner({
   fullWidthResponsive = true,
 }: AdBannerProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    try {
-      // Ensure the adsbygoogle array exists, then push a initialization command
-      if (typeof window !== "undefined") {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+    // Wrap in a short timeout to let Next.js complete the layout paint
+    const timer = setTimeout(() => {
+      try {
+        if (typeof window !== "undefined") {
+          // Check if adsbygoogle array exists
+          ((window as any).adsbygoogle =
+            (window as any).adsbygoogle || []).push({});
+        }
+      } catch (error) {
+        console.error("AdSense push failed:", error);
       }
-    } catch (error) {
-      console.error("AdSense placement error:", error);
-    }
-  }, [pathname, searchParams]); // Re-runs on internal page changes to render new ads
+    }, 100); // 100ms is usually enough to clear hydration zero-width state
+
+    return () => clearTimeout(timer);
+  }, [pathname]); // Re-run when the user switches pages
 
   return (
     <div
