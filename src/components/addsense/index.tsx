@@ -20,15 +20,6 @@ export default function AdBanner({
   fullWidthResponsive = true,
 }: AdBannerProps) {
   useEffect(() => {
-    try {
-      // Ensure the adsbygoogle array exists, then push a initialization command
-      if (typeof window !== "undefined") {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }
-    } catch (error) {
-      console.error("AdSense placement error:", error);
-    }
-
     const handleAddSenseOnPageLoad = () => {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     };
