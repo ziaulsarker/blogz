@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-
+import { useEffect } from "react";
 interface AdBannerProps {
   adSlot: string;
   adFormat?: "auto" | "fluid" | "rectangle";
@@ -21,9 +19,6 @@ export default function AdBanner({
   adFormat = "auto",
   fullWidthResponsive = true,
 }: AdBannerProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   useEffect(() => {
     try {
       // Ensure the adsbygoogle array exists, then push a initialization command
@@ -33,11 +28,21 @@ export default function AdBanner({
     } catch (error) {
       console.error("AdSense placement error:", error);
     }
-  }, [pathname, searchParams]); // Re-runs on internal page changes to render new ads
+
+    const handleAddSenseOnPageLoad = () => {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    };
+
+    window.addEventListener("load", handleAddSenseOnPageLoad);
+
+    return () => {
+      window.removeEventListener("load", handleAddSenseOnPageLoad);
+    };
+  }, []);
 
   return (
     <div
-      className="my-6 flex justify-center w-full overflow-hidden"
+      className="my-6 flex justify-center w-full overflow-hidden ad-container"
       aria-hidden
     >
       <ins
