@@ -51,7 +51,7 @@ export default async function Page({
           btn: "md:!mt-0 lg:!mt-0",
         }}
       />
-      <AdBanner adSlot="8110324223" adFormat="auto" />
+      {/* <AdBanner adSlot="8110324223" adFormat="auto" /> */}
       <CategoryGrid categories={categories} active={category as string} />
       <InfinitePostGrid posts={postsToRender} />
 
@@ -74,7 +74,7 @@ export default async function Page({
           </div>
         </>
       )}
-      <AdBanner adSlot="8110324223" adFormat="auto" />
+      {/* <AdBanner adSlot="8110324223" adFormat="auto" /> */}
       <NewsLetter />
       <ScrollToTop />
     </div>
