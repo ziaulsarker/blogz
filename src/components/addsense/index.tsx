@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface AdBannerProps {
   adSlot: string;
@@ -21,27 +21,24 @@ export default function AdBanner({
   adFormat = "auto",
   fullWidthResponsive = true,
 }: AdBannerProps) {
-  const initialized = useRef(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Prevent double-pushing during strict mode or re-renders
-    if (initialized.current) return;
-
     try {
-      // Safely access the global window object
-      const adsbygoogle = (window as any).adsbygoogle || [];
-      adsbygoogle.push({});
-      initialized.current = true;
+      // Ensure the adsbygoogle array exists, then push a initialization command
+      if (typeof window !== "undefined") {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
     } catch (error) {
-      console.error("AdSense push error:", error);
+      console.error("AdSense placement error:", error);
     }
-  }, []);
+  }, [pathname, searchParams]); // Re-runs on internal page changes to render new ads
 
   return (
     <div
       className="my-6 flex justify-center w-full overflow-hidden"
-      style={{ display: "block", width: "100%", minHeight: "90px" }}
-      aria-hidden="true"
+      aria-hidden
     >
       <ins
         className="adsbygoogle"
