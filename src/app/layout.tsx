@@ -41,7 +41,7 @@ export default async function RootLayout({
   const theme = cookieStore.get("theme")?.value ?? "light";
 
   return (
-    <html>
+    <html data-scroll-behavior="smooth" lang="en">
       <head>
         <script
           async
