@@ -1,0 +1,111 @@
+---
+title: Prompt Engineering for Software Engineers
+slug: prompt-engineering-for-software-engineers
+img: /prompt-engineering-for-software-engineers.jpeg
+description: Learn how to write clearer prompts for coding tasks by providing context, requirements, constraints, and ways to verify the result.
+published: 2026-11-05
+category:
+  - ML/AI
+---
+
+Generative AI tools can write code, explain errors, suggest tests, and help explore different approaches. But if you have ever asked an AI to “fix this code” and received an answer that missed the point, you have seen an important part of working with these tools: the quality of the request matters.
+
+**Prompt engineering** is the practice of writing and refining instructions so an AI system has enough information to produce a useful response. For software engineers, that means explaining the task, sharing relevant context, and being clear about requirements and constraints. It is not a magic phrase that guarantees correct code. The result still needs to be reviewed and tested.
+
+## Why details matter
+
+Imagine asking someone on your team to “write a port parser.” They would probably have questions: Which language? What input format? What counts as a valid port? Should invalid input throw an error or return a default?
+
+An AI assistant has the same problem when those details are missing. It may make assumptions and return code that looks reasonable but does not fit your application. A clearer prompt makes those assumptions explicit.
+
+## What to include in a coding prompt
+
+A useful prompt usually covers a few things:
+
+- **Goal:** What should be implemented, explained, debugged, or changed?
+- **Context:** What part of the application is involved, and how is it used?
+- **Requirements:** What behavior must the solution provide?
+- **Constraints:** Which language, framework, versions, dependencies, or project conventions apply?
+- **Acceptance criteria:** How will you know the result is correct?
+- **Response format:** Should the assistant return code, a plan, tests, an explanation, or some combination?
+
+You do not need to include every detail for every task. Include the information that affects the answer, and avoid pasting large amounts of unrelated context.
+
+## From a vague request to a useful prompt
+
+A vague request might be:
+
+```text
+Write a function to parse a port.
+```
+
+That leaves important decisions open. A more specific request gives the assistant a target:
+
+```text
+Write a TypeScript function named parsePort that accepts a string from an
+environment variable and returns a number.
+
+Requirements:
+- Accept only a non-empty string containing decimal digits.
+- Accept values from 1 through 65535, inclusive.
+- Reject whitespace, decimals, signs, and values outside that range.
+- Throw a RangeError for invalid input; do not silently use a default.
+- Do not add dependencies.
+- Include Jest tests for the lower and upper boundaries and invalid inputs.
+
+Return the function and tests, followed by a short explanation of any
+important choices.
+```
+
+This prompt names the language, describes where the input comes from, defines valid and invalid cases, and says what output is expected. The assistant still might make a mistake, but now you can compare its answer against concrete requirements instead of guessing what it intended.
+
+## Give the assistant relevant project context
+
+When working in an existing codebase, the task is rarely just “write a function.” The project may already have a helper for validation, a specific testing framework, or conventions that a generic answer would not know.
+
+Include the relevant details: the function signature, a small code excerpt, the expected behavior, or the project convention the solution should follow. If your coding assistant can inspect the repository, point it to the relevant files and ask it to follow the patterns there. Keep the scope focused so it can distinguish essential context from background noise.
+
+For example, when debugging, explain:
+
+- What you expected to happen.
+- What actually happened, including the exact error message when available.
+- The smallest relevant code or configuration excerpt.
+- What you have already tried.
+
+For a refactor, say what should change and what must remain the same. For test generation, describe the important normal cases, edge cases, and failure cases instead of asking for “some tests.”
+
+## Treat the conversation as iteration
+
+You do not have to get the whole task into one prompt. Start with a clear request, inspect the response, and follow up with precise corrections. If a generated test fails, share the failure and ask the assistant to address that behavior. If an explanation is too broad, ask it to focus on the specific part you do not understand.
+
+This back-and-forth is especially useful for complex tasks. General-purpose models can be helpful for learning, simple code generation, and debugging, while tools that can use repository context may be better suited to changes involving several project files. Either way, break large tasks into smaller steps and review each result.
+
+## Review before using generated code
+
+A clear prompt can improve the relevance of a response, but it does not prove that the response is correct. Generated code may misunderstand the requirements, use an API incorrectly, omit an edge case, or introduce a bug.
+
+Before using it:
+
+1. Compare the code with the requirements you gave.
+2. Read it and make sure you understand what it does.
+3. Run the relevant tests, type checks, and other project validation.
+4. Review behavior that matters for reliability and security.
+5. Check current documentation when the answer depends on a library version or API that may have changed.
+
+Also be careful about what you paste into an AI tool. Do not share secrets, credentials, private customer data, or other sensitive information unless the tool and your organization’s policies explicitly allow it.
+
+## A practical way to think about it
+
+Think of a prompt as a small task description for a collaborator. State the outcome you want, include the context that affects the solution, set boundaries, and say how the result should be presented. Then verify the work yourself.
+
+The goal is not to write the longest possible prompt. It is to remove ambiguity that could change the answer. Clear instructions make AI tools more useful, while engineering judgment remains responsible for deciding whether the result belongs in your codebase.
+
+## Want a quick reference to keep nearby? Download the guide:
+
+<a
+  href="/assets/prompt-engineering-for-software-engineers.pdf"
+  download="prompt-engineering-for-software-engineers.pdf"
+  className="my-4 inline-flex rounded-md bg-[#49c5b6] px-4 py-3 font-semibold text-white transition-colors hover:bg-[#222] dark:bg-[#e7b10a] dark:text-[#222] dark:hover:bg-[#fff]"
+>
+  <span>Download the prompt engineering guide (PDF)</span>
+</a>

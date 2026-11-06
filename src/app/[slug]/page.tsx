@@ -42,7 +42,7 @@ export default async function RemoteMdxPage({
           fill
           alt={postData.data?.title}
           src={postData.data?.img}
-          sizes="100vw"
+          sizes="(min-width: 992px) 720px, (min-width: 768px) 640px, calc(100vw - 30px)"
           style={{ objectFit: "cover", objectPosition: "center" }}
           priority
         />
